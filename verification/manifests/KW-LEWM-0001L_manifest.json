@@ -1,0 +1,45 @@
+{
+  "experiment_id": "KW-LEWM-0001L",
+  "closed_at": "2026-09-02T13:00:00+08:00",
+  "status": "CLOSED_INFRASTRUCTURE_PASS_VALID_CONTROL_NOT_SUPPORTED",
+  "evidence_level": "E1_INTERNAL_FUNCTIONAL_SMOKE",
+  "allowed_claim": "KineWorld strictly loaded the official LeWM Push-T checkpoint and completed a reduced-budget runtime smoke test.",
+  "forbidden_claims": [
+    "official LeWM benchmark reproduced",
+    "LeWM performance measured",
+    "KineWorld beats LeWM, JEPA-WM, or any competitor",
+    "third-party validation",
+    "state of the art"
+  ],
+  "result_summary": {
+    "strict_model_load": true,
+    "model_parameters": 18034478,
+    "solver_calls": 2,
+    "solver_call_seconds": [0.5245934999984456, 0.17868040000030305],
+    "wall_seconds": 0.8689166000040132,
+    "peak_cuda_allocated_bytes": 93476864,
+    "task_successes": "0/1",
+    "control_result_valid": false,
+    "invalidity_reason": "Official dataset-fitted StandardScaler was unavailable; identity action normalization produced out-of-support environment actions."
+  },
+  "environment": {
+    "python": "3.10.21",
+    "torch": "2.7.0+cu128",
+    "transformers": "4.57.6",
+    "pymunk": "7.3.0",
+    "stable_worldmodel": "0.1.1",
+    "stable_pretraining": "0.1.8"
+  },
+  "artifacts": [
+    {"path": "checkpoints/lewm/weights.pt", "bytes": 72290721, "sha256": "48938400ae3464c9680731287f583a9cb516f55a8ec64ea13a91be47fb15b607"},
+    {"path": "checkpoints/lewm/config.json", "bytes": 1313, "sha256": "2564086e961e7b5c7c04dffc451091115b389a590645ff19653c64fd0bc16e09"},
+    {"path": "verification/scripts/kw_lewm_0001_load.py", "bytes": 2823, "sha256": "8cd6db2fd9484c3f092fb5d2d5cfa21279e7143a819e11d51080cd8a0bb943d1"},
+    {"path": "verification/scripts/kw_lewm_0001l_smoke.py", "bytes": 5760, "sha256": "9e2125e6f6dc81bf863fb3a65ec4d494cd3b15db819c76df4e3e815603cc26c4"},
+    {"path": "results/kw_lewm_0001l_smoke.json", "bytes": 2257, "sha256": "902f7edd179041a719e946e412ffdece49dd54e4a898adbf6b0d2ea3b8363470"}
+  ],
+  "kill_gate": {
+    "stage_b": "KILLED_KNOWN_INVALID_ACTION_TRANSFORM",
+    "stage_c": "KILLED_COMPUTE_CANNOT_REPAIR_ACTION_SEMANTICS",
+    "large_dataset_downloaded": false
+  }
+}

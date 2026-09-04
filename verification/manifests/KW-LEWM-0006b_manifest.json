@@ -1,0 +1,82 @@
+{
+  "experiment_id": "KW-LEWM-0006b",
+  "title": "推理期增强的副作用：越界率配对分析",
+  "date": "2026-09-03",
+  "status": "POST_HOC_EXPLORATORY",
+  "pre_registered": false,
+  "evidence_level": "E1_INTERNAL_REPRODUCTION",
+  "motivation": "KW-LEWM-0006 的预注册判据只针对任务成功率。主结果出来后发现越界率方向一致地上升（0.04 -> 0.36 / 0.24 / 0.16），这是预注册时未预期的现象。本分析因此为事后探索，仅作假设生成器。",
+  "question": "在严格配对的同 25 个任务上，推理期增强是否显著改变智能体飞出场地（out-of-play）的发生率？",
+  "primary_criterion": "配对精确 McNemar 检验越界事件；同时报告 Bonferroni 校正（n_tests=3）",
+  "method": {
+    "pairing_key": "(episode_idx, start_step, goal_step) 三元组",
+    "pairing_gate_R0": "每个变体的三元组键数必须 == trial 数，且所有变体键集合与 baseline 完全一致，否则判 VOID",
+    "pairing_gate_result": "PASSED (25 unique keys, 4 variants identical)",
+    "n_tasks_paired": 25,
+    "statistics": "paired exact McNemar; bootstrap CI for paired block-displacement difference; pure numpy"
+  },
+  "results": {
+    "V1_plus_iters": {
+      "what_changed": "CEM 迭代 10 -> 30（优化预算 3x，耗时 1844s -> 5457s）",
+      "oop_variant": "9/25 (0.36)",
+      "oop_baseline": "1/25 (0.04)",
+      "mcnemar_p": 0.021484375,
+      "bonferroni_p": 0.064453125,
+      "discordant": {"variant_only": 9, "baseline_only": 1},
+      "block_disp_paired_diff_mean": 18.82,
+      "block_disp_paired_diff_ci": [-10.75, 50.01],
+      "verdict_raw": "HARMFUL_MORE_OUT_OF_PLAY",
+      "verdict_bonferroni": "NO_SIGNIFICANT_CHANGE_AFTER_CORRECTION"
+    },
+    "V2_plus_horizon": {
+      "what_changed": "规划视域 H5 -> H10",
+      "oop_variant": "6/25 (0.24)",
+      "oop_baseline": "1/25 (0.04)",
+      "mcnemar_p": 0.0625,
+      "bonferroni_p": 0.1875,
+      "discordant": {"variant_only": 5, "baseline_only": 0},
+      "block_disp_paired_diff_mean": -11.37,
+      "block_disp_paired_diff_ci": [-35.64, 14.26],
+      "verdict_raw": "NO_SIGNIFICANT_CHANGE",
+      "verdict_bonferroni": "NO_SIGNIFICANT_CHANGE_AFTER_CORRECTION"
+    },
+    "V3_plus_clip": {
+      "what_changed": "动作裁剪 clip 3.0 -> 6.0",
+      "oop_variant": "4/25 (0.16)",
+      "oop_baseline": "1/25 (0.04)",
+      "mcnemar_p": 0.25,
+      "bonferroni_p": 0.75,
+      "discordant": {"variant_only": 3, "baseline_only": 0},
+      "block_disp_paired_diff_mean": -5.17,
+      "block_disp_paired_diff_ci": [-21.74, 11.26],
+      "verdict_raw": "NO_SIGNIFICANT_CHANGE",
+      "verdict_bonferroni": "NO_SIGNIFICANT_CHANGE_AFTER_CORRECTION"
+    }
+  },
+  "honest_reading": {
+    "must_not_say": "V1 显著有害",
+    "reason": "V1 的原始 p=0.0215 看似显著，但本分析检验了 3 个变体，Bonferroni 校正后 p=0.064 不再显著",
+    "correct_statement": "三个变体的越界率方向一致地上升（0.04 -> 0.36 / 0.24 / 0.16），提示加大推理期预算可能不是中性无效而是有害；但受 n=25 与多重比较限制，未达校正后的显著性，需更大样本才能定论",
+    "implication_if_true": "§8 的表述可从「推理期增强无效」加强为「推理期增强有害」——更多优化预算被转化为更自信地执行模型偏好的动作，而非更高的成功率，即代价地形平坦的直接后果",
+    "current_status": "仅作为假设登记，不得作为结论引用"
+  },
+  "pairing_bug_found_and_fixed": {
+    "symptom": "初版用 episode_idx 单值配对，得到 n=24 而非 25",
+    "root_cause": "episode 192 在本任务集中被采样两次，(start_step,goal_step) 分别为 (80,105) 与 (101,126)，start_state 也不同 —— 是两个不同任务，只是 episode_idx 撞了",
+    "fix": "改用 0005c 确立的三元组任务键；并新增 R0 配对完整性门禁",
+    "note": "该错误由自查发现，未污染任何已发布结论（本分析本身就是最新的）"
+  },
+  "artifacts": [
+    "verification/scripts/kw_lewm_0006b_oop_analysis.py",
+    "results/kw_lewm_0006b_oop_analysis.json",
+    "verification/experiments/KW-LEWM-0006.md §8"
+  ],
+  "caveats": [
+    "POST-HOC：假设在看到 0006 主结果后提出，不得作为预注册结论引用",
+    "n=25 每变体，置信区间很宽",
+    "越界率是主判据，但它不是任务成功；越界率上升本身不等于任务表现变差，需与 success 一起读（两者都指向「无改善」或「更差」）",
+    "0006 主判据已判定 CONFIRMS_SECTION_8；本分析只是对同一结论的加强，不改变主判定",
+    "多重比较：检验了 3 个变体，V1 未通过 Bonferroni 校正",
+    "探索性阶段不作校正，但结论须降权解读"
+  ]
+}

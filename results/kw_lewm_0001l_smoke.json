@@ -1,0 +1,101 @@
+{
+  "cem": {
+    "n_steps": 10,
+    "num_samples": 100,
+    "topk": 10
+  },
+  "claim_scope": "closed-loop smoke only; not official benchmark; not competitor comparison",
+  "environment": {
+    "action_normalization": "identity_lite_deviation",
+    "dataset_driven": false,
+    "id": "swm/PushT-v1",
+    "image_shape": [
+      224,
+      224
+    ],
+    "max_episode_steps": 50
+  },
+  "error": null,
+  "evidence_level": "E1_INTERNAL_FUNCTIONAL_SMOKE",
+  "experiment_id": "KW-LEWM-0001L-STAGE-A",
+  "final_state": [
+    [
+      [
+        120.21276696545809,
+        1202.3615053910096,
+        268.8204400647797,
+        356.61757712885924,
+        4.204962955399923,
+        -1211.603515625,
+        -196.5468292236328
+      ]
+    ]
+  ],
+  "finite_states": true,
+  "goal_state": [
+    [
+      [
+        85.92366178186346,
+        218.07637031892156,
+        142.17382500347512,
+        105.6096916500513,
+        -2.484078306839624,
+        0.0,
+        0.0
+      ]
+    ]
+  ],
+  "initial_state": [
+    [
+      [
+        281.8691105304458,
+        104.93927620590564,
+        268.8204400647797,
+        356.61757712885924,
+        4.204962955399923,
+        0.0,
+        0.0
+      ]
+    ]
+  ],
+  "known_deviations": [
+    "random environment task instead of upstream dataset-defined task",
+    "identity action normalization instead of full-dataset StandardScaler",
+    "reduced CEM 10x100x10 instead of upstream 30x300x30",
+    "single task"
+  ],
+  "metrics_raw": {
+    "episode_successes": [
+      0.0
+    ],
+    "seeds": [
+      42
+    ],
+    "success_rate": 0.0
+  },
+  "model_parameters": 18034478,
+  "peak_cuda_allocated_bytes": 93476864,
+  "plan_config": {
+    "action_block": 5,
+    "history_len": 1,
+    "horizon": 5,
+    "receding_horizon": 5,
+    "warm_start": true
+  },
+  "seed": 42,
+  "solver_call_seconds": [
+    0.5245934999984456,
+    0.17868040000030305
+  ],
+  "solver_calls": 2,
+  "status": "PASS",
+  "success_rate_unit": "percent",
+  "versions": {
+    "python": "3.10.21",
+    "stable_pretraining": "0.1.8",
+    "stable_worldmodel": "0.1.1",
+    "torch": "2.7.0+cu128",
+    "transformers": "4.57.6"
+  },
+  "wall_seconds": 0.8689166000040132
+}

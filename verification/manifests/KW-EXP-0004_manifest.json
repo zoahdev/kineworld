@@ -1,0 +1,82 @@
+{
+  "experiment_id": "KW-EXP-0004",
+  "title": "Horizon-Conditioned Uncertainty Calibration Baseline",
+  "date": "2026-09-02",
+  "type": "diagnostic_no_training",
+  "conclusion": "CAPABILITY_GAP_CONFIRMED_MARGINAL_BASELINE_ONLY",
+  "seed": 20260902,
+  "script": "verification/scripts/kw_exp_0004_calibration.py",
+  "data_source": "results/phase0_jepa_wm_pusht/simu_env_planning/phase0/pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_d1objfull/pusht-base",
+  "n_segments": 45,
+  "n_episodes": 15,
+  "prediction_horizon": {
+    "latent_steps": 2,
+    "env_steps": 10,
+    "constant_across_segments": true,
+    "note": "pred_time = min(num_act_stepped=2, T-1) = 2; no horizon variation exists in current instrumentation"
+  },
+  "q1_capability_audit": {
+    "unroll_path": "agent._predicted_best_encs_over_iterations[-1]",
+    "dropout_hits": 0,
+    "sampling_hits": 0,
+    "noise_injection_hits": 0,
+    "ensemble_head": false,
+    "verdict": "DETERMINISTIC_POINT_PREDICTION_NO_NATIVE_VARIANCE"
+  },
+  "q2_conformal": {
+    "target_error_pooled": {
+      "mean": 0.036931,
+      "std": 0.02727,
+      "min": 0.010097,
+      "max": 0.141065
+    },
+    "protocol": "leave_one_episode_out_split_conformal_upper_bound",
+    "folds": 15,
+    "alpha_0.1": {
+      "const": {"coverage": 0.9111, "mean_bound": 0.091499, "coverage_success": 0.8333, "coverage_failure": 0.9231},
+      "spread": {"coverage": 0.9333, "mean_bound": 0.239001, "coverage_success": 0.6667, "coverage_failure": 0.9744},
+      "cemloss": {"coverage": 0.9111, "mean_bound": 0.112227, "coverage_success": 0.6667, "coverage_failure": 0.9487}
+    },
+    "alpha_0.2": {
+      "const": {"coverage": 0.8222, "mean_bound": 0.043719, "coverage_success": 0.8333, "coverage_failure": 0.8205},
+      "spread": {"coverage": 0.8222, "mean_bound": 0.180391, "coverage_success": 0.6667, "coverage_failure": 0.8462},
+      "cemloss": {"coverage": 0.8222, "mean_bound": 0.068244, "coverage_success": 0.3333, "coverage_failure": 0.8974}
+    },
+    "n_success_segments": 6,
+    "n_failure_segments": 39,
+    "spread_bound_widening_factor_alpha02": 4.13,
+    "spread_bound_widening_factor_alpha01": 2.61,
+    "const_bound_inflation_over_pooled_mean": 2.48
+  },
+  "q3_selective_risk": {
+    "abstain_20pct": {"k": 9, "spread_policy_risk": 0.038021, "random_policy_risk_mean": 0.036962, "p_value": 0.6723, "verdict": "WORSE_THAN_RANDOM"},
+    "abstain_40pct": {"k": 18, "spread_policy_risk": 0.03593, "random_policy_risk_mean": 0.036982, "p_value": 0.3815, "verdict": "NOT_DISTINGUISHABLE_FROM_RANDOM"}
+  },
+  "q4_replan_position_stratified": {
+    "caveat": "execution position, NOT prediction horizon; CIs overlap, no significant effect",
+    "segment_0": {"n": 15, "mean": 0.033514, "std": 0.031253, "ci95": [0.022121, 0.050836]},
+    "segment_1": {"n": 15, "mean": 0.042226, "std": 0.025843, "ci95": [0.030324, 0.055745]},
+    "segment_2": {"n": 15, "mean": 0.035054, "std": 0.025421, "ci95": [0.024484, 0.049217]}
+  },
+  "do_not_do": [
+    "spread-normalized conformal band",
+    "spread threshold gating",
+    "spread-based abstention",
+    "spread-based CEM compute allocation"
+  ],
+  "usable_now": [
+    "marginal constant conformal band (marginal coverage only, not conditional)"
+  ],
+  "acceptance_bar_for_future_uncertainty_methods": {
+    "target_coverage": 0.9,
+    "mean_upper_bound_must_be_below": 0.091499,
+    "success_failure_coverage_gap_must_be_within_pp": 10
+  },
+  "next_step": "add multi-horizon rollout error instrumentation (horizon = 1/2/4/6 latent steps); no training",
+  "evidence_level": "E1",
+  "limitations": [
+    "single seed, single checkpoint, single task (Push-T)",
+    "n=45 segments; only 6 success segments so conditional coverage for the success group has large variance",
+    "conformal validity assumes exchangeability across episodes; within-episode segment correlation mitigated but not eliminated by leave-one-episode-out folds"
+  ]
+}

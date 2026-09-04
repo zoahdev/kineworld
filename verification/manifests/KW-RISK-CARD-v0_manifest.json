@@ -1,0 +1,49 @@
+{
+  "artifact_id": "KW-RISK-CARD-0001",
+  "schema": "kineworld.failure-risk-card.v0",
+  "date": "2026-09-02",
+  "evidence_level": "E1_INTERNAL_REPRODUCTION",
+  "third_party_validated": false,
+  "source_experiment": "KW-EXP-0006",
+  "artifacts": {
+    "machine_card": {
+      "path": "results/KW_RISK_CARD_v0.json",
+      "sha256": "6a4fc07720608647daaa48aab6b66aaa176cd687f5aba30041b55a90951728f6"
+    },
+    "human_card": {
+      "path": "docs/product/KINEWORLD_RISK_CARD_v0.md",
+      "sha256": "e9d9cda2be35377d9323363d60e29330dbfd9f65f3ddccafaa25d028b32942af"
+    },
+    "builder": {
+      "path": "verification/scripts/build_risk_card_v0.py",
+      "sha256": "abf73f492ca5459a8bfd70b0ac15055e1560ee39b6baf1d522d061e7deef77cc"
+    },
+    "offline_verifier": {
+      "path": "verification/scripts/verify_risk_card_v0.py",
+      "sha256": "9d118231f121a209133fa59e391f43d1bbe722e06dd43c829d2d819b983e482f"
+    },
+    "release_readme": {
+      "path": "verification/releases/KW-RISK-CARD-0001/README.md",
+      "sha256": "f11e3a8bb2288dc95d2bc04269dfd385a508e89f2fee19304d3c1f8ab211ecd6"
+    },
+    "test": {
+      "path": "tests/test_risk_card_v0.py",
+      "sha256": "897194afe393c30fb5f2e2cfbbbbffa9464941387411fe19716786cfae7438d3"
+    },
+    "attestation_template": {
+      "path": "verification/third_party/KW_RISK_CARD_ATTESTATION_TEMPLATE.md",
+      "sha256": "00750a03b1e39673bf4470d24cf3c29c796b55d1d472e451ae3fcb299336accf"
+    }
+  },
+  "verification": {
+    "test": "tests/test_risk_card_v0.py",
+    "attestation_template": "verification/third_party/KW_RISK_CARD_ATTESTATION_TEMPLATE.md"
+  },
+  "allowed_claim": "KineWorld published a hash-linked internal failure and risk analysis for a 96-episode JEPA-WM Push-T reproduction.",
+  "forbidden_claims": [
+    "third-party validated",
+    "state of the art",
+    "beats Baize or any competitor",
+    "causal physical-risk model"
+  ]
+}

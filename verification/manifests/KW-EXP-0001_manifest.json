@@ -1,0 +1,62 @@
+{
+  "experiment_id": "KW-EXP-0001",
+  "title": "Closed-Loop Replanning on JEPA-WM Push-T",
+  "date": "2026-09-02",
+  "status": "complete",
+  "conclusion": "NOT_SUPPORTED",
+  "evidence_level": "E1",
+  "causal_level": "C2",
+  "single_variable": "planner.num_act_stepped: 6 -> 2",
+  "kill_criteria": "closed_loop_success_rate <= 0.4666666666666667",
+  "code": {
+    "repo": "facebookresearch/jepa-wms",
+    "commit": "13cf1d9c7e476f53c17714d2e0f1dc239a883ce0",
+    "local_path": "external/jepa-wms"
+  },
+  "checkpoint": {
+    "path": "checkpoints/jepa_wm_pusht.pth.tar",
+    "bytes": 211639615,
+    "sha256": "9beca3eafe0739c3b3adb5d734fa435ccbda0fea8a65d53d4cccec176aaaa0eb"
+  },
+  "baseline": {
+    "run_id": "pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_red10x100_20260901T154959Z",
+    "config": "external/jepa-wms/configs/dump_online_evals/pt/pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_red10x100.yaml",
+    "config_sha256": "2b521fddb6ba9b80c5980e882ff079b0ac419d88301844e227a8cdd4a1dafc8f",
+    "metrics_json": "results/runs/pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_red10x100_20260901T154959Z/metrics.json",
+    "metrics_json_sha256": "a855c64a3ad466aeee32407604ce2a07b94767413b7b91055c9050d5191411d8",
+    "eval_csv": "results/phase0_jepa_wm_pusht/simu_env_planning/phase0/pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_red10x100/eval.csv",
+    "eval_csv_sha256": "9477ff63db106b6ce1da9567f5cf797b89d0955bd1bddbfc0397a2886d784e02",
+    "success_rate": 0.4666666666666667,
+    "ep_end_dist": 83.88669,
+    "episode_reward": 6.819867,
+    "planning_calls": 15,
+    "wall_time_s": 620.796794,
+    "vram_peak_mib": 7095.0
+  },
+  "treatment": {
+    "run_id": "pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_red10x100_nas2_20260901T162318Z",
+    "config": "external/jepa-wms/configs/dump_online_evals/pt/pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_red10x100_nas2.yaml",
+    "config_sha256": "4741fa7ed101c1f5eea6ef83855bdaac9ce79b0e30f3dc87d4144c155c6d02ba",
+    "metrics_json": "results/runs/pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_red10x100_nas2_20260901T162318Z/metrics.json",
+    "metrics_json_sha256": "e58f78e84d88649ef1fd1c7d7bc3d5d417ac3782b262052829ec3a3415dc34a8",
+    "stdout_log": "results/runs/pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_red10x100_nas2_20260901T162318Z/stdout.log",
+    "stdout_log_sha256": "718697555872b06acd6e66cc6a593d7d096f773e7bcbc0be57e6d0657c3f55de",
+    "eval_csv": "results/phase0_jepa_wm_pusht/simu_env_planning/phase0/pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_red10x100_nas2/eval.csv",
+    "eval_csv_sha256": "ba2de2436d5052f7444f262e36959911f1d1cab1bd06c96112278a61718df98d",
+    "success_rate": 0.4,
+    "ep_end_dist": 71.02042,
+    "episode_reward": 7.113917,
+    "planning_calls": 45,
+    "wall_time_s": 1117.586823,
+    "vram_peak_mib": 7343.0
+  },
+  "per_episode": {
+    "baseline_success": ["ep_1", "ep_4", "ep_5", "ep_6", "ep_9", "ep_12", "ep_13"],
+    "treatment_success": ["ep_1", "ep_5", "ep_6", "ep_9", "ep_12", "ep_13"],
+    "recovered": [],
+    "regressed": ["ep_4"]
+  },
+  "metric_warnings": [
+    "treatment ep_total_emb_l2=0.0 is an official metric aggregation artifact under num_act_stepped<horizon, not evidence of improved latent prediction"
+  ]
+}

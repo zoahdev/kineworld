@@ -1,0 +1,111 @@
+{
+  "experiment_id": "KW-LEWM-0006",
+  "question": "Does increasing planner inference-period budget (horizon / CEM iters / action clip) improve frozen JEPA-WM task-success, or does success stay pinned at the flat-cost floor (confirming KW-LEWM-0005 \u00a78 weak action conditioning)?",
+  "design": "same JEPAWMAdapter + stable-worldmodel harness + same 0004 25-task subset; only planner settings vary; no training",
+  "evidence_level": "E1_INTERNAL_REPRODUCTION",
+  "n_tasks_per_variant": 25,
+  "k4_baseline_ci_reference": [
+    0.004,
+    0.105
+  ],
+  "verdict": "CONFIRMS_SECTION_8 (all variants pinned at flat-cost floor; weak action conditioning confirmed, inference tuning futile)",
+  "all_variants_ci_overlap_k4": true,
+  "variants": [
+    {
+      "variant": "baseline",
+      "overrides": {
+        "plan_horizon": 5,
+        "plan_receding": 5,
+        "cem_n_steps": 10,
+        "cem_num_samples": 100,
+        "action_clip": 3.0
+      },
+      "n_tasks": 25,
+      "success": 0.0,
+      "n_success": 0,
+      "success_wilson_ci": [
+        0.0,
+        0.133
+      ],
+      "out_of_play_rate": 0.04,
+      "n_out_of_play": 1,
+      "block_displacement_median": 35.10489877130844,
+      "block_displacement_mean": 52.3493258705068,
+      "block_interaction_rate": 0.8,
+      "n_errors": 0,
+      "total_wall_seconds": 1844.3
+    },
+    {
+      "variant": "V1_plus_iters",
+      "overrides": {
+        "plan_horizon": 5,
+        "plan_receding": 5,
+        "cem_n_steps": 30,
+        "cem_num_samples": 100,
+        "action_clip": 3.0
+      },
+      "n_tasks": 25,
+      "success": 0.04,
+      "n_success": 1,
+      "success_wilson_ci": [
+        0.007,
+        0.195
+      ],
+      "out_of_play_rate": 0.36,
+      "n_out_of_play": 9,
+      "block_displacement_median": 42.80759424492886,
+      "block_displacement_mean": 71.16469512040132,
+      "block_interaction_rate": 0.68,
+      "n_errors": 0,
+      "total_wall_seconds": 5456.5
+    },
+    {
+      "variant": "V2_plus_horizon",
+      "overrides": {
+        "plan_horizon": 10,
+        "plan_receding": 10,
+        "cem_n_steps": 10,
+        "cem_num_samples": 100,
+        "action_clip": 3.0
+      },
+      "n_tasks": 25,
+      "success": 0.0,
+      "n_success": 0,
+      "success_wilson_ci": [
+        0.0,
+        0.133
+      ],
+      "out_of_play_rate": 0.24,
+      "n_out_of_play": 6,
+      "block_displacement_median": 17.208638436079298,
+      "block_displacement_mean": 40.98021981316893,
+      "block_interaction_rate": 0.72,
+      "n_errors": 0,
+      "total_wall_seconds": 1798.9
+    },
+    {
+      "variant": "V3_plus_clip",
+      "overrides": {
+        "plan_horizon": 5,
+        "plan_receding": 5,
+        "cem_n_steps": 10,
+        "cem_num_samples": 100,
+        "action_clip": 6.0
+      },
+      "n_tasks": 25,
+      "success": 0.04,
+      "n_success": 1,
+      "success_wilson_ci": [
+        0.007,
+        0.195
+      ],
+      "out_of_play_rate": 0.16,
+      "n_out_of_play": 4,
+      "block_displacement_median": 32.22257905084138,
+      "block_displacement_mean": 47.180367196332284,
+      "block_interaction_rate": 0.72,
+      "n_errors": 0,
+      "total_wall_seconds": 1890.5
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schema": "kineworld.failure-risk-card.v0",
+  "card_id": "KW-RISK-CARD-0001",
+  "generated_from_frozen_evidence": true,
+  "subject": {
+    "model_family": "JEPA-WM",
+    "task": "Push-T",
+    "evaluation_scope": "single checkpoint, seed, and task",
+    "training_performed_by_kineworld": false
+  },
+  "protocol": {
+    "source_experiment": "KW-EXP-0006",
+    "episodes": 96,
+    "horizon_points": 576,
+    "cem": [
+      10,
+      100,
+      10
+    ],
+    "seed": 1,
+    "checkpoint_sha256": "9beca3eafe0739c3b3adb5d734fa435ccbda0fea8a65d53d4cccec176aaaa0eb",
+    "evidence_level": "E1 internal reproduction; not independent third-party validation"
+  },
+  "task_outcome": {
+    "success_count": 44,
+    "episode_count": 96,
+    "success_rate": 0.4583333333333333,
+    "mean_final_state_distance": 112.7253,
+    "median_final_state_distance": 108.4222
+  },
+  "prediction_risk": {
+    "median_latent_error": 0.027877,
+    "spike_definition": "latent error > Q3 + 3*IQR, frozen before tests",
+    "spike_threshold": 0.111509,
+    "spike_count": 18,
+    "spike_rate": 0.0312,
+    "median_error_by_horizon": {
+      "k=1": 0.02165,
+      "k=2": 0.025892,
+      "k=3": 0.027165,
+      "k=4": 0.030384,
+      "k=5": 0.033236,
+      "k=6": 0.033745
+    },
+    "horizon_growth_k1_to_k6": 1.559
+  },
+  "physical_interaction_slice": {
+    "condition": "object displacement above the frozen 75th percentile",
+    "high_interaction_spike_rate": 0.075,
+    "lower_interaction_spike_rate": 0.0139,
+    "relative_risk": 5.3957,
+    "fisher_exact_p": 0.001844,
+    "continuous_spearman_rho_including_spikes": 0.4198,
+    "continuous_spearman_rho_excluding_spikes": 0.4007
+  },
+  "calibration_utility": {
+    "physical_ratio_band_width_vs_pooled_at_90pct": 22.218,
+    "physical_ratio_band_width_vs_pooled_at_80pct": 8.1202,
+    "decision": "REJECT physical-ratio bands: statistically real signal did not improve interval efficiency"
+  },
+  "interpretation": [
+    "Aggregate task success does not describe where prediction errors concentrate.",
+    "Object motion is associated with higher latent prediction error in this run.",
+    "The observed association is diagnostic, not proof of causality or a deployable uncertainty estimator.",
+    "High latent error is not equivalent to task failure."
+  ],
+  "limitations": [
+    "single seed/checkpoint/task",
+    "obj_disp undefined at k=1 (480 of 576 points)",
+    "within-episode correlation across 6 horizon points",
+    "multiple comparisons in Q2 (3 secondary tests, uncorrected p)",
+    "continuous correlation partly reflects spike contribution though robust after exclusion",
+    "KineWorld generated this card from its own reproduction; it is not third-party certification.",
+    "No comparison against Baize, LeWM, or another model is licensed by this card."
+  ],
+  "claims": {
+    "allowed": [
+      "KineWorld ran a 96-episode JEPA-WM Push-T reproduction and published a hash-linked risk analysis.",
+      "In that run, high object displacement was associated with a higher latent-error spike rate.",
+      "KineWorld rejected a statistically significant diagnostic when it failed the interval-efficiency gate."
+    ],
+    "forbidden": [
+      "KineWorld is state of the art or world number one.",
+      "KineWorld beats Baize, JEPA-WM, LeWM, or any competitor.",
+      "The result is independently or third-party validated.",
+      "The physical signal is causal or deployment-ready."
+    ]
+  },
+  "source_artifacts": {
+    "experiment_manifest": {
+      "path": "verification/manifests/KW-EXP-0006_manifest.json",
+      "sha256": "5e9ee7261eaa023d30bb584622c335f1dd96fb29e4f65141489c55d2f7619dcd"
+    },
+    "analysis": {
+      "path": "results/kw_exp_0006_analysis.json",
+      "sha256": "9776eea31522c61ae15e9b354e54b7a38a2853120acea14eee40aeb4f695e4c5"
+    }
+  }
+}

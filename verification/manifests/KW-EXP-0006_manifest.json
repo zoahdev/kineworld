@@ -1,0 +1,157 @@
+{
+  "experiment_id": "KW-EXP-0006",
+  "title": "Physical interaction intensity as predictor of latent prediction error (96-ep full sample)",
+  "date": "2026-09-02",
+  "type": "diagnostic_no_training_with_inference_run",
+  "conclusion": "PHYSICAL_INTERACTION_SIGNAL_FOUND_INEFFICIENT_FOR_BANDS",
+  "config": "pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep96_physint",
+  "num_act_stepped": 6,
+  "cem": [
+    10,
+    100,
+    10
+  ],
+  "seed": 1,
+  "analysis_seed": 20260902,
+  "n_episodes": 96,
+  "n_points": 576,
+  "n_spikes": 18,
+  "spike_rate": 0.0312,
+  "global_median_error": 0.027877,
+  "spike_threshold": 0.111509,
+  "official_benchmark": {
+    "success_rate": 0.4583333333333333,
+    "success_count": 44,
+    "actual_state_dist_mean": 112.7253,
+    "actual_state_dist_median": 108.4222,
+    "n_episodes": 96,
+    "is_full_official_scale": true
+  },
+  "script": "verification/scripts/kw_exp_0006_physical_error.py",
+  "pre_registration": "verification/experiments/KW-EXP-0006.md",
+  "q1_horizon_curve_median": {
+    "k=1": 0.02165,
+    "k=2": 0.025892,
+    "k=3": 0.027165,
+    "k=4": 0.030384,
+    "k=5": 0.033236,
+    "k=6": 0.033745
+  },
+  "q1_horizon_curve_mean_excl_spikes": {
+    "k=1": 0.02553,
+    "k=2": 0.027489,
+    "k=3": 0.030672,
+    "k=4": 0.032313,
+    "k=5": 0.035006,
+    "k=6": 0.037789
+  },
+  "q1_growth_k1_to_k6_median": 1.559,
+  "q2_spike_vs_physical": {
+    "obj_disp": {
+      "high_spike_rate": 0.075,
+      "low_spike_rate": 0.0139,
+      "fisher_p": 0.001844
+    },
+    "agent_obj_dist": {
+      "high_spike_rate": 0.0069,
+      "low_spike_rate": 0.0394,
+      "fisher_p": 0.055036
+    },
+    "agent_speed": {
+      "high_spike_rate": 0.0486,
+      "low_spike_rate": 0.0255,
+      "fisher_p": 0.172738
+    }
+  },
+  "q2_continuous_spearman": {
+    "obj_disp_incl_spike": 0.4198,
+    "obj_disp_excl_spike": 0.4007,
+    "obj_disp_within_k_range": [
+      0.3254,
+      0.5534
+    ],
+    "obj_angle_delta": 0.4011,
+    "agent_obj_dist": -0.3075,
+    "agent_speed": 0.0
+  },
+  "q2_horizon_confound": {
+    "corr_k_vs_obj_disp": 0.0629,
+    "within_k_all_significant": true
+  },
+  "q3_physical_ratio_bands": {
+    "alpha_0.1": {
+      "obj_disp": 22.218,
+      "agent_obj_dist": 1.6825,
+      "agent_speed": 2.0328
+    },
+    "alpha_0.2": {
+      "obj_disp": 8.1202,
+      "agent_obj_dist": 1.317,
+      "agent_speed": 1.6416
+    }
+  },
+  "q3_all_dominated_by_pooled": true,
+  "q4_horizon_bands": {
+    "alpha_0.1": {
+      "bound_ratio": 1.0059,
+      "perh_cov": 0.9097,
+      "pool_cov": 0.8993
+    },
+    "alpha_0.2": {
+      "bound_ratio": 1.0332,
+      "perh_cov": 0.8021,
+      "pool_cov": 0.8003
+    }
+  },
+  "q4_horizon_conditioning_neutral": true,
+  "extra_bucketed_band": {
+    "alpha_0.1": {
+      "bound_ratio": 0.9946,
+      "no_move_bound": 0.0517,
+      "high_move_bound": 0.0895
+    },
+    "alpha_0.2": {
+      "bound_ratio": 0.9943,
+      "no_move_bound": 0.0382,
+      "high_move_bound": 0.0673
+    },
+    "efficiency_gain_approx_zero": true
+  },
+  "kill_criteria_assessment": {
+    "q2_holds": true,
+    "q3_holds": false,
+    "no_exploitable_error_structure_triggered": false,
+    "action": "keep physical grounding direction; register obj_disp as first conditioning candidate",
+    "but_note": "signal statistically significant but band efficiency gain ~0; not deployable as compute-allocation/gating"
+  },
+  "spike_vs_success": {
+    "spike_success_rate": 0.3333,
+    "non_spike_success_rate": 0.46,
+    "high_latent_error_neq_task_failure": true
+  },
+  "evidence_level": "E1",
+  "limitations": [
+    "single seed/checkpoint/task",
+    "obj_disp undefined at k=1 (480 of 576 points)",
+    "within-episode correlation across 6 horizon points",
+    "multiple comparisons in Q2 (3 secondary tests, uncorrected p)",
+    "continuous correlation partly reflects spike contribution though robust after exclusion"
+  ],
+  "prior_correction": "EXP-0005 non-monotonicity was a 3-point spike artifact; confirmed mild monotonic growth at n=96"
+  ,"artifact_hashes_sha256": {
+    "report": "964376135b7efa90b7810bd0fb08011486e0973f4acb3fe2d5427450b60cbc34",
+    "analysis_json": "9776eea31522c61ae15e9b354e54b7a38a2853120acea14eee40aeb4f695e4c5",
+    "frozen_config": "357d4dfe74e573358d90b791469bd034028cb3aa6843c26391eb7c7bbdc83cfb",
+    "runner_metrics": "84085b8a44bd468d8d470fa5df5cae8d9061290786c2cb715aa85fa00ef4d95a",
+    "analysis_script": "2bc41cfe25c252b374a8a5e3f05b806f961263283ffab0b942311b47c5b7d43d",
+    "checkpoint": "9beca3eafe0739c3b3adb5d734fa435ccbda0fea8a65d53d4cccec176aaaa0eb"
+  },
+  "evidence_audit": {
+    "status": "PASS_AFTER_CORRECTION",
+    "audit_path": "verification/artifacts/KW-EXP-0006_EVIDENCE_AUDIT.md",
+    "corrections": [
+      "report success count corrected from 42/96 to 44/96 to match eval.csv, metrics.json, and diagnostics",
+      "report parenthetical spike-success count corrected from 9/18 to 6/18"
+    ]
+  }
+}

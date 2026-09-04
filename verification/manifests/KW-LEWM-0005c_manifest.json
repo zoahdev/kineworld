@@ -1,0 +1,103 @@
+{
+  "experiment_id": "KW-LEWM-0005c",
+  "title": "Paired re-analysis of the 0004/0005-K4 head-to-head: no-op baseline, failure-term attribution, agent-navigation vs object-manipulation decomposition",
+  "status": "DONE",
+  "analysis_type": "post_hoc_reanalysis_of_existing_logs",
+  "pre_registered": false,
+  "hypotheses_fixed_before_computation": true,
+  "new_rollouts": 0,
+  "gpu_used": false,
+  "training": "none",
+  "evidence_level": "E1_EXPLORATORY_SINGLE_CHECKPOINT_SINGLE_SEED",
+  "created_at": "2026-09-03T18:20:00+08:00",
+  "verdict": "H1_BASELINE_INFLATION_REJECTED; H2_JEPA_WORSE_THAN_NOOP_REJECTED(binary, floor effect); H3_AGENT_NAV_DOMINATES_SUPPORTED; H4_OBJECT_MANIP_ALSO_BROKEN_SUPPORTED",
+  "headline": "Same displacement budget, opposite progress sign: agent_disp paired diff CI contains 0 (-1.7 [-25.2,+22.7]) while agent_progress paired diff is +132.9 [+108.3,+157.9]. JEPA-WM's planner is statistically indistinguishable from doing nothing on task success, and significantly WORSE than no-op on the block sub-criterion.",
+  "sources": {
+    "lewm": "results/kw_lewm_0004_dataset_tasks_p50.json",
+    "jepa": "results/kw_lewm_0005_jepa_same_platform.json",
+    "script": "verification/scripts/kw_lewm_0005c_paired_noop_baseline.py",
+    "result": "results/kw_lewm_0005c_paired_noop_baseline.json",
+    "doc": "verification/experiments/KW-LEWM-0005c.md"
+  },
+  "pairing_verification": {
+    "identical_task_keys": true,
+    "identical_start_state": true,
+    "identical_goal_state": true,
+    "n_tasks": 50
+  },
+  "criterion_correction": {
+    "source_of_truth": "stable_worldmodel/envs/pusht/env.py::eval_state",
+    "true_predicate": "||goal_state[:4] - cur_state[:4]|| < 20 AND min(|dtheta|, 2pi-|dtheta|) < pi/9",
+    "critical_note": "state[:4] = [agent_x, agent_y, block_x, block_y] — the AGENT position shares the single 20px budget with the block. The task also requires the agent to reach the expert's agent position at goal_step.",
+    "first_version_predicate": "block-position-only pos_diff",
+    "first_version_agreement": 0.81,
+    "first_version_status": "VOID by pre-declared gate R0 (>=0.98 required)",
+    "corrected_agreement": 1.0,
+    "correction_method": "read env source; NOT tuned to data",
+    "memory_note": "prior project memory recorded 'pos_diff < 20' without the 4-dim joint detail; corrected"
+  },
+  "task_difficulty_audit": {
+    "n_solved_at_start": 0,
+    "frac_solved_at_start": 0.0,
+    "pos_gap_start_median": 132.37,
+    "pos_gap_start_min": 54.52,
+    "agent_gap_start_median": 123.31,
+    "block_gap_start_median": 21.89,
+    "ang_gap_start_median": 0.2103,
+    "note": "no task is inside tolerance at t=0; the apparent '32% already solved' is the no-op hit rate under the BLOCK-ONLY sub-criterion only"
+  },
+  "success_rates_full_criterion": {
+    "lewm": {"k": 18, "n": 50, "p": 0.36, "wilson95": [0.241, 0.499]},
+    "jepa": {"k": 1, "n": 50, "p": 0.02, "wilson95": [0.004, 0.105]},
+    "noop_analytic": {"k": 0, "n": 50, "p": 0.0, "wilson95": [0.0, 0.071]}
+  },
+  "paired_exact_mcnemar": {
+    "lewm_vs_noop": {"a_only": 18, "b_only": 0, "p": 7.62939453125e-06},
+    "jepa_vs_noop": {"a_only": 1, "b_only": 0, "p": 1.0},
+    "lewm_vs_jepa": {"a_only": 17, "b_only": 0, "p": 1.52587890625e-05}
+  },
+  "core_finding_same_effort_opposite_direction": {
+    "agent_disp_paired_diff_mean": -1.71,
+    "agent_disp_paired_diff_ci95": [-25.15, 22.67],
+    "block_disp_paired_diff_mean": -0.54,
+    "block_disp_paired_diff_ci95": [-21.01, 20.02],
+    "agent_progress_lewm_median": 75.85,
+    "agent_progress_jepa_median": -36.15,
+    "agent_progress_paired_diff_mean": 132.93,
+    "agent_progress_paired_diff_ci95": [108.26, 157.88],
+    "pos_progress_jepa_mean": -45.38,
+    "pos_progress_jepa_ci95": [-68.55, -21.53],
+    "interpretation": "identical displacement budget, opposite sign of goal progress => planner has no idea which direction its actions move the agent; behavioural signature of ACTION_INSENSITIVE_PREDICTION"
+  },
+  "failure_term_attribution": {
+    "jepa": {"n_fail": 49, "agent_position": 0.857, "block_position": 0.143, "block_angle": 0.0, "agent_gap_final_median": 182.27},
+    "lewm": {"n_fail": 32, "agent_position": 0.594, "block_position": 0.375, "block_angle": 0.031, "agent_gap_final_median": 55.52},
+    "note": "JEPA grows the agent gap from median 123.3 at start to 182.3 at end"
+  },
+  "counterfactual_block_only": {
+    "status": "diagnostic decomposition ONLY, not an alternative benchmark, not comparable to published numbers",
+    "lewm": {"k": 30, "n": 50, "p": 0.6, "wilson95": [0.462, 0.724]},
+    "noop": {"k": 16, "n": 50, "p": 0.32, "wilson95": [0.208, 0.458]},
+    "jepa": {"k": 8, "n": 50, "p": 0.16, "wilson95": [0.083, 0.285]},
+    "mcnemar_lewm_vs_jepa_p": 2.744048833847046e-05,
+    "mcnemar_jepa_vs_noop_p": 0.0078125,
+    "mcnemar_jepa_vs_noop_counts": {"jepa_only": 0, "noop_only": 8},
+    "interpretation": "where headroom exists, JEPA is significantly WORSE than doing nothing: it destroys 8 of the 16 tasks whose block pose no-op would have satisfied, and rescues none"
+  },
+  "nuance_do_not_overstate": "LeWM block_progress mean +10.24 CI [-4.59,+24.71] contains 0. Its block-only advantage (0.60 vs no-op 0.32) comes mainly from fixing the angle and not destroying an already-good block pose, NOT from large positive block position progress. Do not describe LeWM as 'precisely pushing the object into place'.",
+  "relation_to_section_8": {
+    "role": "third independent evidence line for ACTION_INSENSITIVE_PREDICTION",
+    "line_1": "KW-LEWM-0005 §8 latent mobility / action leverage diagnostic",
+    "line_2": "KW-LEWM-0005 §8.6 closed-loop correlation corroboration (0005b)",
+    "line_3": "this analysis: paired behavioural readout (same effort, opposite progress sign)",
+    "changes_section_8_conclusion": false,
+    "independent_of_0006": true
+  },
+  "strengthens_0004": "H1 rejected: no-op is 0/50 under the true criterion, LeWM significantly beats it (McNemar p=7.6e-6). KW-LEWM-0004's 0.36 is genuine goal-directed control, not a 'did not break it' score.",
+  "caveats": [
+    "no-op baseline is ANALYTIC (final state == start state), not executed; ignores residual agent velocity at t=0. Upgrading to E2 requires 50 real zero-action rollouts.",
+    "post-hoc re-analysis of data collected for a different question; hypotheses fixed in script header before computation; evidence stays E1",
+    "H2 rejected on the binary metric due to a floor effect (no-op is 0/50, no headroom). The continuous-metric counterpart (jepa pos_progress CI excludes 0) is a pre-specified statistic with no fixed threshold and is NOT reported as H2 support.",
+    "single checkpoint, single seed, single task set; all correlations/differences are E1 exploratory, no causal claims"
+  ]
+}

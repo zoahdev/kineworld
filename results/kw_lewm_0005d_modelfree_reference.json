@@ -1,0 +1,533 @@
+{
+  "action_scaler": {
+    "mean": [
+      -0.035853457212382533,
+      0.007131718037346518
+    ],
+    "scale": [
+      0.18752451572614148,
+      0.19700472567964566
+    ],
+    "source": "results/kw_lewm_0001l_numeric_shard0.json"
+  },
+  "analytic_noop_check": {
+    "analytic_noop_successes_solved_at_start": 0,
+    "noop_agent_disp_max": 14.173371626516527,
+    "noop_agent_disp_median": 3.5005118424939394,
+    "noop_block_disp_max": 4.135344330545394,
+    "noop_block_disp_median": 0.0,
+    "note": "_set_state injects the expert agent velocity and the space has zero damping, so a zero action still lets the agent coast until the PD term brakes it",
+    "rolled_out_noop_successes": 0
+  },
+  "caveats": [
+    "E1: one platform, one task set, one checkpoint per model arm",
+    "model-free arms are i.i.d. per step; the planner executes action blocks of 5 from one plan, so the prior arm is the planner's prior, not its dynamics",
+    "no-op is now a real rollout, but with the expert's initial agent velocity injected; a hard-frozen agent is not physically realisable in this env",
+    "Poisson-binomial tails are sensitivity analysis only: for a 1-success observation the tail p-value is monotone in the seed budget S, so it must not decide the verdict; the primary rule is the S-independent Wilson floor bound U",
+    "a single JEPA success cannot be interpreted; clearing the floor by one event is not evidence of control"
+  ],
+  "criterion": {
+    "agreement_env_vs_recon_min": 1.0,
+    "ang_tol_rad": 0.3490658503988659,
+    "pos_tol_4dim": 20.0,
+    "source": "stable_worldmodel/envs/pusht/env.py::eval_state (env's own call, not re-implemented)"
+  },
+  "design": "CPU-only real rollouts in swm/PushT-v1 unwrapped; same 50 dataset tasks, same 50-step eval budget, same execution action scaler; actions drawn from fixed distributions instead of a planner; success taken from the env's own eval_state",
+  "effort_axis": {
+    "jepa_agent_disp_median": 132.3961422548931,
+    "lewm_agent_disp_median": 131.28464700184236,
+    "model_free_agent_disp_medians": {
+      "cem_prior_random": 93.94170574456348,
+      "noop_zero_action": 3.5005118424939394,
+      "uniform_random": 191.97876491362743
+    }
+  },
+  "eval_budget_env_steps": 50,
+  "evidence_level": "E1_INTERNAL_REPRODUCTION",
+  "experiment_id": "KW-LEWM-0005D-MODELFREE-REFERENCE",
+  "floor_mechanism": {
+    "initial_guess": "block-already-in-place tasks drive the floor",
+    "initial_guess_evidence": "spearman(k, block_gap_start) ~ 0.02 (no relation); success rate 5.4% where the block is already in tolerance vs 3.2% where it is not - a mild difference, not the driver",
+    "initial_guess_status": "REJECTED_BY_DATA",
+    "n_tasks_block_already_in_place_at_start": 16,
+    "n_tasks_with_any_random_success": 17,
+    "random_success_rate_where_block_in_place": 0.054375,
+    "random_success_rate_where_block_not_in_place": 0.03235294117647059,
+    "reading": "the non-zero model-free floor is driven by the AGENT navigation term: spearman(k, agent_gap_start) = -0.53, i.e. random action succeeds on tasks whose agent already starts near the expert's agent pose at goal_step. This matches 0005c's failure attribution (85.7% of failures agent-position dominated) and is a property of the 4-dim joint criterion, not of object manipulation.",
+    "spearman_k_vs_agent_gap_start": -0.5297690718843516,
+    "spearman_k_vs_block_gap_start": 0.01742075571751691,
+    "spearman_k_vs_pos_gap_start": -0.5268101039210877
+  },
+  "hypotheses": {
+    "H1a_jepa_vs_prior": "JEPA_NOT_ABOVE_MODEL_FREE_FLOOR",
+    "H1b_lewm_vs_prior": "LEWM_ABOVE_MODEL_FREE_FLOOR",
+    "H1c_refutation_guard": "PLATFORM_TASKS_NOT_RANDOM_SOLVABLE",
+    "H2_analytic_noop": "ANALYTIC_NOOP_VALID",
+    "H3_effort_axis": "EFFORT_NOT_DISCRIMINATIVE",
+    "H4_progress_sign": "MIXED_SEE_ROWS",
+    "H5_matched_effort_POST_HOC": {
+      "jepa": "JEPA_DIRECTION_INDISTINGUISHABLE_FROM_MATCHED_RANDOM",
+      "lewm": "LEWM_DIRECTION_BETTER_THAN_MATCHED_RANDOM"
+    }
+  },
+  "matched_effort_control_POST_HOC": {
+    "jepa": {
+      "agent_progress_delta": {
+        "hi": 20.460202690901138,
+        "lo": -11.578124640253119,
+        "mean": 4.209478064327375,
+        "median": 6.487459836558555,
+        "n": 50
+      },
+      "matched_pool_size_median": 29.0,
+      "min_match_per_task": 3,
+      "n_tasks_matched": 50,
+      "n_tasks_total": 50,
+      "pos_progress_delta": {
+        "hi": 17.06910027854099,
+        "lo": -15.470570517802818,
+        "mean": 0.18903040425288936,
+        "median": -3.7144276359089563,
+        "n": 50
+      },
+      "tol_fraction": 0.15
+    },
+    "lewm": {
+      "agent_progress_delta": {
+        "hi": 152.04543190639689,
+        "lo": 98.18628396900472,
+        "mean": 124.19571901758447,
+        "median": 88.84861026438136,
+        "n": 50
+      },
+      "matched_pool_size_median": 30.0,
+      "min_match_per_task": 3,
+      "n_tasks_matched": 50,
+      "n_tasks_total": 50,
+      "pos_progress_delta": {
+        "hi": 154.43859004645194,
+        "lo": 99.30202702273294,
+        "mean": 125.82488044395603,
+        "median": 87.89780138863371,
+        "n": 50
+      },
+      "tol_fraction": 0.15
+    },
+    "motivation": "JEPA agent_disp median 132 px sits between the model-free arms (94 px, 192 px), so raw progress differences confound direction with effort",
+    "pool": "both stochastic model-free arms pooled per task (2 x S rollouts) as the matching reservoir",
+    "status": "POST_HOC_EXPLORATORY_NOT_PRE_REGISTERED",
+    "verdicts": {
+      "jepa": "JEPA_DIRECTION_INDISTINGUISHABLE_FROM_MATCHED_RANDOM",
+      "lewm": "LEWM_DIRECTION_BETTER_THAN_MATCHED_RANDOM"
+    }
+  },
+  "model_free_arms": {
+    "cem_prior_random": {
+      "agent_disp": {
+        "median_over_rollouts": 93.94170574456348,
+        "task_mean_ci": {
+          "hi": 98.6820929884511,
+          "lo": 95.41447910795773,
+          "mean": 97.08358193463668,
+          "median": 96.22331468076553,
+          "n": 50
+        }
+      },
+      "agent_progress": {
+        "median_over_rollouts": -3.9933211061129725,
+        "task_mean_ci": {
+          "hi": 4.492591470843854,
+          "lo": -19.484020732259225,
+          "mean": -7.25024613078604,
+          "median": -1.3232856268247948,
+          "n": 50
+        }
+      },
+      "block_disp": {
+        "median_over_rollouts": 9.146119867463355,
+        "task_mean_ci": {
+          "hi": 31.369171053054274,
+          "lo": 19.34469617516301,
+          "mean": 25.256922397867655,
+          "median": 22.49087509705081,
+          "n": 50
+        }
+      },
+      "block_progress": {
+        "median_over_rollouts": 0.0,
+        "task_mean_ci": {
+          "hi": 4.905888303381929,
+          "lo": -7.10641560774194,
+          "mean": -1.050392892054308,
+          "median": -0.5285730386121941,
+          "n": 50
+        }
+      },
+      "blockonly_success_task_level": {
+        "hi": 0.38740499999999956,
+        "lo": 0.20220000000000002,
+        "n_rollouts": 5000,
+        "n_tasks": 50,
+        "rate": 0.2918
+      },
+      "criterion_agreement_env_vs_recon": 1.0,
+      "n_seeds": 100,
+      "n_tasks": 50,
+      "pos_progress": {
+        "median_over_rollouts": -5.502406114518216,
+        "task_mean_ci": {
+          "hi": 3.6559623161309314,
+          "lo": -18.529216217023283,
+          "mean": -7.37691810518897,
+          "median": -7.324685209919485,
+          "n": 50
+        }
+      },
+      "steps_used_median": 50.0,
+      "success_pooled_wilson": {
+        "hi": 0.04515552375834501,
+        "k": 197,
+        "lo": 0.03435168327377328,
+        "n": 5000,
+        "p": 0.0394
+      },
+      "success_task_level": {
+        "hi": 0.0634,
+        "lo": 0.018799999999999997,
+        "n_rollouts": 5000,
+        "n_tasks": 50,
+        "rate": 0.0394
+      },
+      "wall_seconds": 22.52158000000054
+    },
+    "noop_zero_action": {
+      "agent_disp": {
+        "median_over_rollouts": 3.5005118424939394,
+        "task_mean_ci": {
+          "hi": 5.068389058315484,
+          "lo": 3.413652987872897,
+          "mean": 4.216233592255326,
+          "median": 3.5005118424939394,
+          "n": 50
+        }
+      },
+      "agent_progress": {
+        "median_over_rollouts": 0.8909878040314005,
+        "task_mean_ci": {
+          "hi": 1.7248104338043524,
+          "lo": 0.009773632284781845,
+          "mean": 0.8763989674987087,
+          "median": 0.8909878040314005,
+          "n": 50
+        }
+      },
+      "block_disp": {
+        "median_over_rollouts": 0.0,
+        "task_mean_ci": {
+          "hi": 0.9786120831739619,
+          "lo": 0.4479362075579691,
+          "mean": 0.6986256321944566,
+          "median": 0.0,
+          "n": 50
+        }
+      },
+      "block_progress": {
+        "median_over_rollouts": 0.0,
+        "task_mean_ci": {
+          "hi": 0.8153147763352909,
+          "lo": 0.27770449874892134,
+          "mean": 0.540763012157139,
+          "median": 0.0,
+          "n": 50
+        }
+      },
+      "blockonly_success_task_level": {
+        "hi": 0.44049999999995637,
+        "lo": 0.2,
+        "n_rollouts": 50,
+        "n_tasks": 50,
+        "rate": 0.32
+      },
+      "criterion_agreement_env_vs_recon": 1.0,
+      "n_seeds": 1,
+      "n_tasks": 50,
+      "pos_progress": {
+        "median_over_rollouts": 1.0304839712326945,
+        "task_mean_ci": {
+          "hi": 1.9310166274233191,
+          "lo": 0.3025702623899329,
+          "mean": 1.1179393147884928,
+          "median": 1.0304839712326945,
+          "n": 50
+        }
+      },
+      "steps_used_median": 50.0,
+      "success_pooled_wilson": {
+        "hi": 0.0713475991644559,
+        "k": 0,
+        "lo": 0.0,
+        "n": 50,
+        "p": 0.0
+      },
+      "success_task_level": {
+        "hi": 0.0,
+        "lo": 0.0,
+        "n_rollouts": 50,
+        "n_tasks": 50,
+        "rate": 0.0
+      },
+      "wall_seconds": 0.248681500001112
+    },
+    "uniform_random": {
+      "agent_disp": {
+        "median_over_rollouts": 191.97876491362743,
+        "task_mean_ci": {
+          "hi": 208.69201910851024,
+          "lo": 201.96368046512862,
+          "mean": 205.40195610724766,
+          "median": 207.4815332037798,
+          "n": 50
+        }
+      },
+      "agent_progress": {
+        "median_over_rollouts": -97.44934865709584,
+        "task_mean_ci": {
+          "hi": -97.39928059543787,
+          "lo": -114.93852573697943,
+          "mean": -106.15025477805257,
+          "median": -108.75323700614635,
+          "n": 50
+        }
+      },
+      "block_disp": {
+        "median_over_rollouts": 18.40700763200869,
+        "task_mean_ci": {
+          "hi": 47.58335737920025,
+          "lo": 36.57932937556676,
+          "mean": 42.072536725448124,
+          "median": 41.08164970053499,
+          "n": 50
+        }
+      },
+      "block_progress": {
+        "median_over_rollouts": 0.0,
+        "task_mean_ci": {
+          "hi": -6.482345244381544,
+          "lo": -20.03652541599807,
+          "mean": -13.309399384133322,
+          "median": -16.685860494137437,
+          "n": 50
+        }
+      },
+      "blockonly_success_task_level": {
+        "hi": 0.30219999999999997,
+        "lo": 0.15620000000000003,
+        "n_rollouts": 5000,
+        "n_tasks": 50,
+        "rate": 0.22579999999999997
+      },
+      "criterion_agreement_env_vs_recon": 1.0,
+      "n_seeds": 100,
+      "n_tasks": 50,
+      "pos_progress": {
+        "median_over_rollouts": -98.22079331606218,
+        "task_mean_ci": {
+          "hi": -97.45152019228172,
+          "lo": -116.3725721174803,
+          "mean": -107.03528654021886,
+          "median": -106.86701176458618,
+          "n": 50
+        }
+      },
+      "steps_used_median": 50.0,
+      "success_pooled_wilson": {
+        "hi": 0.0368198478738848,
+        "k": 158,
+        "lo": 0.027099335308582013,
+        "n": 5000,
+        "p": 0.0316
+      },
+      "success_task_level": {
+        "hi": 0.0478,
+        "lo": 0.0176,
+        "n_rollouts": 5000,
+        "n_tasks": 50,
+        "rate": 0.0316
+      },
+      "wall_seconds": 22.873877099998936
+    }
+  },
+  "model_free_floor": {
+    "U": 0.04515552375834501,
+    "jepa_lo_gt_U": false,
+    "jepa_wilson": {
+      "hi": 0.10495443592739594,
+      "k": 1,
+      "lo": 0.003539259270481737,
+      "n": 50,
+      "p": 0.02
+    },
+    "lewm_lo_gt_U": true,
+    "lewm_wilson": {
+      "hi": 0.4985898312714214,
+      "k": 18,
+      "lo": 0.24138749649462618,
+      "n": 50,
+      "p": 0.36
+    },
+    "per_arm_pooled_wilson": {
+      "cem_prior_random": {
+        "hi": 0.04515552375834501,
+        "k": 197,
+        "lo": 0.03435168327377328,
+        "n": 5000,
+        "p": 0.0394
+      },
+      "uniform_random": {
+        "hi": 0.0368198478738848,
+        "k": 158,
+        "lo": 0.027099335308582013,
+        "n": 5000,
+        "p": 0.0316
+      }
+    },
+    "rule": "one-sided 95% Wilson upper bound on the pooled per-rollout success rate of the model-free arms; the max over arms is used as U"
+  },
+  "n_seeds_stochastic_arms": 100,
+  "n_tasks": 50,
+  "no_gpu": true,
+  "no_world_model": true,
+  "paired_mcnemar_seed0": {
+    "jepa_vs_cem_prior_random_seed0": {
+      "a_only": 1,
+      "b_only": 2,
+      "n_discordant": 3,
+      "p_exact_two_sided": 1.0
+    },
+    "jepa_vs_noop_zero_action_seed0": {
+      "a_only": 1,
+      "b_only": 0,
+      "n_discordant": 1,
+      "p_exact_two_sided": 1.0
+    },
+    "jepa_vs_uniform_random_seed0": {
+      "a_only": 1,
+      "b_only": 1,
+      "n_discordant": 2,
+      "p_exact_two_sided": 1.0
+    },
+    "lewm_vs_cem_prior_random_seed0": {
+      "a_only": 17,
+      "b_only": 1,
+      "n_discordant": 18,
+      "p_exact_two_sided": 0.00014495849609375
+    },
+    "lewm_vs_noop_zero_action_seed0": {
+      "a_only": 18,
+      "b_only": 0,
+      "n_discordant": 18,
+      "p_exact_two_sided": 7.62939453125e-06
+    },
+    "lewm_vs_uniform_random_seed0": {
+      "a_only": 18,
+      "b_only": 1,
+      "n_discordant": 19,
+      "p_exact_two_sided": 7.62939453125e-05
+    }
+  },
+  "pairing_verified": true,
+  "poisson_binomial_tests_sensitivity_only": {
+    "jeffreys_primary": {
+      "expected_successes": 2.198019801980198,
+      "p_jepa_ge_1": 0.9138026579803143,
+      "p_lewm_ge_18": 5.176920501830541e-17
+    },
+    "mle": {
+      "expected_successes": 1.97,
+      "p_jepa_ge_1": 0.8908989499354484,
+      "p_lewm_ge_18": 0.0
+    },
+    "wilson_upper": {
+      "expected_successes": 4.381787221866209,
+      "p_jepa_ge_1": 0.9928593740042188,
+      "p_lewm_ge_18": 7.526354813907819e-09
+    }
+  },
+  "progress_per_pixel_of_displacement": {
+    "cem_prior_random": -0.07468045560646291,
+    "jepa_0005": -0.26875703281261376,
+    "lewm_0004": 0.6418349298533272,
+    "noop_zero_action": 0.20786300102265207,
+    "uniform_random": -0.5167928134171602
+  },
+  "progress_sign_check": {
+    "jepa_ci_from_0005c": [
+      -68.55,
+      -21.53
+    ],
+    "model_free": {
+      "cem_prior_random": {
+        "ci": [
+          -18.529216217023283,
+          3.6559623161309314
+        ],
+        "mean": -7.37691810518897,
+        "overlaps_jepa_ci": false,
+        "strictly_negative": false
+      },
+      "uniform_random": {
+        "ci": [
+          -116.3725721174803,
+          -97.45152019228172
+        ],
+        "mean": -107.03528654021886,
+        "overlaps_jepa_ci": false,
+        "strictly_negative": true
+      }
+    }
+  },
+  "question": "On the same 50 Push-T tasks, how do LeWM (18/50) and JEPA-WM (1/50) compare against real model-free rollouts (zero-action, CEM prior, uniform)?",
+  "reference_arms_from_logs": {
+    "jepa_0005": {
+      "agent_disp_median": 132.3961422548931,
+      "pos_progress_task_mean_ci": {
+        "hi": -21.529231853864875,
+        "lo": -68.54821410094289,
+        "mean": -45.38119477222868,
+        "median": -48.81605547920264,
+        "n": 50
+      },
+      "success": {
+        "hi": 0.10495443592739594,
+        "k": 1,
+        "lo": 0.003539259270481737,
+        "n": 50,
+        "p": 0.02
+      }
+    },
+    "lewm_0004": {
+      "agent_disp_median": 131.28464700184236,
+      "pos_progress_task_mean_ci": {
+        "hi": 118.49054852966428,
+        "lo": 69.13574373377527,
+        "mean": 93.40486039390714,
+        "median": 80.29710718390476,
+        "n": 50
+      },
+      "success": {
+        "hi": 0.4985898312714214,
+        "k": 18,
+        "lo": 0.24138749649462618,
+        "n": 50,
+        "p": 0.36
+      }
+    }
+  },
+  "verdict": "JEPA_NOT_ABOVE_MODEL_FREE_FLOOR; LEWM_ABOVE_MODEL_FREE_FLOOR; PLATFORM_TASKS_NOT_RANDOM_SOLVABLE; ANALYTIC_NOOP_VALID; EFFORT_NOT_DISCRIMINATIVE; MIXED_SEE_ROWS",
+  "verdict_post_hoc": "JEPA_DIRECTION_INDISTINGUISHABLE_FROM_MATCHED_RANDOM; LEWM_DIRECTION_BETTER_THAN_MATCHED_RANDOM",
+  "versions": {
+    "numpy": "2.2.6",
+    "python": "3.10.21",
+    "stable_worldmodel": "0.1.1"
+  }
+}

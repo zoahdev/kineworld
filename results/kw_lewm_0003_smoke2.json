@@ -1,0 +1,172 @@
+{
+  "action_scaler": {
+    "content_sha256": "a538eb6a20fcaca4189b71bde8d9593b38597003950e199ce587e57c720ab3c8",
+    "mean": [
+      -0.035853457212382533,
+      0.007131718037346518
+    ],
+    "rows": 80384,
+    "scale": [
+      0.18752451572614148,
+      0.19700472567964566
+    ],
+    "source": "results/kw_lewm_0001l_numeric_shard0.json"
+  },
+  "baseline_for_comparison": {
+    "block_displacement_median": 0.0,
+    "experiment": "KW-LEWM-0002 scaler condition (random tasks, same planner, same scaler)",
+    "out_of_play_rate": 0.25,
+    "success_rate": 0.0
+  },
+  "design": "dataset-defined start/goal pairs from the public Parquet shard, driven through World.evaluate(dataset=...)",
+  "eval_budget": 50,
+  "evidence_level": "E1_INTERNAL_REPRODUCTION",
+  "experiment_id": "KW-LEWM-0003-DATASET-TASKS",
+  "goal_offset": 25,
+  "kill_criteria": {
+    "K1_task_source_matters": true,
+    "K2_control_within_play_area": true
+  },
+  "n_tasks": 2,
+  "protocol_notes": [
+    "pixels re-rendered locally at 224x224 from published states; the image column is never downloaded",
+    "only the first and last frames are materialised because _extract_init_goal reads arr[0] and arr[-1]",
+    "approximations: partial-shard scaler, locally rendered pixels, reduced CEM 10x100x10",
+    "this is NOT the official 13.1 GB dataset benchmark"
+  ],
+  "question": "With the random-task confounder removed, does LeWM produce valid closed-loop control?",
+  "summary": {
+    "block_displacement_mean": 20.054825378593424,
+    "block_displacement_median": 20.054825378593424,
+    "block_interaction_rate": 0.5,
+    "n_errors": 0,
+    "n_out_of_play": 0,
+    "n_success": 1,
+    "out_of_play_rate": 0.0,
+    "start_goal_distance_mean": 133.0738681546753,
+    "success_rate": 0.5
+  },
+  "trials": [
+    {
+      "agent_final": [
+        147.34295398943186,
+        450.44058120909125
+      ],
+      "agent_out_of_play_area": false,
+      "block_displacement": 0.7863436832687143,
+      "block_final": [
+        191.89820088065358,
+        334.95389355688735
+      ],
+      "block_start": [
+        191.94912719726562,
+        335.73858642578125
+      ],
+      "episode_idx": 19,
+      "error": null,
+      "final_state": [
+        147.34295398943186,
+        450.44058120909125,
+        191.89820088065358,
+        334.95389355688735,
+        1.0817441127491443,
+        -206.5868514882729,
+        49.35163112310822
+      ],
+      "goal_state": [
+        137.0987091064453,
+        458.0736999511719,
+        193.13153076171875,
+        340.0780029296875,
+        0.9523351788520813,
+        95.775146484375,
+        -45.50338363647461
+      ],
+      "goal_step": 68,
+      "metrics_raw": {
+        "episode_successes": [
+          true
+        ],
+        "seeds": null,
+        "success_rate": 100.0
+      },
+      "start_goal_distance": 194.43412846561668,
+      "start_state": [
+        88.13306427001953,
+        269.9599914550781,
+        191.94912719726562,
+        335.73858642578125,
+        1.7926006317138672,
+        11.713134765625,
+        86.97891998291016
+      ],
+      "start_step": 43,
+      "success": 1.0,
+      "wall_seconds": 6.711999000000105
+    },
+    {
+      "agent_final": [
+        88.82555878369085,
+        391.5087660260746
+      ],
+      "agent_out_of_play_area": false,
+      "block_displacement": 39.32330707391814,
+      "block_final": [
+        199.30491748884947,
+        315.8068900756731
+      ],
+      "block_start": [
+        204.65582275390625,
+        354.7644348144531
+      ],
+      "episode_idx": 86,
+      "error": null,
+      "final_state": [
+        88.82555878369085,
+        391.5087660260746,
+        199.30491748884947,
+        315.8068900756731,
+        0.600016392879828,
+        46.512660726073776,
+        -25.748564684408432
+      ],
+      "goal_state": [
+        140.2176513671875,
+        391.95367431640625,
+        199.9546356201172,
+        320.474609375,
+        0.36904826760292053,
+        56.771060943603516,
+        -31.671085357666016
+      ],
+      "goal_step": 97,
+      "metrics_raw": {
+        "episode_successes": [
+          false
+        ],
+        "seeds": null,
+        "success_rate": 0.0
+      },
+      "start_goal_distance": 71.71360784373391,
+      "start_state": [
+        197.8507080078125,
+        416.9212341308594,
+        204.65582275390625,
+        354.7644348144531,
+        0.7913293838500977,
+        71.69686126708984,
+        -132.39529418945312
+      ],
+      "start_step": 72,
+      "success": 0.0,
+      "wall_seconds": 5.666658699999971
+    }
+  ],
+  "versions": {
+    "python": "3.10.21",
+    "stable_pretraining": "0.1.8",
+    "stable_worldmodel": "0.1.1",
+    "torch": "2.7.0+cu128",
+    "transformers": "4.57.6"
+  }
+}

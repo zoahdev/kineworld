@@ -1,0 +1,23 @@
+diff --git a/src/utils/distributed.py b/src/utils/distributed.py
+index 3611624..83d3a0c 100644
+--- a/src/utils/distributed.py
++++ b/src/utils/distributed.py
+@@ -83,8 +83,17 @@ def init_distributed(
+         if nccl_timeout_minutes is not None:
+             logger.info(f"Initializing distributed with timeout={nccl_timeout_minutes} minutes")
+             nccl_timeout = datetime.timedelta(minutes=nccl_timeout_minutes)
++        # KINEWORLD PATCH (2026-09-01, minimal Windows fix): Windows torch builds
++        # have no NCCL. Fall back to gloo (single-node single-GPU eval is
++        # semantically identical; gloo also supports CUDA-tensor collectives).
++        # Upstream behavior is preserved wherever NCCL is available.
++        if torch.distributed.is_nccl_available():
++            dist_backend = "cpu:gloo,cuda:nccl"
++        else:
++            dist_backend = "gloo"
++            logger.info("NCCL not available (Windows build?) — falling back to gloo backend")
+         torch.distributed.init_process_group(
+-            backend="cpu:gloo,cuda:nccl",
++            backend=dist_backend,
+             world_size=world_size,
+             rank=rank,
+             timeout=nccl_timeout,

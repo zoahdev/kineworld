@@ -1,0 +1,133 @@
+{
+  "experiment_id": "KW-LEWM-0006",
+  "title": "推理期增强 ablation：实证检验 §8「推理期调参无效」",
+  "date": "2026-09-03",
+  "status": "COMPLETED",
+  "evidence_level": "E1_INTERNAL_REPRODUCTION",
+  "question": "Does increasing planner inference-period budget (horizon / CEM iters / action clip) improve frozen JEPA-WM task-success, or does success stay pinned at the flat-cost floor (confirming KW-LEWM-0005 §8 weak action conditioning)?",
+  "design": "same JEPAWMAdapter + stable-worldmodel harness + same 0004 25-task subset; only planner settings vary; no training",
+  "pre_registration": {
+    "locked_before_full_run": true,
+    "K1_harness_check": "baseline success Wilson CI must overlap K4 [0.004,0.105]; point estimate within [0,0.08]",
+    "K2_confirm": "all variants' success CI overlap K4 AND point-estimate gain <0.10 -> CONFIRMS_SECTION_8",
+    "K2_refute": "any variant success >0.15 AND CI lower bound >0.105 -> REFUTES_SECTION_8 -> pivot to cost-metric repair",
+    "note": "both outcomes are valid results; only K1 harness breakage is a Kill"
+  },
+  "compute": {
+    "gpu_used": true,
+    "device": "RTX 5070 Ti Laptop 12GB",
+    "n_variants": 4,
+    "n_tasks_per_variant": 25,
+    "wall_seconds_by_variant": {
+      "baseline": 1844.3,
+      "V1_plus_iters": 5456.5,
+      "V2_plus_horizon": 1798.9,
+      "V3_plus_clip": 1890.5
+    },
+    "wall_seconds_total": 10990.2
+  },
+  "kill_criteria_results": {
+    "K1": "PASSED",
+    "K1_detail": "baseline 0/25 success, Wilson CI [0.0,0.133] overlaps K4 [0.004,0.105]; point estimate 0.00 in [0,0.08]",
+    "K2_confirm": "TRIGGERED",
+    "K2_refute": "NOT_TRIGGERED",
+    "K2_detail": "V1 0.04 / V2 0.00 / V3 0.04; all CIs overlap K4; highest CI lower bound 0.007 < 0.105"
+  },
+  "results": {
+    "verdict": "CONFIRMS_SECTION_8",
+    "verdict_detail": "all variants pinned at flat-cost floor; weak action conditioning confirmed, inference tuning futile",
+    "all_variants_ci_overlap_k4": true,
+    "k4_baseline_ci_reference": [0.004, 0.105],
+    "variants": [
+      {
+        "variant": "baseline",
+        "what_changed": "none (H5 / CEM 10x100 / clip 3.0)",
+        "success": 0.0,
+        "n_success": 0,
+        "success_wilson_ci": [0.0, 0.133],
+        "out_of_play_rate": 0.04,
+        "n_out_of_play": 1,
+        "block_displacement_median": 35.10489877130844,
+        "block_interaction_rate": 0.8,
+        "n_errors": 0
+      },
+      {
+        "variant": "V1_plus_iters",
+        "what_changed": "CEM n_steps 10 -> 30 (3x optimisation budget; wall 1844s -> 5457s, 2.96x)",
+        "success": 0.04,
+        "n_success": 1,
+        "success_wilson_ci": [0.007, 0.195],
+        "out_of_play_rate": 0.36,
+        "n_out_of_play": 9,
+        "block_displacement_median": 42.80759424492886,
+        "block_interaction_rate": 0.68,
+        "n_errors": 0
+      },
+      {
+        "variant": "V2_plus_horizon",
+        "what_changed": "plan_horizon 5 -> 10, plan_receding 5 -> 10",
+        "success": 0.0,
+        "n_success": 0,
+        "success_wilson_ci": [0.0, 0.133],
+        "out_of_play_rate": 0.24,
+        "n_out_of_play": 6,
+        "block_displacement_median": 17.208638436079298,
+        "block_interaction_rate": 0.72,
+        "n_errors": 0
+      },
+      {
+        "variant": "V3_plus_clip",
+        "what_changed": "action_clip 3.0 -> 6.0",
+        "success": 0.04,
+        "n_success": 1,
+        "success_wilson_ci": [0.007, 0.195],
+        "out_of_play_rate": 0.16,
+        "n_out_of_play": 4,
+        "block_displacement_median": 32.22257905084138,
+        "block_interaction_rate": 0.72,
+        "n_errors": 0
+      }
+    ]
+  },
+  "key_finding": "3x optimisation budget (V1: CEM 10->30 steps, 2.96x wall time) bought 0/25 -> 1/25. Inference-period budget is decoupled from success rate - exactly the prediction of a flat cost landscape. Lengthening the horizon (V2) even reduced block displacement median (35.10 -> 17.21).",
+  "evidence_line": {
+    "is_fifth_independent_line_for_section_8": true,
+    "line_type": "INTERVENTIONAL",
+    "note": "the previous four lines (latent mobility/leverage, closed-loop correlation, paired behaviour, model-free floor) are all observational; 0006 actively manipulates inference settings, so it carries higher causal strength",
+    "section_8_total_lines": 5
+  },
+  "post_hoc_extension": {
+    "id": "KW-LEWM-0006b",
+    "status": "POST_HOC_EXPLORATORY_NOT_PRE_REGISTERED",
+    "finding": "out-of-play rate rose consistently across all three variants (0.04 -> 0.36 / 0.24 / 0.16); V1 paired McNemar p=0.0215 but Bonferroni-corrected p=0.064 -> NOT significant after correction",
+    "honest_reading": "direction is consistent and suggests inference-period scaling may be harmful rather than merely ineffective, but with n=25 and 3 tests it does not reach corrected significance. Hypothesis generator only; must not be cited as a conclusion.",
+    "doc": "verification/experiments/KW-LEWM-0006.md §8"
+  },
+  "pairing_lesson": {
+    "issue": "initial pairing used episode_idx alone and produced n=24 instead of 25",
+    "root_cause": "episode 192 is sampled TWICE in this task set with different (start_step, goal_step) = (80,105) and (101,126) and different start_state - two distinct tasks sharing an episode_idx",
+    "fix": "use the triple task key (episode_idx, start_step, goal_step) established in KW-LEWM-0005c; added an R0 pairing-completeness gate",
+    "generalisation": "any cross-experiment paired analysis on this task set MUST use the triple key, not episode_idx alone"
+  },
+  "artifacts": [
+    "verification/scripts/kw_lewm_0006_inference_ablation.py",
+    "verification/scripts/kw_lewm_0006b_oop_analysis.py",
+    "results/kw_lewm_0006_inference_ablation.json",
+    "results/kw_lewm_0006_baseline.json",
+    "results/kw_lewm_0006_V1_plus_iters.json",
+    "results/kw_lewm_0006_V2_plus_horizon.json",
+    "results/kw_lewm_0006_V3_plus_clip.json",
+    "results/kw_lewm_0006b_oop_analysis.json",
+    "results/kw_lewm_0006_run.log",
+    "verification/experiments/KW-LEWM-0006.md"
+  ],
+  "caveats": [
+    "n=25 per variant; CIs are very wide (e.g. [0.007,0.195])",
+    "V1/V3 1/25 vs baseline 0/25 must NOT be read as an improvement from inference budget",
+    "baseline 0/25 on the 25-task subset vs K4 1/50 on the full set is CONSISTENT (the single K4 success is not in the first 25 tasks), not harness breakage",
+    "0006b is POST-HOC and does not survive Bonferroni correction",
+    "still E1: single checkpoint, single seed=42, single 25-task subset, no third-party validation",
+    "residual approximations: n=25 not 50, partial-shard scaler, locally-rendered pixels, shard 0, single goal_offset=25, 4-dim proprio reconstruction",
+    "must NOT present these numbers as the 50-task head-to-head, nor claim official benchmark or model superiority"
+  ]
+}

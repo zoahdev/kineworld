@@ -1,0 +1,521 @@
+{
+  "action_scaler": {
+    "mean": [
+      -0.035853457212382533,
+      0.007131718037346518
+    ],
+    "role": "inverse_transform only (execution); NOT applied inside get_cost",
+    "rows": 80384,
+    "scale": [
+      0.18752451572614148,
+      0.19700472567964566
+    ],
+    "source": "results/kw_lewm_0001l_numeric_shard0.json"
+  },
+  "baseline_for_comparison": {
+    "experiment": "KW-LEWM-0004 (LeWM, same platform, same 50 tasks, same CEM)",
+    "n_success": 18,
+    "out_of_play_rate": null,
+    "success_rate": 0.36
+  },
+  "cem": {
+    "action_block": 5,
+    "horizon": 5,
+    "n_steps": 10,
+    "num_samples": 100,
+    "topk": 10
+  },
+  "design": "JEPAWMAdapter wraps facebookresearch/jepa-wms EncPredWM; get_cost feeds CEM candidates (N(0,1) normalized space) directly to unroll; execution denormalized via process['action'].inverse_transform",
+  "eval_budget": 50,
+  "evidence_level": "E1_INTERNAL_REPRODUCTION",
+  "experiment_id": "KW-LEWM-0005-JEPA-SAME-PLATFORM",
+  "goal_offset": 25,
+  "kill_criteria": {
+    "K4_control_within_play_area": false,
+    "K4_out_of_play_rate_at_most_0.1": false
+  },
+  "n_tasks": 8,
+  "protocol_notes": [
+    "pixels re-rendered locally at 224x224 from published states; image column never downloaded",
+    "adapter.encode consumes raw uint8 pixels (no pixels transform in policy)",
+    "CEM samples are in normalized action space N(0,1); encode_act does no re-normalization; get_cost passes through",
+    "execution inverse_transform maps normalized -> env Box(-1,1) to keep agent in play",
+    "NOT the official 13.1 GB dataset benchmark; E1 single checkpoint/single seed"
+  ],
+  "question": "On the SAME stable-worldmodel platform as LeWM-0004 (same CEM 10x100x10, same 50 dataset tasks, same ShimDataset+local render), does JEPA-WM produce valid closed-loop PushT control?",
+  "summary": {
+    "block_displacement_mean": 58.29144916084444,
+    "block_displacement_median": 30.36853162414161,
+    "block_interaction_rate": 0.625,
+    "n_errors": 0,
+    "n_out_of_play": 1,
+    "n_success": 0,
+    "out_of_play_rate": 0.125,
+    "start_goal_distance_mean": 159.38254791321762,
+    "success_rate": 0.0,
+    "total_wall_seconds": 611.6802427000002
+  },
+  "trials": [
+    {
+      "agent_final": [
+        -56.241459220547064,
+        135.73009496403435
+      ],
+      "agent_out_of_play_area": true,
+      "block_displacement": 0.0,
+      "block_final": [
+        191.94912719726562,
+        335.73858642578125
+      ],
+      "block_start": [
+        191.94912719726562,
+        335.73858642578125
+      ],
+      "episode_idx": 19,
+      "error": null,
+      "final_state": [
+        -56.241459220547064,
+        135.73009496403435,
+        191.94912719726562,
+        335.73858642578125,
+        1.7926006317138672,
+        -258.7131083453961,
+        -167.99853209999938
+      ],
+      "goal_state": [
+        137.0987091064453,
+        458.0736999511719,
+        193.13153076171875,
+        340.0780029296875,
+        0.9523351788520813,
+        95.775146484375,
+        -45.50338363647461
+      ],
+      "goal_step": 68,
+      "metrics_raw": {
+        "episode_successes": [
+          false
+        ],
+        "seeds": null,
+        "success_rate": 0.0
+      },
+      "start_goal_distance": 194.43412846561668,
+      "start_state": [
+        88.13306427001953,
+        269.9599914550781,
+        191.94912719726562,
+        335.73858642578125,
+        1.7926006317138672,
+        11.713134765625,
+        86.97891998291016
+      ],
+      "start_step": 43,
+      "success": 0.0,
+      "wall_seconds": 76.61200279999684
+    },
+    {
+      "agent_final": [
+        105.91264936248109,
+        492.84827364916924
+      ],
+      "agent_out_of_play_area": false,
+      "block_displacement": 18.246102981568107,
+      "block_final": [
+        192.67473277125958,
+        341.0031210384464
+      ],
+      "block_start": [
+        204.65582275390625,
+        354.7644348144531
+      ],
+      "episode_idx": 86,
+      "error": null,
+      "final_state": [
+        105.91264936248109,
+        492.84827364916924,
+        192.67473277125958,
+        341.0031210384464,
+        1.058191151083772,
+        -39.3227233474216,
+        6.516611417224183
+      ],
+      "goal_state": [
+        140.2176513671875,
+        391.95367431640625,
+        199.9546356201172,
+        320.474609375,
+        0.36904826760292053,
+        56.771060943603516,
+        -31.671085357666016
+      ],
+      "goal_step": 97,
+      "metrics_raw": {
+        "episode_successes": [
+          false
+        ],
+        "seeds": null,
+        "success_rate": 0.0
+      },
+      "start_goal_distance": 71.71360784373391,
+      "start_state": [
+        197.8507080078125,
+        416.9212341308594,
+        204.65582275390625,
+        354.7644348144531,
+        0.7913293838500977,
+        71.69686126708984,
+        -132.39529418945312
+      ],
+      "start_step": 72,
+      "success": 0.0,
+      "wall_seconds": 75.38335440000083
+    },
+    {
+      "agent_final": [
+        239.00240639450683,
+        309.91792652112565
+      ],
+      "agent_out_of_play_area": false,
+      "block_displacement": 204.52888144092395,
+      "block_final": [
+        194.55150556277735,
+        351.57934671252747
+      ],
+      "block_start": [
+        386.9733581542969,
+        282.2547912597656
+      ],
+      "episode_idx": 107,
+      "error": null,
+      "final_state": [
+        239.00240639450683,
+        309.91792652112565,
+        194.55150556277735,
+        351.57934671252747,
+        3.4560662381373204,
+        -247.8667371639725,
+        -73.71484582677971
+      ],
+      "goal_state": [
+        401.9629211425781,
+        183.3294219970703,
+        373.84564208984375,
+        220.8050994873047,
+        1.888384222984314,
+        -26.068265914916992,
+        -29.336214065551758
+      ],
+      "goal_step": 49,
+      "metrics_raw": {
+        "episode_successes": [
+          false
+        ],
+        "seeds": null,
+        "success_rate": 0.0
+      },
+      "start_goal_distance": 110.33252728052092,
+      "start_state": [
+        474.712158203125,
+        237.48118591308594,
+        386.9733581542969,
+        282.2547912597656,
+        2.7307214736938477,
+        10.070895195007324,
+        86.12116241455078
+      ],
+      "start_step": 24,
+      "success": 0.0,
+      "wall_seconds": 76.29771270000128
+    },
+    {
+      "agent_final": [
+        347.33427300149793,
+        283.0471356030458
+      ],
+      "agent_out_of_play_area": false,
+      "block_displacement": 42.49096026671511,
+      "block_final": [
+        241.5073026418759,
+        279.175265197729
+      ],
+      "block_start": [
+        250.43606567382812,
+        237.6330108642578
+      ],
+      "episode_idx": 158,
+      "error": null,
+      "final_state": [
+        347.33427300149793,
+        283.0471356030458,
+        241.5073026418759,
+        279.175265197729,
+        0.9301851537693464,
+        -173.66574431666814,
+        30.08876943047548
+      ],
+      "goal_state": [
+        194.6397247314453,
+        251.5509796142578,
+        260.70404052734375,
+        239.2218780517578,
+        0.579379677772522,
+        45.85462188720703,
+        29.487003326416016
+      ],
+      "goal_step": 127,
+      "metrics_raw": {
+        "episode_successes": [
+          false
+        ],
+        "seeds": null,
+        "success_rate": 0.0
+      },
+      "start_goal_distance": 84.40461561150434,
+      "start_state": [
+        254.2823944091797,
+        192.73826599121094,
+        250.43606567382812,
+        237.6330108642578,
+        0.47918978333473206,
+        2.48238468170166,
+        -178.61634826660156
+      ],
+      "start_step": 102,
+      "success": 0.0,
+      "wall_seconds": 76.53054960000009
+    },
+    {
+      "agent_final": [
+        325.4019987158729,
+        315.33418184044893
+      ],
+      "agent_out_of_play_area": false,
+      "block_displacement": 65.78257160250456,
+      "block_final": [
+        359.03334124587434,
+        222.34928837361713
+      ],
+      "block_start": [
+        386.99041748046875,
+        281.8954772949219
+      ],
+      "episode_idx": 172,
+      "error": null,
+      "final_state": [
+        325.4019987158729,
+        315.33418184044893,
+        359.03334124587434,
+        222.34928837361713,
+        2.349495571725468,
+        -284.31772039303684,
+        18.586532723257463
+      ],
+      "goal_state": [
+        364.8131103515625,
+        166.11839294433594,
+        377.71197509765625,
+        278.1023254394531,
+        2.676144599914551,
+        -29.4555721282959,
+        0.704422652721405
+      ],
+      "goal_step": 64,
+      "metrics_raw": {
+        "episode_successes": [
+          false
+        ],
+        "seeds": null,
+        "success_rate": 0.0
+      },
+      "start_goal_distance": 134.6796918463719,
+      "start_state": [
+        450.94268798828125,
+        269.1709899902344,
+        386.99041748046875,
+        281.8954772949219,
+        2.725451707839966,
+        12.636072158813477,
+        -78.02912902832031
+      ],
+      "start_step": 39,
+      "success": 0.0,
+      "wall_seconds": 76.61266969999997
+    },
+    {
+      "agent_final": [
+        149.59264586508675,
+        278.04227714473285
+      ],
+      "agent_out_of_play_area": false,
+      "block_displacement": 0.0,
+      "block_final": [
+        386.9733581542969,
+        282.2547912597656
+      ],
+      "block_start": [
+        386.9733581542969,
+        282.2547912597656
+      ],
+      "episode_idx": 191,
+      "error": null,
+      "final_state": [
+        149.59264586508675,
+        278.04227714473285,
+        386.9733581542969,
+        282.2547912597656,
+        2.7307214736938477,
+        -223.50810473571343,
+        10.257916570450638
+      ],
+      "goal_state": [
+        484.55859375,
+        279.4481506347656,
+        386.9733581542969,
+        282.2547912597656,
+        2.7307214736938477,
+        30.796260833740234,
+        98.0592041015625
+      ],
+      "goal_step": 25,
+      "metrics_raw": {
+        "episode_successes": [
+          false
+        ],
+        "seeds": null,
+        "success_rate": 0.0
+      },
+      "start_goal_distance": 287.8119053455655,
+      "start_state": [
+        279.0,
+        78.0,
+        386.9733581542969,
+        282.2547912597656,
+        2.7307214736938477,
+        0.0,
+        0.0
+      ],
+      "start_step": 0,
+      "success": 0.0,
+      "wall_seconds": 77.02078590000019
+    },
+    {
+      "agent_final": [
+        250.3530630884383,
+        244.63338470571148
+      ],
+      "agent_out_of_play_area": false,
+      "block_displacement": 135.28307699504379,
+      "block_final": [
+        329.2779559980272,
+        334.28623382310866
+      ],
+      "block_start": [
+        265.5337829589844,
+        214.96234130859375
+      ],
+      "episode_idx": 517,
+      "error": null,
+      "final_state": [
+        250.3530630884383,
+        244.63338470571148,
+        329.2779559980272,
+        334.28623382310866,
+        1.6395633903372446,
+        -306.57923358509754,
+        13.811569116278271
+      ],
+      "goal_state": [
+        295.94354248046875,
+        219.6981964111328,
+        275.1025390625,
+        222.16722106933594,
+        0.6863186359405518,
+        -22.89259910583496,
+        20.577823638916016
+      ],
+      "goal_step": 116,
+      "metrics_raw": {
+        "episode_successes": [
+          false
+        ],
+        "seeds": null,
+        "success_rate": 0.0
+      },
+      "start_goal_distance": 107.3010182324615,
+      "start_state": [
+        195.1739959716797,
+        184.8336639404297,
+        265.5337829589844,
+        214.96234130859375,
+        0.6051860451698303,
+        29.699214935302734,
+        1.44879150390625
+      ],
+      "start_step": 91,
+      "success": 0.0,
+      "wall_seconds": 78.00553489999947
+    },
+    {
+      "agent_final": [
+        86.12796522330238,
+        74.96914358645384
+      ],
+      "agent_out_of_play_area": false,
+      "block_displacement": 0.0,
+      "block_final": [
+        86.3160629272461,
+        226.83944702148438
+      ],
+      "block_start": [
+        86.3160629272461,
+        226.83944702148438
+      ],
+      "episode_idx": 584,
+      "error": null,
+      "final_state": [
+        86.12796522330238,
+        74.96914358645384,
+        86.3160629272461,
+        226.83944702148438,
+        3.9874379634857178,
+        -269.6672161313995,
+        54.66505105216092
+      ],
+      "goal_state": [
+        230.13966369628906,
+        371.8370056152344,
+        85.24845886230469,
+        228.95950317382812,
+        5.333915710449219,
+        -69.97029876708984,
+        139.5137176513672
+      ],
+      "goal_step": 42,
+      "metrics_raw": {
+        "episode_successes": [
+          false
+        ],
+        "seeds": null,
+        "success_rate": 0.0
+      },
+      "start_goal_distance": 284.38288867996624,
+      "start_state": [
+        182.38522338867188,
+        91.50237274169922,
+        86.3160629272461,
+        226.83944702148438,
+        3.9874379634857178,
+        -107.82337188720703,
+        32.3437614440918
+      ],
+      "start_step": 17,
+      "success": 0.0,
+      "wall_seconds": 75.21763270000156
+    }
+  ],
+  "versions": {
+    "python": "3.10.21",
+    "stable_worldmodel": "0.1.1",
+    "torch": "2.7.0+cu128"
+  }
+}

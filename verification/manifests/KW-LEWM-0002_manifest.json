@@ -1,0 +1,106 @@
+{
+  "experiment_id": "KW-LEWM-0002",
+  "title": "Is the missing action inverse_transform the mechanism behind invalid LeWM closed-loop control?",
+  "design": "single-variable ablation: process['action'] transform (identity vs dataset-estimated StandardScaler)",
+  "status": "COMPLETED",
+  "verdict": "ACTION_SCALER_NECESSARY_NOT_SUFFICIENT",
+  "evidence_level": "E1_INTERNAL_ABLATION",
+  "training": "none (inference only)",
+  "created_at": "2026-09-03T10:00:00+08:00",
+  "closed_at": "2026-09-03T10:25:00+08:00",
+  "predecessor": {
+    "experiment_id": "KW-LEWM-0001L",
+    "verdict": "CLOSED_INFRASTRUCTURE_PASS_VALID_CONTROL_NOT_SUPPORTED",
+    "note": "0001L observed failure but did not verify its mechanism; 0002 isolates the mechanism."
+  },
+  "config": {
+    "episodes_per_condition": 8,
+    "base_seed": 42,
+    "seeds": [42, 43, 44, 45, 46, 47, 48, 49],
+    "seeds_identical_across_conditions": true,
+    "checkpoint": "checkpoints/lewm/weights.pt",
+    "model_parameters": 18034478,
+    "env": "swm/PushT-v1",
+    "image_shape": [224, 224],
+    "max_episode_steps": 50,
+    "cem": {"n_steps": 10, "num_samples": 100, "topk": 10},
+    "plan_config": {
+      "horizon": 5,
+      "receding_horizon": 5,
+      "action_block": 5,
+      "history_len": 1,
+      "warm_start": true
+    }
+  },
+  "action_scaler_source": {
+    "file": "results/kw_lewm_0001l_numeric_shard0.json",
+    "content_sha256": "a538eb6a20fcaca4189b71bde8d9593b38597003950e199ce587e57c720ab3c8",
+    "rows": 80384,
+    "remote_object_bytes": 502089201,
+    "transferred_bytes": 5675231,
+    "action_mean": [-0.035853457212382533, 0.007131718037346518],
+    "action_scale": [0.18752451572614148, 0.19700472567964566],
+    "scale_definition": "population std (ddof=0)",
+    "caveat": "partial Parquet shard, NOT the official full training dataset; scaler is an approximation"
+  },
+  "results": {
+    "identity": {
+      "n_episodes": 8,
+      "n_agent_out_of_play": 8,
+      "out_of_play_rate": 1.0,
+      "agent_final_abs_max": 3960.3957926472,
+      "block_displacement_mean": 1.8149463774493604,
+      "block_displacement_median": 0.0,
+      "success_rate": 0.0
+    },
+    "scaler": {
+      "n_episodes": 8,
+      "n_agent_out_of_play": 2,
+      "out_of_play_rate": 0.25,
+      "agent_final_abs_max": 595.9166052664423,
+      "block_displacement_mean": 35.00356814293224,
+      "block_displacement_median": 0.0,
+      "success_rate": 0.0
+    }
+  },
+  "kill_criteria": {
+    "K1_scaler_matters": {
+      "passed": true,
+      "detail": "out-of-play rate 1.00 -> 0.25; worst excursion 3960 -> 596 (6.6x contraction)"
+    },
+    "K2_scaler_condition_within_play_area": {
+      "passed": false,
+      "detail": "2/8 episodes still out of play; block displacement median remains 0.0"
+    }
+  },
+  "mechanism_evidence": {
+    "cem_sampling": "stable_worldmodel/solver/cem.py uses torch.randn -> N(0,1), unclamped",
+    "policy_postprocess": "policy.py calls process['action'].inverse_transform before env step",
+    "scale_mismatch": "CEM sampling std 1.0 vs expert action std ~0.19 (5.3x)"
+  },
+  "confounder_not_resolved": {
+    "issue": "tasks are randomly sampled, not dataset-defined",
+    "evidence": "start-to-goal distance up to 360.9 with strict pose alignment (pos_diff<20, angle_diff<pi/9)",
+    "why_it_matters": "0/8 success must NOT be read as model capability; official protocol uses same-episode states 25 steps apart, which are reachable by construction",
+    "next_experiment": "KW-LEWM-0003"
+  },
+  "post_hoc_correction": {
+    "issue": "a 2-episode smoke suggested full repair (out-of-play 0/2, block displacement mean 112.28)",
+    "correction": "at 8 episodes the block-displacement MEDIAN is 0.0; the smoke number was inflated by a single 208.36 outlier",
+    "recurrence": "this repeats the zero-inflated heavy-tail mistake already recorded in project MEMORY.md"
+  },
+  "allowed_claim": "Under fixed tasks and planner configuration, adding an action inverse_transform estimated from public data reduces LeWM agent excursions out of the play area from 8/8 to 2/8 and produces real block interaction in 3/8 episodes; the missing transform is part of the KW-LEWM-0001L failure mechanism.",
+  "forbidden_claims": [
+    "official LeWM benchmark reproduced",
+    "LeWM compared against JEPA-WM or any competitor",
+    "the approximate scaler equals the official full-dataset scaler",
+    "third-party validation",
+    "0/8 success indicates model capability"
+  ],
+  "artifacts": [
+    "verification/experiments/KW-LEWM-0002.md",
+    "verification/scripts/kw_lewm_0002_scaler_ablation.py",
+    "results/kw_lewm_0002_scaler_ablation.json",
+    "results/kw_lewm_0001l_numeric_shard0.json"
+  ]
+}

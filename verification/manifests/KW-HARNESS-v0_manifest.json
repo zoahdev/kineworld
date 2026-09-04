@@ -1,0 +1,37 @@
+{
+  "artifact_id": "KW-HARNESS-v0",
+  "status": "INTERFACE_CONTRACT_TESTED_FROZEN_AFTER_FRONTIER_REVIEW",
+  "created_at": "2026-09-02T11:09:51+08:00",
+  "evidence_level": "E1_INTERNAL_TOOLING",
+  "claims_excluded": [
+    "No model capability is established by these interface tests.",
+    "No JEPA-WM or LeWM adapter exists yet.",
+    "This is not evidence of uncertainty, adaptation, or planning superiority.",
+    "Generic harness execution will reuse stable-worldmodel; this contract will not be expanded into a competing framework."
+  ],
+  "artifacts": [
+    {
+      "path": "kineworld/harness/contracts.py",
+      "sha256": "72e64c594c1b8743d8735d342517aad681ec50141c395f17898fd0bd3797bd76"
+    },
+    {
+      "path": "tests/test_harness_contracts.py",
+      "sha256": "ed8717b754c52014a6d97634a97c9181c8bc855fb1af48147c2c1455b1a1cbdf"
+    },
+    {
+      "path": "docs/research/RESEARCH_HARNESS.md",
+      "sha256": "30488cf757ace1b8d9bdf924ed668bb8d596bc449d480564bf84886b5223118c"
+    }
+  ],
+  "verification_command": ".venv310/Scripts/python.exe -m unittest discover -s tests -v",
+  "test_result": {
+    "tests_run": 4,
+    "failures": 0,
+    "errors": 0
+  },
+  "runtime_effect": {
+    "gpu_imported": false,
+    "third_party_dependencies": [],
+    "active_experiment_files_modified": false
+  }
+}

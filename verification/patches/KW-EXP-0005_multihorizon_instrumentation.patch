@@ -1,0 +1,177 @@
+diff --git a/evals/simu_env_planning/planning/plan_evaluator.py b/evals/simu_env_planning/planning/plan_evaluator.py
+index 5156042..67658c2 100644
+--- a/evals/simu_env_planning/planning/plan_evaluator.py
++++ b/evals/simu_env_planning/planning/plan_evaluator.py
+@@ -142,6 +142,7 @@ class PlanEvaluator:
+         ep_obs_proprio_td_list = [td]
+         infos_list = []
+         actions = []
++        diagnostics = []
+         pbar = tqdm(
+             desc="executing agent",
+             total=env.max_steps(),
+@@ -224,6 +225,110 @@ class PlanEvaluator:
+                 eval_results = env.eval_state(self.state_g, infos[-1]["state"])
+                 success = eval_results["success"]
+                 state_dist = eval_results["state_dist"]
++            plan_diag = getattr(self, "_pending_plan_diagnostic", None)
++            if plan_diag is not None:
++                actual_td = make_td(obses[-1], infos[-1]).unsqueeze(0)
++                actual_enc = self.agent.model.encode(
++                    prepare_obs(self.agent.cfg.task_specification.obs, actual_td), act=False
++                ).detach().cpu()
++                predicted = plan_diag.pop("predicted_enc", None)
++                if predicted is not None:
++                    if isinstance(predicted, TensorDict):
++                        predicted = predicted["visual"]
++                    if isinstance(actual_enc, TensorDict):
++                        actual_enc = actual_enc["visual"]
++                    predicted = torch.as_tensor(predicted).detach().cpu()
++                    actual_enc = torch.as_tensor(actual_enc).detach().cpu()
++                    # predicted has time on the leading axis (context + rollout).
++                    # Compare the latent at the executed segment endpoint, not
++                    # the final unexecuted horizon state.
++                    pred_time = min(
++                        int(plan_diag["num_act_stepped"]), predicted.shape[0] - 1
++                    )
++                    # --- KW-EXP-0005: multi-horizon rollout error -----------------
++                    # Ground truth for latent rollout step k is the frame observed
++                    # after the k-th action has been executed, i.e. obses[k*fsk-1].
++                    # Before this change every segment was scored at exactly one
++                    # horizon (num_act_stepped), so no horizon-error curve existed.
++                    frameskip = int(getattr(self.cfg, "frameskip", 1) or 1)
++                    goal_enc_raw = self.agent.goal_state_enc
++                    if isinstance(goal_enc_raw, TensorDict):
++                        goal_enc_raw = goal_enc_raw["visual"]
++                    horizon_rows = []
++                    for _k in range(1, pred_time + 1):
++                        _gt_idx = _k * frameskip - 1
++                        if _gt_idx >= len(obses):
++                            break
++                        _gt_td = make_td(obses[_gt_idx], infos[_gt_idx]).unsqueeze(0)
++                        _gt_enc = self.agent.model.encode(
++                            prepare_obs(self.agent.cfg.task_specification.obs, _gt_td),
++                            act=False,
++                        ).detach().cpu()
++                        if isinstance(_gt_enc, TensorDict):
++                            _gt_enc = _gt_enc["visual"]
++                        _gt_enc = torch.as_tensor(_gt_enc).detach().cpu()
++                        _pk = torch.as_tensor(predicted[_k]).detach().cpu()
++                        _pk_flat = _pk.reshape(-1, _pk.shape[-1])
++                        _gt_flat = _gt_enc.reshape(-1, _gt_enc.shape[-1])
++                        if not (_pk_flat.numel() and _gt_flat.numel()):
++                            continue
++                        _w = min(_pk_flat.shape[-1], _gt_flat.shape[-1])
++                        _pk_vec = _pk_flat.mean(dim=0)[:_w]
++                        _gt_vec = _gt_flat.mean(dim=0)[:_w]
++                        _g_flat = torch.as_tensor(goal_enc_raw).detach().cpu().reshape(
++                            -1, goal_enc_raw.shape[-1]
++                        )
++                        _g_vec = _g_flat.mean(dim=0)[:_w]
++                        horizon_rows.append(
++                            {
++                                "latent_step": int(_k),
++                                "env_step_index": int(_gt_idx),
++                                "predicted_actual_latent_mse": float(
++                                    torch.nn.functional.mse_loss(_pk_vec, _gt_vec).item()
++                                ),
++                                "predicted_goal_latent_mse": float(
++                                    torch.nn.functional.mse_loss(_pk_vec, _g_vec).item()
++                                ),
++                                "actual_goal_latent_mse": float(
++                                    torch.nn.functional.mse_loss(_gt_vec, _g_vec).item()
++                                ),
++                            }
++                        )
++                    plan_diag["per_horizon_latent_mse"] = horizon_rows
++                    plan_diag["frameskip"] = frameskip
++                    # --------------------------------------------------------------
++                    predicted = predicted[pred_time]
++                    pred_flat = predicted.reshape(-1, predicted.shape[-1])
++                    actual_flat = actual_enc.reshape(-1, actual_enc.shape[-1])
++                    if pred_flat.numel() and actual_flat.numel():
++                        width = min(pred_flat.shape[-1], actual_flat.shape[-1])
++                        pred_vec = pred_flat.mean(dim=0)[:width]
++                        actual_vec = actual_flat.mean(dim=0)[:width]
++                        plan_diag["predicted_actual_latent_mse"] = float(
++                            torch.nn.functional.mse_loss(pred_vec, actual_vec).item()
++                        )
++                        goal_enc = goal_enc_raw
++                        goal_flat = torch.as_tensor(goal_enc).detach().cpu().reshape(-1, goal_enc.shape[-1])
++                        goal_vec = goal_flat.mean(dim=0)[:width]
++                        plan_diag["predicted_goal_latent_mse"] = float(
++                            torch.nn.functional.mse_loss(pred_vec, goal_vec).item()
++                        )
++                        plan_diag["actual_goal_latent_mse"] = float(
++                            torch.nn.functional.mse_loss(actual_vec, goal_vec).item()
++                        )
++                    else:
++                        plan_diag["predicted_actual_latent_mse"] = None
++                        plan_diag["predicted_goal_latent_mse"] = None
++                        plan_diag["actual_goal_latent_mse"] = None
++                plan_diag["actual_success"] = bool(success)
++                plan_diag["actual_state_dist"] = float(state_dist)
++                previous_state_dist = getattr(self, "_last_diagnostic_state_dist", None)
++                plan_diag["actual_state_dist_delta"] = (
++                    None if previous_state_dist is None else float(previous_state_dist - state_dist)
++                )
++                self._last_diagnostic_state_dist = float(state_dist)
++                plan_diag["env_steps_executed"] = int(len(obses))
++                diagnostics.append(plan_diag)
+             if success and self.cfg.task_specification.done_at_succ:
+                 done = True
+             ep_reward += reward
+@@ -252,6 +357,7 @@ class PlanEvaluator:
+                 done = True
+ 
+         pbar.close()
++        self.last_diagnostics = diagnostics
+         return ep_obs_proprio_td_list, ep_reward, actions, infos_list, success, state_dist
+ 
+     def sample_traj_segment_from_dset(
+@@ -517,6 +623,8 @@ class PlanEvaluator:
+         self.prev_elite_losses_std = []
+         self.prev_pred_frames_over_iterations = []
+         self.predicted_best_encs_over_iterations = []
++        self._pending_plan_diagnostic = None
++        self._last_diagnostic_state_dist = None
+ 
+         def agent_actor(obs, steps_left, plan_vis_path=None):
+             act = agent.act(
+@@ -528,6 +636,20 @@ class PlanEvaluator:
+             self.prev_elite_losses_std.append(agent._prev_elite_losses_std)
+             self.prev_pred_frames_over_iterations.append(agent._prev_pred_frames_over_iterations)
+             self.predicted_best_encs_over_iterations.append(agent._predicted_best_encs_over_iterations)
++            predicted_enc = agent._predicted_best_encs_over_iterations[-1]
++            if isinstance(predicted_enc, (list, tuple)):
++                predicted_enc = predicted_enc[-1]
++            self._pending_plan_diagnostic = {
++                "plan_index": len(self.predicted_best_encs_over_iterations) - 1,
++                "env_step": int(env.elapsed_steps()),
++                "steps_left": int(steps_left),
++                "plan_horizon": int(min(agent.planner.horizon, steps_left)),
++                "num_act_stepped": int(agent.planner.num_act_stepped),
++                "cem_best_loss": float(agent._prev_losses[-1].item()),
++                "cem_elite_loss_mean": float(agent._prev_elite_losses_mean[-1].item()),
++                "cem_elite_loss_std": float(agent._prev_elite_losses_std[-1].item()),
++                "predicted_enc": predicted_enc,
++            }
+             return act
+ 
+         episode_obses, ep_reward, planned_actions, infos, success, state_dist = self.unroll_agent(
+@@ -537,6 +659,15 @@ class PlanEvaluator:
+             agent_actor,
+             preprocessor=agent.preprocessor,
+         )
++        diagnostics_path = work_dir / "diagnostics.json"
++        serializable_diagnostics = [
++            {k: v for k, v in record.items() if k != "predicted_enc"}
++            for record in getattr(self, "last_diagnostics", [])
++        ]
++        import json
++
++        with open(diagnostics_path, "w", encoding="utf-8") as f:
++            json.dump(serializable_diagnostics, f, indent=2)
+         if "droid" in cfg.task_specification.task:
+             success_dist = 0.0
+             # first 6 action dims are summable in time and should lead to same delta whatever the path taken if no obstacles

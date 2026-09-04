@@ -1,0 +1,251 @@
+diff --git a/evals/simu_env_planning/planning/plan_evaluator.py b/evals/simu_env_planning/planning/plan_evaluator.py
+index 5156042..7593b1c 100644
+--- a/evals/simu_env_planning/planning/plan_evaluator.py
++++ b/evals/simu_env_planning/planning/plan_evaluator.py
+@@ -142,6 +142,7 @@ class PlanEvaluator:
+         ep_obs_proprio_td_list = [td]
+         infos_list = []
+         actions = []
++        diagnostics = []
+         pbar = tqdm(
+             desc="executing agent",
+             total=env.max_steps(),
+@@ -224,6 +225,184 @@ class PlanEvaluator:
+                 eval_results = env.eval_state(self.state_g, infos[-1]["state"])
+                 success = eval_results["success"]
+                 state_dist = eval_results["state_dist"]
++            plan_diag = getattr(self, "_pending_plan_diagnostic", None)
++            if plan_diag is not None:
++                actual_td = make_td(obses[-1], infos[-1]).unsqueeze(0)
++                actual_enc = self.agent.model.encode(
++                    prepare_obs(self.agent.cfg.task_specification.obs, actual_td), act=False
++                ).detach().cpu()
++                predicted = plan_diag.pop("predicted_enc", None)
++                if predicted is not None:
++                    if isinstance(predicted, TensorDict):
++                        predicted = predicted["visual"]
++                    if isinstance(actual_enc, TensorDict):
++                        actual_enc = actual_enc["visual"]
++                    predicted = torch.as_tensor(predicted).detach().cpu()
++                    actual_enc = torch.as_tensor(actual_enc).detach().cpu()
++                    # predicted has time on the leading axis (context + rollout).
++                    # Compare the latent at the executed segment endpoint, not
++                    # the final unexecuted horizon state.
++                    pred_time = min(
++                        int(plan_diag["num_act_stepped"]), predicted.shape[0] - 1
++                    )
++                    # --- KW-EXP-0005: multi-horizon rollout error -----------------
++                    # Ground truth for latent rollout step k is the frame observed
++                    # after the k-th action has been executed, i.e. obses[k*fsk-1].
++                    # Before this change every segment was scored at exactly one
++                    # horizon (num_act_stepped), so no horizon-error curve existed.
++                    #
++                    # INDEX ALIGNMENT BUGFIX (2026-09-02):
++                    #   unroll() returns [tau + T, ...] where tau = context prefix
++                    #   length and T = number of planned action steps, so the latent
++                    #   for rollout step k lives at index (tau + k - 1), NOT at k.
++                    #   The legacy single-horizon metric used predicted[num_act_stepped]
++                    #   and therefore compared rollout step (num_act_stepped - tau + 1)
++                    #   against the endpoint of num_act_stepped executed actions --
++                    #   off by (tau - 1) = 1 action step for tau=2. The legacy fields
++                    #   are kept bit-identical for reproducibility; the corrected
++                    #   values are emitted alongside as *_aligned.
++                    frameskip = int(getattr(self.cfg, "frameskip", 1) or 1)
++                    pred_len = int(predicted.shape[0])
++                    tau = max(0, pred_len - int(plan_diag["plan_horizon"]))
++                    plan_diag["predicted_len"] = pred_len
++                    plan_diag["latent_index_offset"] = tau
++                    goal_enc_raw = self.agent.goal_state_enc
++                    if isinstance(goal_enc_raw, TensorDict):
++                        goal_enc_raw = goal_enc_raw["visual"]
++                    horizon_rows = []
++                    for _k in range(1, pred_time + 1):
++                        _gt_idx = _k * frameskip - 1
++                        _pk_idx = tau + _k - 1
++                        if _gt_idx >= len(obses) or _pk_idx >= pred_len:
++                            break
++                        _gt_td = make_td(obses[_gt_idx], infos[_gt_idx]).unsqueeze(0)
++                        _gt_enc = self.agent.model.encode(
++                            prepare_obs(self.agent.cfg.task_specification.obs, _gt_td),
++                            act=False,
++                        ).detach().cpu()
++                        if isinstance(_gt_enc, TensorDict):
++                            _gt_enc = _gt_enc["visual"]
++                        _gt_enc = torch.as_tensor(_gt_enc).detach().cpu()
++                        _pk = torch.as_tensor(predicted[_pk_idx]).detach().cpu()
++                        _pk_flat = _pk.reshape(-1, _pk.shape[-1])
++                        _gt_flat = _gt_enc.reshape(-1, _gt_enc.shape[-1])
++                        if not (_pk_flat.numel() and _gt_flat.numel()):
++                            continue
++                        _w = min(_pk_flat.shape[-1], _gt_flat.shape[-1])
++                        _pk_vec = _pk_flat.mean(dim=0)[:_w]
++                        _gt_vec = _gt_flat.mean(dim=0)[:_w]
++                        _g_flat = torch.as_tensor(goal_enc_raw).detach().cpu().reshape(
++                            -1, goal_enc_raw.shape[-1]
++                        )
++                        _g_vec = _g_flat.mean(dim=0)[:_w]
++                        # --- KW-EXP-0006: physically grounded per-step signals ---
++                        # Push-T state = [agent_x, agent_y, T_x, T_y, angle, agent_vx, agent_vy]
++                        # obj_disp / obj_angle_delta measure how much the T-block
++                        # actually moved during this latent step, i.e. the intensity
++                        # of physical interaction the world model had to predict.
++                        # Null for k=1 because the pre-segment state is not retained.
++                        _phys = {}
++                        _st = infos[_gt_idx].get("state") if hasattr(infos[_gt_idx], "get") else None
++                        if _st is not None:
++                            _s = np.asarray(_st, dtype=np.float64).reshape(-1)
++                            if _s.shape[0] >= 7:
++                                _agent = _s[0:2]
++                                _block = _s[2:4]
++                                _ang = float(_s[4])
++                                _phys["agent_obj_dist"] = float(np.linalg.norm(_agent - _block))
++                                _phys["agent_speed"] = float(np.linalg.norm(_s[5:7]))
++                                _phys["block_x"] = float(_block[0])
++                                _phys["block_y"] = float(_block[1])
++                                _phys["block_angle"] = _ang
++                                _prev_idx = _gt_idx - frameskip
++                                _sp = (
++                                    np.asarray(infos[_prev_idx].get("state"), dtype=np.float64).reshape(-1)
++                                    if _prev_idx >= 0 and hasattr(infos[_prev_idx], "get")
++                                    else None
++                                )
++                                if _sp is not None and _sp.shape[0] >= 7:
++                                    _phys["obj_disp"] = float(np.linalg.norm(_block - _sp[2:4]))
++                                    _d = abs(_ang - float(_sp[4]))
++                                    _phys["obj_angle_delta"] = float(min(_d, abs(2 * np.pi - _d)))
++                                else:
++                                    _phys["obj_disp"] = None
++                                    _phys["obj_angle_delta"] = None
++                        horizon_rows.append(
++                            {
++                                "latent_step": int(_k),
++                                "env_step_index": int(_gt_idx),
++                                "predicted_actual_latent_mse": float(
++                                    torch.nn.functional.mse_loss(_pk_vec, _gt_vec).item()
++                                ),
++                                "predicted_goal_latent_mse": float(
++                                    torch.nn.functional.mse_loss(_pk_vec, _g_vec).item()
++                                ),
++                                "actual_goal_latent_mse": float(
++                                    torch.nn.functional.mse_loss(_gt_vec, _g_vec).item()
++                                ),
++                                "physical": _phys,
++                            }
++                        )
++                    plan_diag["per_horizon_latent_mse"] = horizon_rows
++                    plan_diag["frameskip"] = frameskip
++                    # --------------------------------------------------------------
++                    # Aligned endpoint metric: rollout step num_act_stepped vs the
++                    # realised endpoint. Differs from the legacy field by the
++                    # tau-1 index correction documented above.
++                    _aligned_idx = min(tau + pred_time - 1, pred_len - 1)
++                    if _aligned_idx >= tau:
++                        _ap = torch.as_tensor(predicted[_aligned_idx]).detach().cpu()
++                        _ap_flat = _ap.reshape(-1, _ap.shape[-1])
++                        _aa_flat = actual_enc.reshape(-1, actual_enc.shape[-1])
++                        if _ap_flat.numel() and _aa_flat.numel():
++                            _w = min(_ap_flat.shape[-1], _aa_flat.shape[-1])
++                            _ap_vec = _ap_flat.mean(dim=0)[:_w]
++                            _aa_vec = _aa_flat.mean(dim=0)[:_w]
++                            _g_flat = torch.as_tensor(goal_enc_raw).detach().cpu().reshape(
++                                -1, goal_enc_raw.shape[-1]
++                            )
++                            _g_vec = _g_flat.mean(dim=0)[:_w]
++                            plan_diag["predicted_actual_latent_mse_aligned"] = float(
++                                torch.nn.functional.mse_loss(_ap_vec, _aa_vec).item()
++                            )
++                            plan_diag["predicted_goal_latent_mse_aligned"] = float(
++                                torch.nn.functional.mse_loss(_ap_vec, _g_vec).item()
++                            )
++                            plan_diag["actual_goal_latent_mse_aligned"] = float(
++                                torch.nn.functional.mse_loss(_aa_vec, _g_vec).item()
++                            )
++                    predicted = predicted[pred_time]
++                    pred_flat = predicted.reshape(-1, predicted.shape[-1])
++                    actual_flat = actual_enc.reshape(-1, actual_enc.shape[-1])
++                    if pred_flat.numel() and actual_flat.numel():
++                        width = min(pred_flat.shape[-1], actual_flat.shape[-1])
++                        pred_vec = pred_flat.mean(dim=0)[:width]
++                        actual_vec = actual_flat.mean(dim=0)[:width]
++                        plan_diag["predicted_actual_latent_mse"] = float(
++                            torch.nn.functional.mse_loss(pred_vec, actual_vec).item()
++                        )
++                        goal_enc = goal_enc_raw
++                        goal_flat = torch.as_tensor(goal_enc).detach().cpu().reshape(-1, goal_enc.shape[-1])
++                        goal_vec = goal_flat.mean(dim=0)[:width]
++                        plan_diag["predicted_goal_latent_mse"] = float(
++                            torch.nn.functional.mse_loss(pred_vec, goal_vec).item()
++                        )
++                        plan_diag["actual_goal_latent_mse"] = float(
++                            torch.nn.functional.mse_loss(actual_vec, goal_vec).item()
++                        )
++                    else:
++                        plan_diag["predicted_actual_latent_mse"] = None
++                        plan_diag["predicted_goal_latent_mse"] = None
++                        plan_diag["actual_goal_latent_mse"] = None
++                plan_diag["actual_success"] = bool(success)
++                plan_diag["actual_state_dist"] = float(state_dist)
++                previous_state_dist = getattr(self, "_last_diagnostic_state_dist", None)
++                plan_diag["actual_state_dist_delta"] = (
++                    None if previous_state_dist is None else float(previous_state_dist - state_dist)
++                )
++                self._last_diagnostic_state_dist = float(state_dist)
++                plan_diag["env_steps_executed"] = int(len(obses))
++                diagnostics.append(plan_diag)
+             if success and self.cfg.task_specification.done_at_succ:
+                 done = True
+             ep_reward += reward
+@@ -252,6 +431,7 @@ class PlanEvaluator:
+                 done = True
+ 
+         pbar.close()
++        self.last_diagnostics = diagnostics
+         return ep_obs_proprio_td_list, ep_reward, actions, infos_list, success, state_dist
+ 
+     def sample_traj_segment_from_dset(
+@@ -517,6 +697,8 @@ class PlanEvaluator:
+         self.prev_elite_losses_std = []
+         self.prev_pred_frames_over_iterations = []
+         self.predicted_best_encs_over_iterations = []
++        self._pending_plan_diagnostic = None
++        self._last_diagnostic_state_dist = None
+ 
+         def agent_actor(obs, steps_left, plan_vis_path=None):
+             act = agent.act(
+@@ -528,6 +710,20 @@ class PlanEvaluator:
+             self.prev_elite_losses_std.append(agent._prev_elite_losses_std)
+             self.prev_pred_frames_over_iterations.append(agent._prev_pred_frames_over_iterations)
+             self.predicted_best_encs_over_iterations.append(agent._predicted_best_encs_over_iterations)
++            predicted_enc = agent._predicted_best_encs_over_iterations[-1]
++            if isinstance(predicted_enc, (list, tuple)):
++                predicted_enc = predicted_enc[-1]
++            self._pending_plan_diagnostic = {
++                "plan_index": len(self.predicted_best_encs_over_iterations) - 1,
++                "env_step": int(env.elapsed_steps()),
++                "steps_left": int(steps_left),
++                "plan_horizon": int(min(agent.planner.horizon, steps_left)),
++                "num_act_stepped": int(agent.planner.num_act_stepped),
++                "cem_best_loss": float(agent._prev_losses[-1].item()),
++                "cem_elite_loss_mean": float(agent._prev_elite_losses_mean[-1].item()),
++                "cem_elite_loss_std": float(agent._prev_elite_losses_std[-1].item()),
++                "predicted_enc": predicted_enc,
++            }
+             return act
+ 
+         episode_obses, ep_reward, planned_actions, infos, success, state_dist = self.unroll_agent(
+@@ -537,6 +733,15 @@ class PlanEvaluator:
+             agent_actor,
+             preprocessor=agent.preprocessor,
+         )
++        diagnostics_path = work_dir / "diagnostics.json"
++        serializable_diagnostics = [
++            {k: v for k, v in record.items() if k != "predicted_enc"}
++            for record in getattr(self, "last_diagnostics", [])
++        ]
++        import json
++
++        with open(diagnostics_path, "w", encoding="utf-8") as f:
++            json.dump(serializable_diagnostics, f, indent=2)
+         if "droid" in cfg.task_specification.task:
+             success_dist = 0.0
+             # first 6 action dims are summable in time and should lead to same delta whatever the path taken if no obstacles

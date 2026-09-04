@@ -1,0 +1,226 @@
+{
+  "diagnosis": "latent mobility + action-leverage (can the model traverse start->goal, and does the action steer it?)",
+  "H_latent_steps": 5,
+  "mean_ratio_max_mob_over_gap": 2.9700492155057177,
+  "min_ratio": 2.3718631182923535,
+  "mean_context_domination_ratio": 1.0003054082212466,
+  "mean_action_leverage": -1.15361328125,
+  "verdict": "ACTION_INSENSITIVE_PREDICTION (weak action conditioning; model property, NOT fixable at inference without retraining)",
+  "rows": [
+    {
+      "pair": 0,
+      "episode_idx": 19,
+      "start_step": 43,
+      "gap_req": 1541.1666259765625,
+      "max_mobility": 3655.436279296875,
+      "ratio_max_mob_over_gap": 2.3718631182923535,
+      "do_nothing_disp": 3656.15625,
+      "context_domination_ratio": 1.000196958898505,
+      "action_leverage": -0.719970703125,
+      "scale_detail": {
+        "0.0": {
+          "max_disp_from_start": 3656.15625,
+          "mean_disp_from_start": 3656.156494140625,
+          "min_cost_to_goal": 4.609583854675293,
+          "mean_cost_to_goal": 4.609583854675293
+        },
+        "0.5": {
+          "max_disp_from_start": 3650.45263671875,
+          "mean_disp_from_start": 3650.452880859375,
+          "min_cost_to_goal": 4.5956244468688965,
+          "mean_cost_to_goal": 4.595624923706055
+        },
+        "1.0": {
+          "max_disp_from_start": 3655.436279296875,
+          "mean_disp_from_start": 3655.436767578125,
+          "min_cost_to_goal": 4.6017608642578125,
+          "mean_cost_to_goal": 4.601761341094971
+        },
+        "2.0": {
+          "max_disp_from_start": 3642.550048828125,
+          "mean_disp_from_start": 3642.55029296875,
+          "min_cost_to_goal": 4.561221122741699,
+          "mean_cost_to_goal": 4.561221599578857
+        },
+        "3.0": {
+          "max_disp_from_start": 3635.4716796875,
+          "mean_disp_from_start": 3635.471923828125,
+          "min_cost_to_goal": 4.554566383361816,
+          "mean_cost_to_goal": 4.554566860198975
+        }
+      }
+    },
+    {
+      "pair": 1,
+      "episode_idx": 86,
+      "start_step": 72,
+      "gap_req": 1288.2813720703125,
+      "max_mobility": 3792.994384765625,
+      "ratio_max_mob_over_gap": 2.944228230724281,
+      "do_nothing_disp": 3797.90673828125,
+      "context_domination_ratio": 1.0012951122562572,
+      "action_leverage": -4.912353515625,
+      "scale_detail": {
+        "0.0": {
+          "max_disp_from_start": 3797.90673828125,
+          "mean_disp_from_start": 3797.906982421875,
+          "min_cost_to_goal": 4.82815408706665,
+          "mean_cost_to_goal": 4.828154563903809
+        },
+        "0.5": {
+          "max_disp_from_start": 3792.994384765625,
+          "mean_disp_from_start": 3792.994384765625,
+          "min_cost_to_goal": 4.81745719909668,
+          "mean_cost_to_goal": 4.81745719909668
+        },
+        "1.0": {
+          "max_disp_from_start": 3789.195556640625,
+          "mean_disp_from_start": 3789.19580078125,
+          "min_cost_to_goal": 4.8128533363342285,
+          "mean_cost_to_goal": 4.8128533363342285
+        },
+        "2.0": {
+          "max_disp_from_start": 3781.78515625,
+          "mean_disp_from_start": 3781.785400390625,
+          "min_cost_to_goal": 4.786099910736084,
+          "mean_cost_to_goal": 4.786100387573242
+        },
+        "3.0": {
+          "max_disp_from_start": 3746.462158203125,
+          "mean_disp_from_start": 3746.462158203125,
+          "min_cost_to_goal": 4.720005512237549,
+          "mean_cost_to_goal": 4.720005512237549
+        }
+      }
+    },
+    {
+      "pair": 2,
+      "episode_idx": 107,
+      "start_step": 24,
+      "gap_req": 1499.2271728515625,
+      "max_mobility": 3748.435791015625,
+      "ratio_max_mob_over_gap": 2.500245365674649,
+      "do_nothing_disp": 3749.52294921875,
+      "context_domination_ratio": 1.0002900298321051,
+      "action_leverage": -1.087158203125,
+      "scale_detail": {
+        "0.0": {
+          "max_disp_from_start": 3749.52294921875,
+          "mean_disp_from_start": 3749.523193359375,
+          "min_cost_to_goal": 4.761070728302002,
+          "mean_cost_to_goal": 4.76107120513916
+        },
+        "0.5": {
+          "max_disp_from_start": 3747.677490234375,
+          "mean_disp_from_start": 3747.677734375,
+          "min_cost_to_goal": 4.758553504943848,
+          "mean_cost_to_goal": 4.758553981781006
+        },
+        "1.0": {
+          "max_disp_from_start": 3731.689697265625,
+          "mean_disp_from_start": 3731.689697265625,
+          "min_cost_to_goal": 4.7217698097229,
+          "mean_cost_to_goal": 4.721770286560059
+        },
+        "2.0": {
+          "max_disp_from_start": 3748.435791015625,
+          "mean_disp_from_start": 3748.43603515625,
+          "min_cost_to_goal": 4.770051956176758,
+          "mean_cost_to_goal": 4.770052433013916
+        },
+        "3.0": {
+          "max_disp_from_start": 3724.063720703125,
+          "mean_disp_from_start": 3724.063720703125,
+          "min_cost_to_goal": 4.7077717781066895,
+          "mean_cost_to_goal": 4.707772254943848
+        }
+      }
+    },
+    {
+      "pair": 3,
+      "episode_idx": 158,
+      "start_step": 102,
+      "gap_req": 1153.25732421875,
+      "max_mobility": 3830.306640625,
+      "ratio_max_mob_over_gap": 3.3212940080131386,
+      "do_nothing_disp": 3830.790771484375,
+      "context_domination_ratio": 1.0001263948045935,
+      "action_leverage": -0.484130859375,
+      "scale_detail": {
+        "0.0": {
+          "max_disp_from_start": 3830.790771484375,
+          "mean_disp_from_start": 3830.790771484375,
+          "min_cost_to_goal": 5.000012397766113,
+          "mean_cost_to_goal": 5.000012397766113
+        },
+        "0.5": {
+          "max_disp_from_start": 3827.378662109375,
+          "mean_disp_from_start": 3827.37890625,
+          "min_cost_to_goal": 4.988800048828125,
+          "mean_cost_to_goal": 4.988800525665283
+        },
+        "1.0": {
+          "max_disp_from_start": 3825.10595703125,
+          "mean_disp_from_start": 3825.106201171875,
+          "min_cost_to_goal": 4.975980281829834,
+          "mean_cost_to_goal": 4.975980758666992
+        },
+        "2.0": {
+          "max_disp_from_start": 3830.306640625,
+          "mean_disp_from_start": 3830.306884765625,
+          "min_cost_to_goal": 4.999396324157715,
+          "mean_cost_to_goal": 4.999396324157715
+        },
+        "3.0": {
+          "max_disp_from_start": 3829.169189453125,
+          "mean_disp_from_start": 3829.16943359375,
+          "min_cost_to_goal": 4.987076759338379,
+          "mean_cost_to_goal": 4.987077236175537
+        }
+      }
+    },
+    {
+      "pair": 4,
+      "episode_idx": 172,
+      "start_step": 39,
+      "gap_req": 1013.6650390625,
+      "max_mobility": 3763.348388671875,
+      "ratio_max_mob_over_gap": 3.7126153548241656,
+      "do_nothing_disp": 3761.912841796875,
+      "context_domination_ratio": 0.9996185453147731,
+      "action_leverage": 1.435546875,
+      "scale_detail": {
+        "0.0": {
+          "max_disp_from_start": 3761.912841796875,
+          "mean_disp_from_start": 3761.913330078125,
+          "min_cost_to_goal": 4.787082195281982,
+          "mean_cost_to_goal": 4.787082195281982
+        },
+        "0.5": {
+          "max_disp_from_start": 3763.348388671875,
+          "mean_disp_from_start": 3763.3486328125,
+          "min_cost_to_goal": 4.790027618408203,
+          "mean_cost_to_goal": 4.790028095245361
+        },
+        "1.0": {
+          "max_disp_from_start": 3757.30078125,
+          "mean_disp_from_start": 3757.301025390625,
+          "min_cost_to_goal": 4.773196697235107,
+          "mean_cost_to_goal": 4.773196697235107
+        },
+        "2.0": {
+          "max_disp_from_start": 3737.855712890625,
+          "mean_disp_from_start": 3737.85595703125,
+          "min_cost_to_goal": 4.719105243682861,
+          "mean_cost_to_goal": 4.719105243682861
+        },
+        "3.0": {
+          "max_disp_from_start": 3740.89892578125,
+          "mean_disp_from_start": 3740.899169921875,
+          "min_cost_to_goal": 4.726771354675293,
+          "mean_cost_to_goal": 4.726771354675293
+        }
+      }
+    }
+  ]
+}

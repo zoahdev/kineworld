@@ -1,0 +1,292 @@
+{
+  "action_scaler_source": {
+    "content_sha256": "a538eb6a20fcaca4189b71bde8d9593b38597003950e199ce587e57c720ab3c8",
+    "file": "results\\kw_lewm_0001l_numeric_shard0.json",
+    "mean": [
+      -0.035853457212382533,
+      0.007131718037346518
+    ],
+    "rows": 80384,
+    "scale": [
+      0.18752451572614148,
+      0.19700472567964566
+    ],
+    "scale_note": "population std (ddof=0); partial shard, not the full official dataset"
+  },
+  "base_seed": 42,
+  "conditions": {
+    "identity": {
+      "summary": {
+        "agent_final_abs_max": 1825.7046672214003,
+        "agent_final_mean": [
+          972.9587170934292,
+          326.1938162242141
+        ],
+        "block_displacement_mean": 6.593730560060906,
+        "block_displacement_median": 6.593730560060906,
+        "n_agent_out_of_play": 2,
+        "n_episodes": 2,
+        "n_errors": 0,
+        "n_success": null,
+        "out_of_play_rate": 1.0,
+        "success_rate": null
+      },
+      "trials": [
+        {
+          "agent_final": [
+            120.21276696545809,
+            1202.3615053910096
+          ],
+          "agent_out_of_play_area": true,
+          "agent_start": [
+            281.8691105304458,
+            104.93927620590564
+          ],
+          "block_displacement": 0.0,
+          "block_final": [
+            268.8204400647797,
+            356.61757712885924
+          ],
+          "block_start": [
+            268.8204400647797,
+            356.61757712885924
+          ],
+          "episode_index": 0,
+          "error": null,
+          "final_state": [
+            120.21276696545809,
+            1202.3615053910096,
+            268.8204400647797,
+            356.61757712885924,
+            4.204962955399923,
+            -1211.603515625,
+            -196.5468292236328
+          ],
+          "goal_state": [
+            85.92366178186346,
+            218.07637031892156,
+            142.17382500347512,
+            105.6096916500513,
+            -2.484078306839624,
+            0.0,
+            0.0
+          ],
+          "initial_state": [
+            281.8691105304458,
+            104.93927620590564,
+            268.8204400647797,
+            356.61757712885924,
+            4.204962955399923,
+            0.0,
+            0.0
+          ],
+          "seed": 42,
+          "success": null,
+          "wall_seconds": 7.515129299999899
+        },
+        {
+          "agent_final": [
+            1825.7046672214003,
+            -549.9738729425814
+          ],
+          "agent_out_of_play_area": true,
+          "agent_start": [
+            254.16914594301923,
+            303.643264985428
+          ],
+          "block_displacement": 13.187461120121812,
+          "block_final": [
+            359.05123396619763,
+            95.14050626817293
+          ],
+          "block_start": [
+            361.36554335953747,
+            108.12330653724521
+          ],
+          "episode_index": 1,
+          "error": null,
+          "final_state": [
+            1825.7046672214003,
+            -549.9738729425814,
+            359.05123396619763,
+            95.14050626817293,
+            6.065559495425832,
+            21.32588005065918,
+            -42.61388397216797
+          ],
+          "goal_state": [
+            447.9979425071763,
+            220.99357962794085,
+            362.8296374380094,
+            139.9105962655533,
+            -5.0194717275429275,
+            0.0,
+            0.0
+          ],
+          "initial_state": [
+            254.16914594301923,
+            303.643264985428,
+            361.36554335953747,
+            108.12330653724521,
+            6.050945096809226,
+            0.0,
+            0.0
+          ],
+          "seed": 43,
+          "success": null,
+          "wall_seconds": 4.835053000000244
+        }
+      ]
+    },
+    "scaler": {
+      "summary": {
+        "agent_final_abs_max": 417.8179029364572,
+        "agent_final_mean": [
+          357.4150621503932,
+          257.70261557315354
+        ],
+        "block_displacement_mean": 112.28360337594508,
+        "block_displacement_median": 112.28360337594508,
+        "n_agent_out_of_play": 0,
+        "n_episodes": 2,
+        "n_errors": 0,
+        "n_success": null,
+        "out_of_play_rate": 0.0,
+        "success_rate": null
+      },
+      "trials": [
+        {
+          "agent_final": [
+            297.01222136432926,
+            349.2434820683739
+          ],
+          "agent_out_of_play_area": false,
+          "agent_start": [
+            281.8691105304458,
+            104.93927620590564
+          ],
+          "block_displacement": 208.3625419098983,
+          "block_final": [
+            424.0372892141194,
+            495.6236151678784
+          ],
+          "block_start": [
+            268.8204400647797,
+            356.61757712885924
+          ],
+          "episode_index": 0,
+          "error": null,
+          "final_state": [
+            297.01222136432926,
+            349.2434820683739,
+            424.0372892141194,
+            495.6236151678784,
+            2.9998441941006107,
+            41.05370293992329,
+            82.98411238023095
+          ],
+          "goal_state": [
+            85.92366178186346,
+            218.07637031892156,
+            142.17382500347512,
+            105.6096916500513,
+            -2.484078306839624,
+            0.0,
+            0.0
+          ],
+          "initial_state": [
+            281.8691105304458,
+            104.93927620590564,
+            268.8204400647797,
+            356.61757712885924,
+            4.204962955399923,
+            0.0,
+            0.0
+          ],
+          "seed": 42,
+          "success": null,
+          "wall_seconds": 4.424873899999966
+        },
+        {
+          "agent_final": [
+            417.8179029364572,
+            166.16174907793317
+          ],
+          "agent_out_of_play_area": false,
+          "agent_start": [
+            254.16914594301923,
+            303.643264985428
+          ],
+          "block_displacement": 16.204664841991836,
+          "block_final": [
+            346.655018188742,
+            101.32686542143469
+          ],
+          "block_start": [
+            361.36554335953747,
+            108.12330653724521
+          ],
+          "episode_index": 1,
+          "error": null,
+          "final_state": [
+            417.8179029364572,
+            166.16174907793317,
+            346.655018188742,
+            101.32686542143469,
+            5.961355034649064,
+            30.56730366260569,
+            30.754072970860324
+          ],
+          "goal_state": [
+            447.9979425071763,
+            220.99357962794085,
+            362.8296374380094,
+            139.9105962655533,
+            -5.0194717275429275,
+            0.0,
+            0.0
+          ],
+          "initial_state": [
+            254.16914594301923,
+            303.643264985428,
+            361.36554335953747,
+            108.12330653724521,
+            6.050945096809226,
+            0.0,
+            0.0
+          ],
+          "seed": 43,
+          "success": null,
+          "wall_seconds": 5.052275500000178
+        }
+      ]
+    }
+  },
+  "episodes_per_condition": 2,
+  "experiment_id": "KW-LEWM-0002-SCALER-ABLATION",
+  "held_fixed": [
+    "official LeWM Push-T checkpoint (strict load)",
+    "random environment tasks, seeds 42..42+N-1, identical across conditions",
+    "reduced CEM 10x100x10",
+    "PlanConfig horizon=5, receding_horizon=5, action_block=5",
+    "max_episode_steps=50",
+    "image_shape=(224,224)"
+  ],
+  "kill_criteria": {
+    "K1_scaler_matters": true,
+    "K2_scaler_condition_within_play_area": true
+  },
+  "manipulated_variable": "process['action'] transform (identity vs dataset-fitted StandardScaler)",
+  "play_area": {
+    "high": 512.0,
+    "low": 0.0
+  },
+  "question": "Is the missing action inverse_transform the mechanism behind invalid LeWM control?",
+  "versions": {
+    "python": "3.10.21",
+    "stable_pretraining": "0.1.8",
+    "stable_worldmodel": "0.1.1",
+    "torch": "2.7.0+cu128",
+    "transformers": "4.57.6"
+  }
+}

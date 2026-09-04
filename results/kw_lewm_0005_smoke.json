@@ -1,0 +1,51 @@
+{
+  "episode_idx": 19,
+  "start_step": 43,
+  "goal_step": 68,
+  "task_pair_idx": 0,
+  "K1_adapter_buildable": true,
+  "K1_detail": {
+    "encoder_params": 22056576,
+    "predictor_params": 17626480,
+    "total_params": 39683136,
+    "model_action_dim": 10,
+    "proprio_dim": 4,
+    "enc_type": "dino",
+    "grid_size": 16,
+    "ctxt_window": 2,
+    "normalize_reps": false
+  },
+  "K2_finite_in_distribution": true,
+  "K2_detail": {
+    "cost_zeros_mean": 453145.5625,
+    "cost_rand_mean": 453297.5625,
+    "cost_zeros_min_max": [
+      453145.5625,
+      453145.5625
+    ],
+    "cost_rand_min_max": [
+      448048.8125,
+      458445.21875
+    ],
+    "start_latent_norm": 789.1015625,
+    "goal_latent_norm": 787.209228515625,
+    "all_finite": true,
+    "responds_to_actions": true
+  },
+  "K3_encoder_offline_loaded": true,
+  "K3_detail": {
+    "encoder_device": "cuda:0",
+    "enc_type": "dino"
+  },
+  "elapsed_sec": 6.04,
+  "kill_criteria": {
+    "K1_adapter_buildable": true,
+    "K2_finite_in_distribution": true,
+    "K3_encoder_offline_loaded": true
+  },
+  "all_pass": true,
+  "versions": {
+    "python": "3.10.21",
+    "torch": "2.7.0+cu128"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "experiment_id": "KW-LEWM-0003",
+  "title": "LeWM Push-T on dataset-defined reachable tasks (random-task confounder removed)",
+  "design": "shim dataset driving World.evaluate(dataset=...) with real same-episode start/goal pairs; pixels re-rendered locally at 224x224",
+  "status": "COMPLETED",
+  "verdict": "DATASET_TASKS_UNLOCK_VALID_CONTROL",
+  "evidence_level": "E1_INTERNAL_REPRODUCTION",
+  "training": "none (inference only)",
+  "created_at": "2026-09-03T10:26:00+08:00",
+  "closed_at": "2026-09-03T10:37:00+08:00",
+  "predecessor": {
+    "experiment_id": "KW-LEWM-0002",
+    "verdict": "ACTION_SCALER_NECESSARY_NOT_SUFFICIENT",
+    "confounder_removed": "tasks were randomly sampled and not guaranteed reachable"
+  },
+  "config": {
+    "n_tasks": 8,
+    "task_source": "public partial Parquet shard, same episode, 25 steps apart",
+    "goal_offset": 25,
+    "eval_budget": 50,
+    "checkpoint": "checkpoints/lewm/weights.pt",
+    "model_parameters": 18034478,
+    "env": "swm/PushT-v1",
+    "image_shape": [224, 224],
+    "cem": {"n_steps": 10, "num_samples": 100, "topk": 10},
+    "plan_config": {
+      "horizon": 5,
+      "receding_horizon": 5,
+      "action_block": 5,
+      "history_len": 1,
+      "warm_start": true
+    },
+    "action_scaler": {
+      "source": "results/kw_lewm_0001l_numeric_shard0.json",
+      "rows": 80384,
+      "mean": [-0.035853457212382533, 0.007131718037346518],
+      "scale": [0.18752451572614148, 0.19700472567964566]
+    }
+  },
+  "local_rendering_validation": {
+    "renderer": "AddPixelsWrapper._get_pixels()",
+    "image_spec": "(224, 224, 3) uint8",
+    "different_states_mean_abs_diff": 4.045,
+    "same_state_rerender_diff": 0.0,
+    "note": "deterministic; image column never downloaded"
+  },
+  "results": {
+    "success_rate": 0.375,
+    "n_success": 3,
+    "n_tasks": 8,
+    "out_of_play_rate": 0.0,
+    "n_out_of_play": 0,
+    "block_interaction_rate": 0.75,
+    "block_displacement_mean": 27.19889300107095,
+    "block_displacement_median": 27.91043741252939,
+    "start_goal_distance_mean": 159.38254791321762,
+    "n_errors": 0,
+    "wilson_95ci_success": [0.137, 0.694]
+  },
+  "baseline_comparison": {
+    "experiment": "KW-LEWM-0002 scaler condition (random tasks, identical planner and scaler)",
+    "success_rate": 0.0,
+    "out_of_play_rate": 0.25,
+    "block_interaction_rate": 0.375,
+    "block_displacement_median": 0.0,
+    "start_goal_distance_mean": 253.2
+  },
+  "kill_criteria": {
+    "K1_task_source_matters": {
+      "passed": true,
+      "detail": "block interaction rate 0.75 vs baseline 0.375; displacement median 0.00 -> 27.91"
+    },
+    "K2_control_within_play_area": {
+      "passed": true,
+      "detail": "0/8 out of play"
+    }
+  },
+  "statistical_caveat": {
+    "issue": "n=8 point estimate carries almost no information",
+    "wilson_95ci_width": 0.557,
+    "supported_conclusion": "qualitative only: reachable tasks unlock valid control, random tasks do not",
+    "not_supported": "any precise success-rate claim",
+    "next_experiment": "KW-LEWM-0004 (n=50)"
+  },
+  "methodological_finding": {
+    "claim": "task reachability is a confounder whose magnitude exceeds model differences",
+    "evidence": "same checkpoint, planner and scaler; block displacement median 0.0 -> 27.91 and success 0/8 -> 3/8 purely from task source",
+    "implication": "world-model success rates reported on randomly paired tasks may mostly reflect task construction, not model capability",
+    "relevance": "directly on KineWorld's evaluation/benchmark methodology line"
+  },
+  "non_monotonicity_note": "success does not track block displacement monotonically (ep19 disp 0.79 succeeds, ep191 disp 53.27 fails) because success uses the joint 4-D agent+block pose distance",
+  "residual_approximations": [
+    "scaler fitted on a partial shard (80,384 rows), not the official full training set",
+    "pixels re-rendered locally, not the dataset's recorded pixels",
+    "reduced CEM 10x100x10 instead of official 30x300x30",
+    "8 tasks instead of official 50",
+    "shard 0 only"
+  ],
+  "allowed_claim": "Under a disclosed lite protocol, the official LeWM Push-T checkpoint produced valid closed-loop control on dataset-defined reachable tasks: 3/8 succeeded with zero out-of-play excursions, versus 0/8 and 25% out-of-play on randomly sampled tasks with everything else held fixed.",
+  "forbidden_claims": [
+    "official LeWM benchmark reproduced",
+    "comparison with JEPA-WM or any competitor (no same-protocol control group)",
+    "third-party validation",
+    "precise success-rate claims from n=8"
+  ],
+  "artifacts": [
+    "verification/experiments/KW-LEWM-0003.md",
+    "verification/scripts/kw_lewm_0003_dataset_tasks.py",
+    "results/kw_lewm_0003_dataset_tasks.json",
+    "results/kw_lewm_0001l_numeric_shard0.json"
+  ]
+}

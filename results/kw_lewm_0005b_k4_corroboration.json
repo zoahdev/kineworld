@@ -1,0 +1,51 @@
+{
+  "experiment_id": "KW-LEWM-0005b",
+  "purpose": "Independent closed-loop corroboration of KW-LEWM-0005 \u00a78 (weak action conditioning) using already-collected K4 50-task data",
+  "n": 50,
+  "correlations": {
+    "block_displacement_vs_goal_distance": {
+      "pearson": -0.332,
+      "spearman": -0.39
+    },
+    "success_vs_goal_distance": {
+      "pearson": -0.177,
+      "spearman": 0.09
+    },
+    "success_vs_block_displacement": {
+      "pearson": -0.101,
+      "spearman": 0.035
+    }
+  },
+  "out_of_play": {
+    "n": 5,
+    "episodes": [
+      20,
+      342,
+      400,
+      567,
+      583
+    ],
+    "goal_distance_mean": 164.5,
+    "goal_distance_median": 178.1,
+    "inplay_goal_distance_mean": 151.1,
+    "inplay_goal_distance_median": 130.1,
+    "goal_distance_ratio_oop_over_inplay_mean": 1.089
+  },
+  "near_but_failed": {
+    "inplay_disp_gt_20": 27,
+    "inplay_disp_gt_20_but_failed": 27,
+    "fraction": 1.0
+  },
+  "success_episodes": {
+    "episodes": [
+      478
+    ],
+    "goal_distance": [
+      63.5
+    ],
+    "block_displacement": [
+      10.6
+    ]
+  },
+  "interpretation_hypothesis": "If block_displacement ~ uncorrelated with goal_distance AND success ~ uncorrelated with both, the closed-loop data independently corroborates \u00a78: CEM pushes 'roughly' (gross control works) but cannot converge to the precise goal pose (weak action conditioning). OOP episodes having goal_distance comparable to in-play would further show OOP is flat-cost drift, not 'harder goal'."
+}

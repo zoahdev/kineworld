@@ -1,0 +1,53 @@
+{
+  "artifact_id": "KW-LEWM-0001-AUDIT",
+  "status": "CONDITIONAL_COMPARATIVE_CLAIMS_BLOCKED",
+  "created_at": "2026-09-02T11:35:00+08:00",
+  "evidence_level": "E1_INTERNAL_PROTOCOL_AUDIT",
+  "audited_protocol": "verification/experiments/KW-LEWM-0001.md",
+  "decision": "Proceed as an independent reproduction; do not claim a fair head-to-head win until task instances, total planning compute, metrics, and statistical rules are aligned.",
+  "claims_excluded": [
+    "No LeWM result was produced by this audit.",
+    "No fair JEPA-WM versus LeWM ranking is established.",
+    "No third-party or independent external validation is established.",
+    "No general world-model superiority is established."
+  ],
+  "artifacts": [
+    {
+      "path": "verification/artifacts/KW-LEWM-0001_PROTOCOL_AUDIT.md",
+      "sha256": "fadef3248e074eab1df5b61db43e29bc29c63c4a63217c78a1401f8abe53d45a"
+    },
+    {
+      "path": "verification/audit_tools/success_comparison.py",
+      "sha256": "ca46723d6f6ecf08eff7758d05d5e4d3f2275e9a955eb6e5ab0e95f777370d3b"
+    },
+    {
+      "path": "tests/test_success_comparison.py",
+      "sha256": "5fe9b5bb5e1c74d43ab754bc4bebb1dee906acab34deb53d86f2e6aab6ed0154"
+    }
+  ],
+  "inspected_runtime": {
+    "package": "stable-worldmodel",
+    "version": "0.1.1",
+    "package_license_expression": "MIT",
+    "transitive_license_review_complete": false,
+    "source_hashes_sha256": {
+      "stable_worldmodel/policy.py": "4967e7e3d5b20eb7a1d0b00e5d60fd701cce1c750ae7ec4a9b02529b9366db22",
+      "stable_worldmodel/world/world.py": "39318b81ed151d8556d8540f460a63eedaed0ce4b2211ce0af9f8200e7d83bde",
+      "stable_worldmodel/envs/pusht/env.py": "3c4df51ed01ed034386c24961caa638f02b5c0e31c88fec727a9f1cd5808e203",
+      "stable_worldmodel/solver/cem.py": "a6662e7f1f2c6ecaf0a8527255d531aa05ed583339aabdf2798d0206382ef51b"
+    }
+  },
+  "verification_command": ".venv310/Scripts/python.exe -m unittest discover -s tests -v",
+  "test_result": {
+    "tests_run": 8,
+    "failures": 0,
+    "errors": 0,
+    "audit_tool_tests": 4
+  },
+  "runtime_effect": {
+    "gpu_used": false,
+    "data_downloaded_by_audit": false,
+    "packages_installed_by_audit": false,
+    "active_workbuddy_files_modified": false
+  }
+}

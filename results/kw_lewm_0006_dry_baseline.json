@@ -1,0 +1,123 @@
+{
+  "action_clip": 3.0,
+  "action_scaler": {
+    "mean": [
+      -0.035853457212382533,
+      0.007131718037346518
+    ],
+    "role": "inverse_transform only (execution); NOT applied inside get_cost",
+    "rows": 80384,
+    "scale": [
+      0.18752451572614148,
+      0.19700472567964566
+    ],
+    "source": "results/kw_lewm_0001l_numeric_shard0.json"
+  },
+  "baseline_for_comparison": {
+    "experiment": "KW-LEWM-0004 (LeWM, same platform, same 50 tasks, same CEM)",
+    "n_success": 18,
+    "out_of_play_rate": null,
+    "success_rate": 0.36
+  },
+  "cem": {
+    "action_block": 5,
+    "horizon": 5,
+    "n_steps": 10,
+    "num_samples": 100,
+    "topk": 10
+  },
+  "design": "JEPAWMAdapter wraps facebookresearch/jepa-wms EncPredWM; get_cost feeds CEM candidates (N(0,1) normalized space) directly to unroll; execution denormalized via process['action'].inverse_transform",
+  "eval_budget": 50,
+  "evidence_level": "E1_INTERNAL_REPRODUCTION",
+  "experiment_id": "KW-LEWM-0005-JEPA-SAME-PLATFORM",
+  "goal_offset": 25,
+  "kill_criteria": {
+    "K4_control_within_play_area": true,
+    "K4_out_of_play_rate_at_most_0.1": true
+  },
+  "n_tasks": 1,
+  "protocol_notes": [
+    "pixels re-rendered locally at 224x224 from published states; image column never downloaded",
+    "adapter.encode consumes raw uint8 pixels (no pixels transform in policy)",
+    "CEM samples are in normalized action space N(0,1); encode_act does no re-normalization; get_cost passes through",
+    "execution inverse_transform maps normalized -> env Box(-1,1) to keep agent in play",
+    "NOT the official 13.1 GB dataset benchmark; E1 single checkpoint/single seed"
+  ],
+  "question": "On the SAME stable-worldmodel platform as LeWM-0004 (same CEM 10x100x10, same 50 dataset tasks, same ShimDataset+local render), does JEPA-WM produce valid closed-loop PushT control?",
+  "summary": {
+    "block_displacement_mean": 0.0,
+    "block_displacement_median": 0.0,
+    "block_interaction_rate": 0.0,
+    "n_errors": 0,
+    "n_out_of_play": 0,
+    "n_success": 0,
+    "out_of_play_rate": 0.0,
+    "start_goal_distance_mean": 366.20509363427976,
+    "success_rate": 0.0,
+    "total_wall_seconds": 73.77023929999996
+  },
+  "trials": [
+    {
+      "agent_final": [
+        256.73536111341616,
+        345.7931154435316
+      ],
+      "agent_out_of_play_area": false,
+      "block_displacement": 0.0,
+      "block_final": [
+        192.6706085205078,
+        335.1567687988281
+      ],
+      "block_start": [
+        192.6706085205078,
+        335.1567687988281
+      ],
+      "episode_idx": 5,
+      "error": null,
+      "final_state": [
+        256.73536111341616,
+        345.7931154435316,
+        192.6706085205078,
+        335.1567687988281,
+        2.947699785232544,
+        -223.8460247185189,
+        11.551078261245216
+      ],
+      "goal_state": [
+        63.26534652709961,
+        286.0846252441406,
+        192.5250701904297,
+        335.3718566894531,
+        1.8135316371917725,
+        -104.39282989501953,
+        82.25391387939453
+      ],
+      "goal_step": 30,
+      "metrics_raw": {
+        "episode_successes": [
+          false
+        ],
+        "seeds": null,
+        "success_rate": 0.0
+      },
+      "start_goal_distance": 366.20509363427976,
+      "start_state": [
+        410.74273681640625,
+        170.47508239746094,
+        192.6706085205078,
+        335.1567687988281,
+        2.947699785232544,
+        -191.25550842285156,
+        -15.49800968170166
+      ],
+      "start_step": 5,
+      "success": 0.0,
+      "wall_seconds": 73.77023929999996
+    }
+  ],
+  "versions": {
+    "python": "3.10.21",
+    "stable_worldmodel": "0.1.1",
+    "torch": "2.7.0+cu128"
+  }
+}

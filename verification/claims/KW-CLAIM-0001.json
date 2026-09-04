@@ -1,0 +1,18 @@
+{
+  "claim_id": "KW-CLAIM-0001",
+  "claim": "在 JEPA-WM Push-T、缩减 CEM、seed=1、episodes 0-14 条件下，将 num_act_stepped 从 6 改为 2 未提升成功率，且从 7/15 降至 6/15。",
+  "status": "NOT_SUPPORTED",
+  "evidence_level": "E1",
+  "causal_level": "C2",
+  "experiment_id": "KW-EXP-0001",
+  "evidence": {
+    "experiment_report": "verification/experiments/KW-EXP-0001.md",
+    "manifest": "verification/manifests/KW-EXP-0001_manifest.json",
+    "baseline_metrics": "results/runs/pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_red10x100_20260901T154959Z/metrics.json",
+    "treatment_metrics": "results/runs/pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_red10x100_nas2_20260901T162318Z/metrics.json"
+  },
+  "scope": "仅适用于已登记的单 seed、15 episode、缩减 CEM 操作点；不外推到完整 CEM、其他 seed 或其他 nas 值。",
+  "allowed_external_wording": "KineWorld 在官方 JEPA-WM Push-T baseline 上量化了闭环重规划的影响；该操作点未观察到成功率提升。",
+  "prohibited_wording": ["KineWorld 发明了闭环规划", "闭环规划普遍无效", "该结果证明 JEPA-WM 动力学必然失败"],
+  "created_utc": "2026-09-02T00:00:00Z"
+}

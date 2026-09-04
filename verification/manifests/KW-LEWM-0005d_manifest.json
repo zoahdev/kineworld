@@ -1,0 +1,168 @@
+{
+  "experiment_id": "KW-LEWM-0005D-MODELFREE-REFERENCE",
+  "title": "Model-free reference arms on the same 50 Push-T tasks (CPU-only real rollouts)",
+  "date_utc8": "2026-09-03",
+  "evidence_level": "E1_INTERNAL_REPRODUCTION",
+  "compute": {
+    "gpu_used": false,
+    "world_model_loaded": false,
+    "device": "CPU only (pymunk physics)",
+    "wall_seconds_total_approx": 46,
+    "rollouts": {
+      "noop_zero_action": 50,
+      "cem_prior_random": 5000,
+      "uniform_random": 5000
+    },
+    "note": "ran while the KW-LEWM-0006 GPU sweep was occupying the GPU; no contention"
+  },
+  "artifacts": [
+    "verification/scripts/kw_lewm_0005d_modelfree_reference.py",
+    "results/kw_lewm_0005d_modelfree_reference.json",
+    "verification/experiments/KW-LEWM-0005d.md",
+    "verification/manifests/KW-LEWM-0005d_manifest.json"
+  ],
+  "inputs": [
+    "results/kw_lewm_0004_dataset_tasks_p50.json",
+    "results/kw_lewm_0005_jepa_same_platform.json"
+  ],
+  "design": {
+    "platform": "stable_worldmodel 0.1.1, swm/PushT-v1 (unwrapped, no pixel rendering needed)",
+    "tasks": "the same 50 dataset-defined (episode_idx, start_step, goal_step) pairs used by 0004 and 0005; pairing re-verified (task key + start_state + goal_state element-wise identical)",
+    "eval_budget_env_steps": 50,
+    "termination": "env's own terminated flag (success) or budget exhaustion",
+    "action_scaler": "same execution-side scaler as 0004/0005 (mean [-0.0359, 0.0071], scale [0.1875, 0.1970])",
+    "arms": {
+      "noop_zero_action": "a = [0,0] in env space, deterministic",
+      "cem_prior_random": "a ~ N(scaler.mean, scaler.scale) i.i.d. per step == the CEM prior after inverse_transform",
+      "uniform_random": "a ~ U(-1,1)^2 i.i.d. per step"
+    },
+    "seeds_per_task_stochastic_arms": 100
+  },
+  "criterion_gate_R0": {
+    "success_source": "stable_worldmodel/envs/pusht/env.py::eval_state called directly on the env (not re-implemented)",
+    "reconstruction_agreement": 1.0,
+    "threshold": 0.98,
+    "status": "PASSED"
+  },
+  "pre_registration": {
+    "hypotheses_fixed_before_computation": true,
+    "primary_rule_is_seed_budget_independent": true,
+    "primary_rule": "U = one-sided 95% Wilson upper bound on the pooled per-rollout model-free success rate (max over arms); a model arm clears the floor iff its Wilson lower bound > U",
+    "why_not_poisson_binomial": "for a 1-success observation the Poisson-binomial tail p-value is monotone in the seed budget S, so it would let the compute budget decide the verdict; kept as sensitivity analysis only",
+    "smoke_disclosure": "a 6-task/3-seed smoke run was executed first for plumbing; the H1 rule was rewritten from the tail test to the floor bound AFTER that smoke and BEFORE the full run; smoke numbers are unused"
+  },
+  "results": {
+    "model_free_floor": {
+      "U": 0.04515552375834501,
+      "cem_prior_random": {"k": 197, "n": 5000, "rate": 0.0394, "task_level_ci": [0.0188, 0.0634]},
+      "uniform_random": {"k": 158, "n": 5000, "rate": 0.0316, "task_level_ci": [0.0176, 0.0478]},
+      "noop_zero_action": {"k": 0, "n": 50, "rate": 0.0}
+    },
+    "H1a_jepa": {
+      "verdict": "JEPA_NOT_ABOVE_MODEL_FREE_FLOOR",
+      "jepa_wilson": [0.003539, 0.104954],
+      "jepa_point": 0.02,
+      "note": "point estimate is BELOW both random arms; McNemar seed0 vs cem_prior 1 vs 2 p=1.0, vs uniform 1 vs 1 p=1.0"
+    },
+    "H1b_lewm": {
+      "verdict": "LEWM_ABOVE_MODEL_FREE_FLOOR",
+      "lewm_wilson": [0.241387, 0.498590],
+      "ratio_to_floor_point": 9.1,
+      "mcnemar_seed0": {
+        "vs_cem_prior": {"a_only": 17, "b_only": 1, "p": 0.00014495849609375},
+        "vs_uniform": {"a_only": 18, "b_only": 1, "p": 7.62939453125e-05},
+        "vs_noop": {"a_only": 18, "b_only": 0, "p": 7.62939453125e-06}
+      }
+    },
+    "H1c_refutation_guard": {
+      "verdict": "PLATFORM_TASKS_NOT_RANDOM_SOLVABLE",
+      "max_model_free_task_rate": 0.0394,
+      "threshold": 0.30
+    },
+    "H2_analytic_noop": {
+      "verdict": "ANALYTIC_NOOP_VALID",
+      "rolled_out_successes": 0,
+      "analytic_solved_at_start": 0,
+      "block_disp_median": 0.0,
+      "block_disp_max": 4.135,
+      "agent_drift_median": 3.501,
+      "agent_drift_max": 14.173,
+      "blockonly_rolled_out": 0.32,
+      "blockonly_analytic_0005c": 0.32,
+      "reading": "0005c's analytic no-op stands; block-only counterfactual reproduces exactly 16/50"
+    },
+    "H3_effort_axis": {
+      "verdict": "EFFORT_NOT_DISCRIMINATIVE",
+      "agent_disp_medians": {
+        "noop": 3.50,
+        "cem_prior_random": 93.94,
+        "lewm_0004": 131.28,
+        "jepa_0005": 132.40,
+        "uniform_random": 191.98
+      }
+    },
+    "H4_progress_sign": {
+      "verdict": "MIXED_SEE_ROWS",
+      "cem_prior_pos_progress_ci": [-18.529, 3.656],
+      "uniform_pos_progress_ci": [-116.373, -97.452],
+      "jepa_pos_progress_ci": [-68.548, -21.529],
+      "reading": "the CEM-prior arm is essentially unbiased, uniform is far more negative than JEPA; JEPA sits in between -> effort confound exposed, motivating H5"
+    },
+    "H5_matched_effort_POST_HOC": {
+      "status": "POST_HOC_EXPLORATORY_NOT_PRE_REGISTERED",
+      "method": "per task keep model-free rollouts within +/-15% of that task's model agent_disp (pool = both stochastic arms, median 29-30 matches); 50/50 tasks matched",
+      "jepa_agent_progress_delta": {"mean": 4.209, "ci": [-11.578, 20.460], "verdict": "JEPA_DIRECTION_INDISTINGUISHABLE_FROM_MATCHED_RANDOM"},
+      "lewm_agent_progress_delta": {"mean": 124.196, "ci": [98.186, 152.045], "verdict": "LEWM_DIRECTION_BETTER_THAN_MATCHED_RANDOM"},
+      "jepa_pos_progress_delta": {"mean": 0.189, "ci": [-15.471, 17.069]},
+      "lewm_pos_progress_delta": {"mean": 125.825, "ci": [99.302, 154.439]}
+    },
+    "floor_mechanism": {
+      "initial_guess": "block-already-in-place tasks drive the floor",
+      "initial_guess_status": "REJECTED_BY_DATA",
+      "spearman_k_vs_block_gap_start": 0.01742,
+      "spearman_k_vs_agent_gap_start": -0.52977,
+      "spearman_k_vs_pos_gap_start": -0.52681,
+      "n_tasks_with_any_random_success": 17,
+      "rate_where_block_in_place": 0.054375,
+      "rate_where_block_not_in_place": 0.032353,
+      "reading": "the floor is driven by the AGENT navigation term (tasks whose agent starts near the expert's agent pose at goal_step), consistent with 0005c's 85.7% agent-dominated failure attribution"
+    },
+    "descriptive_progress_per_pixel": {
+      "lewm_0004": 0.6418,
+      "noop_zero_action": 0.2079,
+      "cem_prior_random": -0.0747,
+      "jepa_0005": -0.2688,
+      "uniform_random": -0.5168,
+      "caveat": "aggregate ratio, confounds task geometry with effort; the per-task effort-matched paired analysis (H5) controls both and takes precedence; the surface tension between the two is registered, not hidden"
+    }
+  },
+  "corrections_to_earlier_experiments": [
+    {
+      "target": "verification/experiments/KW-LEWM-0005c.md section 5",
+      "old_claim": "JEPA's pos_progress is significantly negative => it actively moves away from the goal",
+      "corrected_claim": "JEPA's goal progress is at the level of an equal-effort random walk (matched-effort paired delta +4.21, CI [-11.58, +20.46] contains 0): no better, no worse",
+      "why": "0005c had no effort-matched control; JEPA moves 1.4x more than the CEM-prior arm, so the raw negative progress conflated direction with displacement magnitude",
+      "impact": "the weak-action-conditioning conclusion is not weakened but made purer: the model's directional contribution is zero, not negative"
+    }
+  ],
+  "strengthens_0004": {
+    "count_of_independent_lines_now": 4,
+    "lines": [
+      "0004 head-to-head success 18/50 with Wilson CI",
+      "0005c analytic no-op 0/50, McNemar p=7.6e-6",
+      "0005d model-free floor 3.94%, LeWM 9.1x above it, McNemar p=1.45e-4",
+      "0005d matched-effort direction advantage +124.20 CI [98.19, 152.05]"
+    ]
+  },
+  "relation_to_section_8": {
+    "role": "fourth independent evidence line for the weak-action-conditioning root cause, and the only one requiring neither GPU nor model access",
+    "statement": "the planner's model-based action selection provides no measurable directional or success benefit over its own prior on this platform"
+  },
+  "caveats": [
+    "E1: single platform, single task set, one checkpoint per model arm, one planner budget",
+    "does NOT license any claim about JEPA-WM model capability in general, only about this checkpoint under this get_cost wrapper and this CEM budget",
+    "model-free arms are i.i.d. per step; the real planner executes 5-step action blocks, so the prior arm captures the planner's prior, not its temporal correlation",
+    "no-op is a real rollout but with the expert's initial agent velocity injected; a hard-frozen agent is not physically realisable in this env",
+    "H5 is exploratory and must never be cited as pre-registered"
+  ]
+}

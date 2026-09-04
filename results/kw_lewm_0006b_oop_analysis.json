@@ -1,0 +1,192 @@
+{
+ "experiment_id": "KW-LEWM-0006b",
+ "status": "POST_HOC_EXPLORATORY_NOT_PRE_REGISTERED",
+ "motivation": "0006 主结果发现 V1 越界率 0.04 -> 0.36 (1/25 -> 9/25)，而成功率仅 0.00 -> 0.04。该现象在预注册时未预期，故本分析为事后探索，仅作假设生成器。",
+ "question": "推理期增强是否显著改变智能体飞出场地（out-of-play）的发生率？",
+ "primary_criterion": "配对精确 McNemar 检验越界事件（p<0.05）",
+ "n_tasks": 25,
+ "pairing": {
+  "V1_plus_iters": {
+   "n_paired": 25,
+   "n_total_variant": 25,
+   "n_total_baseline": 25,
+   "keys_identical": true
+  },
+  "V2_plus_horizon": {
+   "n_paired": 25,
+   "n_total_variant": 25,
+   "n_total_baseline": 25,
+   "keys_identical": true
+  },
+  "V3_plus_clip": {
+   "n_paired": 25,
+   "n_total_variant": 25,
+   "n_total_baseline": 25,
+   "keys_identical": true
+  }
+ },
+ "variants": {
+  "V1_plus_iters": {
+   "what_changed": "CEM 迭代 10 → 30（优化预算 3×，耗时 1844s → 5457s）",
+   "oop_rate_variant": 0.36,
+   "oop_rate_baseline": 0.04,
+   "oop_n_variant": 9,
+   "oop_n_baseline": 1,
+   "mcnemar_oop": {
+    "a_only": 9,
+    "b_only": 1,
+    "n_discordant": 10,
+    "p_exact_two_sided": 0.021484375
+   },
+   "success_variant": 0.04,
+   "success_baseline": 0.0,
+   "mcnemar_success": {
+    "a_only": 1,
+    "b_only": 0,
+    "n_discordant": 1,
+    "p_exact_two_sided": 1.0
+   },
+   "block_disp_paired_diff": {
+    "mean": 18.815369249894523,
+    "median": 0.0,
+    "lo": -10.75251481014785,
+    "hi": 50.005458805508646
+   },
+   "wilson_oop_variant": {
+    "p": 0.36,
+    "lo": 0.20247880771593169,
+    "hi": 0.554815022562174,
+    "k": 9,
+    "n": 25
+   },
+   "wilson_oop_baseline": {
+    "p": 0.04,
+    "lo": 0.007096233499648677,
+    "hi": 0.19544063741412743,
+    "k": 1,
+    "n": 25
+   },
+   "verdict_oop": "HARMFUL_MORE_OUT_OF_PLAY",
+   "n_tests": 3,
+   "mcnemar_oop_p_bonferroni": 0.064453125,
+   "verdict_oop_bonferroni": "NO_SIGNIFICANT_CHANGE_AFTER_CORRECTION"
+  },
+  "V2_plus_horizon": {
+   "what_changed": "规划视域 H5 → H10",
+   "oop_rate_variant": 0.24,
+   "oop_rate_baseline": 0.04,
+   "oop_n_variant": 6,
+   "oop_n_baseline": 1,
+   "mcnemar_oop": {
+    "a_only": 5,
+    "b_only": 0,
+    "n_discordant": 5,
+    "p_exact_two_sided": 0.0625
+   },
+   "success_variant": 0.0,
+   "success_baseline": 0.0,
+   "mcnemar_success": {
+    "a_only": 0,
+    "b_only": 0,
+    "n_discordant": 0,
+    "p_exact_two_sided": 1.0
+   },
+   "block_disp_paired_diff": {
+    "mean": -11.36910605733787,
+    "median": -8.459685653076097,
+    "lo": -35.63724050916273,
+    "hi": 14.260369683912497
+   },
+   "wilson_oop_variant": {
+    "p": 0.24,
+    "lo": 0.11496313691409657,
+    "hi": 0.4342968336023856,
+    "k": 6,
+    "n": 25
+   },
+   "wilson_oop_baseline": {
+    "p": 0.04,
+    "lo": 0.007096233499648677,
+    "hi": 0.19544063741412743,
+    "k": 1,
+    "n": 25
+   },
+   "verdict_oop": "NO_SIGNIFICANT_CHANGE",
+   "n_tests": 3,
+   "mcnemar_oop_p_bonferroni": 0.1875,
+   "verdict_oop_bonferroni": "NO_SIGNIFICANT_CHANGE_AFTER_CORRECTION"
+  },
+  "V3_plus_clip": {
+   "what_changed": "动作裁剪 clip 3.0 → 6.0",
+   "oop_rate_variant": 0.16,
+   "oop_rate_baseline": 0.04,
+   "oop_n_variant": 4,
+   "oop_n_baseline": 1,
+   "mcnemar_oop": {
+    "a_only": 3,
+    "b_only": 0,
+    "n_discordant": 3,
+    "p_exact_two_sided": 0.25
+   },
+   "success_variant": 0.04,
+   "success_baseline": 0.0,
+   "mcnemar_success": {
+    "a_only": 1,
+    "b_only": 0,
+    "n_discordant": 1,
+    "p_exact_two_sided": 1.0
+   },
+   "block_disp_paired_diff": {
+    "mean": -5.168958674174526,
+    "median": -3.9173235530445267,
+    "lo": -21.736030431631683,
+    "hi": 11.257788302559057
+   },
+   "wilson_oop_variant": {
+    "p": 0.16,
+    "lo": 0.06403451455350209,
+    "hi": 0.34653621612189767,
+    "k": 4,
+    "n": 25
+   },
+   "wilson_oop_baseline": {
+    "p": 0.04,
+    "lo": 0.007096233499648677,
+    "hi": 0.19544063741412743,
+    "k": 1,
+    "n": 25
+   },
+   "verdict_oop": "NO_SIGNIFICANT_CHANGE",
+   "n_tests": 3,
+   "mcnemar_oop_p_bonferroni": 0.75,
+   "verdict_oop_bonferroni": "NO_SIGNIFICANT_CHANGE_AFTER_CORRECTION"
+  }
+ },
+ "verdicts": {
+  "V1_plus_iters": "HARMFUL_MORE_OUT_OF_PLAY",
+  "V2_plus_horizon": "NO_SIGNIFICANT_CHANGE",
+  "V3_plus_clip": "NO_SIGNIFICANT_CHANGE"
+ },
+ "verdicts_bonferroni": {
+  "V1_plus_iters": "NO_SIGNIFICANT_CHANGE_AFTER_CORRECTION",
+  "V2_plus_horizon": "NO_SIGNIFICANT_CHANGE_AFTER_CORRECTION",
+  "V3_plus_clip": "NO_SIGNIFICANT_CHANGE_AFTER_CORRECTION"
+ },
+ "caveats": [
+  "POST-HOC：假设在看到 0006 主结果后提出，不得作为预注册结论引用。",
+  "n=25 每变体，置信区间很宽；success 的配对检验（如 V1 1/25 vs 0/25）",
+  "  差异极小，p 值接近 1，**不可解读**为由推理预算带来的改善。",
+  "越界率是本分析的**主判据**，但它不是任务成功；越界率上升本身不等于任务表现变差，",
+  "  需要结合 success 一起读（两者都指向『无改善』或『更差』）。",
+  "0006 主判据（success CI 与 K4 重叠）已判定 CONFIRMS_SECTION_8；",
+  "  本分析只是对同一结论的**加强**，不改变主判定。",
+  "多重比较：检验了 3 个变体，未做校正；探索性阶段不作校正，但结论须降权解读。"
+ ],
+ "summary": {
+  "n_variants_tested": 3,
+  "harmful_variants": [
+   "V1_plus_iters"
+  ],
+  "overall_reading": "若 V1 显著有害，则 §8 表述可从「推理期增强无效」加强为「推理期增强有害」：更多优化预算被转化为更自信地执行模型偏好的动作，而非更高的成功率——这正是代价地形平坦的直接后果。"
+ }
+}

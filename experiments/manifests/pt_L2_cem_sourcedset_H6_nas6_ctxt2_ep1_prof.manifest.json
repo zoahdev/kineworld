@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-09-01T22:12:25+08:00",
+  "generator": "gen_pt_eval_configs.py",
+  "template": "configs\\online_plan_evals\\pt\\pt_L2_cem_sourcedset_H6_nas6_ctxt2.yaml",
+  "training_config": "configs\\vjepa_wm\\pt_sweep\\pt_4f_fsk5_ask1_r224_vjtranoaug_predAdaLN_ftprop_depth6_repro_2roll_save.yaml",
+  "merge_logic": "app/vjepa_wm/utils.py::build_plan_eval_args (override_cfgs_data=True)",
+  "checkpoint": "C:\\Users\\zoah\\WorkBuddy\\2026-09-01-10-59-54\\kineworld\\checkpoints\\jepa_wm_pusht.pth.tar",
+  "checkpoint_bytes": 211639615,
+  "overrides": {
+    "eval_episodes": 1,
+    "seed": 1,
+    "quick_debug": true,
+    "planner": "cem",
+    "cost": "L2",
+    "obs": "rgb_state",
+    "alpha": 0.1
+  },
+  "out_path": "C:\\Users\\zoah\\WorkBuddy\\2026-09-01-10-59-54\\kineworld\\external\\jepa-wms\\configs\\dump_online_evals\\pt\\pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep1_prof.yaml"
+}

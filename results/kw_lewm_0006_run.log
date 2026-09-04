@@ -1,0 +1,264 @@
+Using cache found in C:\Users\zoah/.cache\torch\hub\facebookresearch_dinov2_main
+[0006] building JEPAWMAdapter once (reused across 4 variants) ...
+INFO:dinov2:using MLP layer as FFN
+INFO:root:Encoder: DinoEncoder(
+  (base_model): DinoVisionTransformer(
+    (patch_embed): PatchEmbed(
+      (proj): Conv2d(3, 384, kernel_size=(14, 14), stride=(14, 14))
+      (norm): Identity()
+    )
+    (blocks): ModuleList(
+      (0-11): 12 x NestedTensorBlock(
+        (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+        (attn): MemEffAttention(
+          (qkv): Linear(in_features=384, out_features=1152, bias=True)
+          (proj): Linear(in_features=384, out_features=384, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls1): LayerScale()
+        (drop_path1): Identity()
+        (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=384, out_features=1536, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=1536, out_features=384, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+        (ls2): LayerScale()
+        (drop_path2): Identity()
+      )
+    )
+    (norm): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+    (head): Identity()
+  )
+)
+INFO:root:🧠 Encoder: DinoEncoder (22,056,576 params, frozen=True)
+INFO:app.plan_common.models.AdaLN_vit:🔧 Initialized 6 AdaLN blocks (scale_factor=10)
+INFO:root:Predictor: VisionTransformerAdaLN(
+  (predictor_embed): Linear(in_features=384, out_features=384, bias=True)
+  (action_encoder): Linear(in_features=10, out_features=400, bias=True)
+  (predictor_blocks): ModuleList(
+    (0-5): 6 x FWAdaLNBlock(
+      (norm1): LayerNorm((400,), eps=1e-06, elementwise_affine=True)
+      (attn): RoPEAttention(
+        (qkv): Linear(in_features=400, out_features=1200, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=400, out_features=400, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((400,), eps=1e-06, elementwise_affine=True)
+      (mlp): MLP(
+        (fc1): Linear(in_features=400, out_features=1600, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=1600, out_features=400, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+      (adaLN_modulation): Sequential(
+        (0): SiLU()
+        (1): Linear(in_features=400, out_features=2400, bias=True)
+      )
+    )
+  )
+  (predictor_norm): LayerNorm((400,), eps=1e-06, elementwise_affine=True)
+  (predictor_proj): Linear(in_features=384, out_features=384, bias=True)
+)
+INFO:root:🔮 Predictor: VisionTransformerAdaLN (17,626,480 params)
+INFO:root:Loading checkpoint from local path: C:\Users\zoah\WorkBuddy\2026-09-01-10-59-54\kineworld\checkpoints\jepa_wm_pusht.pth.tar
+INFO:root:loaded pretrained predictor from epoch 50 with msg: <All keys matched successfully>
+INFO:root:loaded pretrained proprio encoder from epoch 50 with msg: <All keys matched successfully>
+INFO:root:📉 Loss weights: L2=1.0
+[0006] adapter OK: enc=22,056,576 total=39,683,136 model_action_dim=10
+
+[0006] === variant baseline : {'plan_horizon': 5, 'plan_receding': 5, 'cem_n_steps': 10, 'cem_num_samples': 100, 'action_clip': 3.0} ===
+[K4] loaded 25 task pairs from C:\Users\zoah\WorkBuddy\2026-09-01-10-59-54\kineworld\results\kw_lewm_0004_dataset_tasks_p50.json (0004 task set)
+CEM solve time: 36.8716 seconds
+CEM solve time: 36.5317 seconds
+CEM solve time: 36.5028 seconds
+CEM solve time: 36.5320 seconds
+CEM solve time: 36.8142 seconds
+CEM solve time: 36.9093 seconds
+CEM solve time: 36.8228 seconds
+CEM solve time: 36.9184 seconds
+CEM solve time: 36.8223 seconds
+CEM solve time: 36.7527 seconds
+CEM solve time: 36.8383 seconds
+CEM solve time: 36.9543 seconds
+CEM solve time: 36.9433 seconds
+CEM solve time: 36.9988 seconds
+CEM solve time: 36.7521 seconds
+CEM solve time: 36.7122 seconds
+CEM solve time: 36.7253 seconds
+CEM solve time: 36.7617 seconds
+CEM solve time: 36.9065 seconds
+CEM solve time: 36.9445 seconds
+CEM solve time: 36.8105 seconds
+CEM solve time: 36.8936 seconds
+CEM solve time: 36.8173 seconds
+CEM solve time: 36.8094 seconds
+CEM solve time: 36.8433 seconds
+CEM solve time: 36.8328 seconds
+CEM solve time: 36.8595 seconds
+CEM solve time: 36.8921 seconds
+CEM solve time: 37.0155 seconds
+CEM solve time: 36.9295 seconds
+CEM solve time: 37.0416 seconds
+CEM solve time: 37.0202 seconds
+CEM solve time: 36.8823 seconds
+CEM solve time: 36.8638 seconds
+CEM solve time: 36.9983 seconds
+CEM solve time: 36.8698 seconds
+CEM solve time: 36.7588 seconds
+CEM solve time: 36.7934 seconds
+CEM solve time: 37.0110 seconds
+CEM solve time: 36.8670 seconds
+CEM solve time: 36.7498 seconds
+CEM solve time: 36.7596 seconds
+CEM solve time: 36.7440 seconds
+CEM solve time: 36.7489 seconds
+CEM solve time: 36.8149 seconds
+CEM solve time: 36.8138 seconds
+CEM solve time: 36.8129 seconds
+CEM solve time: 36.9153 seconds
+CEM solve time: 36.8040 seconds
+CEM solve time: 36.7662 seconds
+[0006] baseline: success=0.0 CI=(0.0, 0.13319649395317873) oop=0.04 disp_med=35.10489877130844
+
+[0006] === variant V1_plus_iters : {'plan_horizon': 5, 'plan_receding': 5, 'cem_n_steps': 30, 'cem_num_samples': 100, 'action_clip': 3.0} ===
+[K4] loaded 25 task pairs from C:\Users\zoah\WorkBuddy\2026-09-01-10-59-54\kineworld\results\kw_lewm_0004_dataset_tasks_p50.json (0004 task set)
+CEM solve time: 110.4870 seconds
+CEM solve time: 110.6704 seconds
+CEM solve time: 110.5612 seconds
+CEM solve time: 110.7836 seconds
+CEM solve time: 110.6552 seconds
+CEM solve time: 110.5837 seconds
+CEM solve time: 110.4355 seconds
+CEM solve time: 110.4616 seconds
+CEM solve time: 110.3692 seconds
+CEM solve time: 110.6755 seconds
+CEM solve time: 110.5713 seconds
+CEM solve time: 110.4828 seconds
+CEM solve time: 111.7925 seconds
+CEM solve time: 111.4360 seconds
+CEM solve time: 111.5134 seconds
+CEM solve time: 111.6660 seconds
+CEM solve time: 111.2070 seconds
+CEM solve time: 110.6254 seconds
+CEM solve time: 111.3532 seconds
+CEM solve time: 110.6017 seconds
+CEM solve time: 110.5157 seconds
+CEM solve time: 110.3403 seconds
+CEM solve time: 109.9696 seconds
+CEM solve time: 110.3968 seconds
+CEM solve time: 110.3444 seconds
+CEM solve time: 110.8474 seconds
+CEM solve time: 111.2355 seconds
+CEM solve time: 111.6324 seconds
+CEM solve time: 110.7262 seconds
+CEM solve time: 110.6461 seconds
+CEM solve time: 110.0992 seconds
+CEM solve time: 111.5923 seconds
+CEM solve time: 112.9034 seconds
+CEM solve time: 111.7785 seconds
+CEM solve time: 112.7989 seconds
+CEM solve time: 111.9944 seconds
+CEM solve time: 110.1487 seconds
+CEM solve time: 110.7444 seconds
+CEM solve time: 110.8760 seconds
+CEM solve time: 110.5388 seconds
+CEM solve time: 110.7130 seconds
+CEM solve time: 110.9266 seconds
+CEM solve time: 110.8968 seconds
+CEM solve time: 110.5556 seconds
+CEM solve time: 113.3767 seconds
+CEM solve time: 113.7383 seconds
+CEM solve time: 113.9580 seconds
+CEM solve time: 114.0815 seconds
+CEM solve time: 114.4509 seconds
+[0006] V1_plus_iters: success=0.04 CI=(0.007096050386699165, 0.19544472405022525) oop=0.36 disp_med=42.80759424492886
+
+[0006] === variant V2_plus_horizon : {'plan_horizon': 10, 'plan_receding': 10, 'cem_n_steps': 10, 'cem_num_samples': 100, 'action_clip': 3.0} ===
+[K4] loaded 25 task pairs from C:\Users\zoah\WorkBuddy\2026-09-01-10-59-54\kineworld\results\kw_lewm_0004_dataset_tasks_p50.json (0004 task set)
+CEM solve time: 71.3836 seconds
+CEM solve time: 71.4208 seconds
+CEM solve time: 71.4218 seconds
+CEM solve time: 71.5266 seconds
+CEM solve time: 71.3138 seconds
+CEM solve time: 71.4408 seconds
+CEM solve time: 71.3148 seconds
+CEM solve time: 71.1113 seconds
+CEM solve time: 71.4202 seconds
+CEM solve time: 71.2974 seconds
+CEM solve time: 71.3657 seconds
+CEM solve time: 71.5119 seconds
+CEM solve time: 71.4322 seconds
+CEM solve time: 71.5640 seconds
+CEM solve time: 71.2769 seconds
+CEM solve time: 71.2062 seconds
+CEM solve time: 71.4105 seconds
+CEM solve time: 71.2880 seconds
+CEM solve time: 71.2573 seconds
+CEM solve time: 71.3314 seconds
+CEM solve time: 71.2575 seconds
+CEM solve time: 71.4558 seconds
+CEM solve time: 71.4101 seconds
+CEM solve time: 71.4536 seconds
+CEM solve time: 71.3935 seconds
+[0006] V2_plus_horizon: success=0.0 CI=(0.0, 0.13319649395317873) oop=0.24 disp_med=17.208638436079298
+
+[0006] === variant V3_plus_clip : {'plan_horizon': 5, 'plan_receding': 5, 'cem_n_steps': 10, 'cem_num_samples': 100, 'action_clip': 6.0} ===
+[K4] loaded 25 task pairs from C:\Users\zoah\WorkBuddy\2026-09-01-10-59-54\kineworld\results\kw_lewm_0004_dataset_tasks_p50.json (0004 task set)
+CEM solve time: 37.9283 seconds
+CEM solve time: 37.8918 seconds
+CEM solve time: 37.8102 seconds
+CEM solve time: 37.9382 seconds
+CEM solve time: 37.8553 seconds
+CEM solve time: 37.9435 seconds
+CEM solve time: 37.8729 seconds
+CEM solve time: 37.7391 seconds
+CEM solve time: 37.6796 seconds
+CEM solve time: 37.7774 seconds
+CEM solve time: 37.8202 seconds
+CEM solve time: 38.1860 seconds
+CEM solve time: 38.3042 seconds
+CEM solve time: 37.9476 seconds
+CEM solve time: 37.8520 seconds
+CEM solve time: 38.0183 seconds
+CEM solve time: 37.7778 seconds
+CEM solve time: 37.7472 seconds
+CEM solve time: 37.7867 seconds
+CEM solve time: 37.8358 seconds
+CEM solve time: 37.8354 seconds
+CEM solve time: 37.9037 seconds
+CEM solve time: 37.8878 seconds
+CEM solve time: 37.8255 seconds
+CEM solve time: 38.0678 seconds
+CEM solve time: 37.9495 seconds
+CEM solve time: 37.9052 seconds
+CEM solve time: 38.1261 seconds
+CEM solve time: 37.9458 seconds
+CEM solve time: 36.9360 seconds
+CEM solve time: 36.7144 seconds
+CEM solve time: 36.9486 seconds
+CEM solve time: 36.7226 seconds
+CEM solve time: 36.6841 seconds
+CEM solve time: 37.1645 seconds
+CEM solve time: 37.4813 seconds
+CEM solve time: 37.4747 seconds
+CEM solve time: 37.2548 seconds
+CEM solve time: 37.0009 seconds
+CEM solve time: 36.9208 seconds
+CEM solve time: 36.8509 seconds
+CEM solve time: 36.8357 seconds
+CEM solve time: 36.7712 seconds
+CEM solve time: 37.0884 seconds
+CEM solve time: 37.0785 seconds
+CEM solve time: 37.2131 seconds
+CEM solve time: 37.1963 seconds
+CEM solve time: 36.9481 seconds
+CEM solve time: 36.8100 seconds
+CEM solve time: 36.7889 seconds
+[0006] V3_plus_clip: success=0.04 CI=(0.007096050386699165, 0.19544472405022525) oop=0.16 disp_med=32.22257905084138
+
+[0006] verdict=CONFIRMS_SECTION_8 (all variants pinned at flat-cost floor; weak action conditioning confirmed, inference tuning futile)
+[0006] wrote C:\Users\zoah\WorkBuddy\2026-09-01-10-59-54\kineworld\results\kw_lewm_0006_inference_ablation.json

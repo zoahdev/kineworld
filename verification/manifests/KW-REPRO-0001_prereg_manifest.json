@@ -1,0 +1,45 @@
+{
+  "id": "KW-REPRO-0001",
+  "status": "PRE_REGISTERED_NOT_RUN",
+  "frozen_at": "2026-09-02T10:30:52+08:00",
+  "subject": "LeWorldModel official Push-T checkpoint reproduction",
+  "protocol": {
+    "path": "verification/reproductions/KW-REPRO-0001_LEWM_PUSHT_PROTOCOL.md",
+    "sha256": "fe177b3f5bfb4d89c60a0c6de45033fa6c6f8d6a089b0761c1e535fc6a3c3686"
+  },
+  "supporting_documents": [
+    {
+      "path": "docs/intelligence/WEEKLY_FRONTIER.md",
+      "sha256": "2afa9567cb57ec5bd7411105acd97af350a9204835f2103a5251e4809d50814a"
+    },
+    {
+      "path": "company/WEDGE_SCORECARD.md",
+      "sha256": "a463d40d3cb4e3b4a0b378bcec0a0acf8b3003fc101719ae4e2bb1907d95b266"
+    }
+  ],
+  "official_sources": [
+    "https://arxiv.org/abs/2603.19312",
+    "https://github.com/lucas-maes/le-wm",
+    "https://github.com/lucas-maes/le-wm/blob/main/config/eval/pusht.yaml",
+    "https://github.com/lucas-maes/le-wm/blob/main/config/eval/solver/cem.yaml",
+    "https://github.com/galilai-group/stable-worldmodel",
+    "https://pypi.org/project/stable-worldmodel/0.1.1/",
+    "https://huggingface.co/quentinll/lewm-pusht",
+    "https://huggingface.co/datasets/quentinll/lewm-pusht"
+  ],
+  "resource_policy": {
+    "checkpoint_download_bytes": 75812045,
+    "checkpoint_download_authorized": true,
+    "dataset_download_size_gb": 13.1,
+    "dataset_download_authorized": false,
+    "gpu_execution_authorized_after": "KW-EXP-0006 completes and GPU is idle"
+  },
+  "execution_started": false,
+  "results": null,
+  "notes": [
+    "Checkpoint byte count is the Hugging Face displayed 72.3 MB converted approximately; verify exact bytes after download.",
+    "No LeWorldModel repository or checkpoint was downloaded at preregistration time because terminal GitHub connectivity failed.",
+    "Third-party paper claims are not KineWorld results.",
+    "Source correction on 2026-09-02: hongqin/leworldmodel is a fork; the upstream official repository is lucas-maes/le-wm."
+  ]
+}

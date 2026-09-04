@@ -1,0 +1,26 @@
+{
+  "experiment_id": "KW-EXP-0003",
+  "title": "CEM Elite Spread Uncertainty Proxy Audit",
+  "date": "2026-09-02",
+  "status": "complete",
+  "conclusion": "NOT_SUPPORTED_AS_DIRECT_UNCERTAINTY_PROXY",
+  "evidence_level": "E1",
+  "source_experiment": "KW-EXP-0002b",
+  "source_data": "results/phase0_jepa_wm_pusht/simu_env_planning/phase0/pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_d1objfull/pusht-base/ep_*/diagnostics.json",
+  "episodes": 15,
+  "segments": 45,
+  "segment_noninitial_delta_n": 30,
+  "correlations": {
+    "segment_spread_vs_predicted_actual_mse": -0.0737,
+    "segment_spread_vs_state_delta": -0.2604,
+    "episode_spread_vs_predicted_actual_mse": 0.0499,
+    "episode_spread_vs_state_delta": 0.4667,
+    "episode_spread_vs_predicted_goal": 0.0943,
+    "episode_spread_vs_actual_goal": 0.1792
+  },
+  "groups": {
+    "success": {"n": 6, "mean_spread": 0.017780, "mean_mse": 0.031523, "mean_state_delta": 119.8687},
+    "failure": {"n": 9, "mean_spread": 0.010641, "mean_mse": 0.040537, "mean_state_delta": 57.6051}
+  },
+  "decision": "Do not use elite spread directly for gating, abstention, or compute allocation; read calibrated uncertainty methods before any new uncertainty implementation."
+}

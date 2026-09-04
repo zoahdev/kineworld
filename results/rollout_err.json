@@ -1,0 +1,37 @@
+{
+  "experiment": "kw_phase0_latent_rollout_error",
+  "model": "jepa_wm_pusht (official)",
+  "encoder": "DINOv2 ViT-S/14 (frozen)",
+  "predictor_depth": 6,
+  "n_trajectories": 12,
+  "n_samples": 36,
+  "seed": 1,
+  "timestamp": "2026-09-01T23:42:38+08:00",
+  "horizon_errors": {
+    "1": {
+      "mean_norm_l2": 0.7044365555047989,
+      "std": 0.03162977100508123,
+      "n": 36
+    },
+    "5": {
+      "mean_norm_l2": 0.7963605175415674,
+      "std": 0.02403244314527582,
+      "n": 36
+    },
+    "10": {
+      "mean_norm_l2": 0.8102971067031225,
+      "std": 0.021044732801187627,
+      "n": 36
+    },
+    "20": {
+      "mean_norm_l2": 0.8327049513657888,
+      "std": 0.03237169619656191,
+      "n": 36
+    },
+    "50": {
+      "mean_norm_l2": 0.8589479972918829,
+      "std": 0.08317875758097536,
+      "n": 36
+    }
+  }
+}

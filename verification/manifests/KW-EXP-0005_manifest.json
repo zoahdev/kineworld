@@ -1,0 +1,535 @@
+{
+  "experiment_id": "KW-EXP-0005",
+  "title": "Multi-horizon rollout error and horizon-conditioned calibration",
+  "date": "2026-09-02",
+  "type": "diagnostic_no_training_with_inference_run",
+  "conclusion": "HORIZON_CONDITIONING_KILLED_ERROR_NONMONOTONIC_HEAVY_TAILED",
+  "config": "pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep15_mhhorizon",
+  "num_act_stepped": 6,
+  "cem": [
+    10,
+    100,
+    10
+  ],
+  "seed": 1,
+  "analysis_seed": 20260902,
+  "n_episodes": 15,
+  "n_horizon_points": 90,
+  "script": "verification/scripts/kw_exp_0005_horizon_error.py",
+  "patch": "verification/patches/KW-EXP-0005_multihorizon_instrumentation.patch",
+  "base_commit": "13cf1d9c7e476f53c17714d2e0f1dc239a883ce0",
+  "baseline_replication": {
+    "success_rate": 0.4666666666666667,
+    "ep_end_dist": 83.88669,
+    "planning_calls": 15,
+    "planning_latency_ms_mean": 37133.333,
+    "vram_peak_mib": 7812.0,
+    "matches_official_baseline": true
+  },
+  "index_alignment_audit": {
+    "predicted_len": 7,
+    "plan_horizon": 6,
+    "latent_index_offset_tau": 1,
+    "frameskip": 5,
+    "aligned_equals_legacy_all_segments": true,
+    "off_by_one_bug_found": false,
+    "prior_experiments_affected": "none"
+  },
+  "q1_error_curve": {
+    "k=1": {
+      "n": 15,
+      "mean_mse": 0.053216,
+      "median_mse": 0.021879,
+      "std_mse": 0.09569,
+      "min_mse": 0.008685,
+      "max_mse": 0.385121,
+      "mean_over_median": 2.432,
+      "ci95": [
+        0.020061,
+        0.106515
+      ]
+    },
+    "k=2": {
+      "n": 15,
+      "mean_mse": 0.026078,
+      "median_mse": 0.023633,
+      "std_mse": 0.010549,
+      "min_mse": 0.010018,
+      "max_mse": 0.051713,
+      "mean_over_median": 1.103,
+      "ci95": [
+        0.021353,
+        0.031273
+      ]
+    },
+    "k=3": {
+      "n": 15,
+      "mean_mse": 0.036335,
+      "median_mse": 0.033956,
+      "std_mse": 0.012427,
+      "min_mse": 0.018794,
+      "max_mse": 0.058891,
+      "mean_over_median": 1.07,
+      "ci95": [
+        0.030297,
+        0.042517
+      ]
+    },
+    "k=4": {
+      "n": 15,
+      "mean_mse": 0.063843,
+      "median_mse": 0.049371,
+      "std_mse": 0.057445,
+      "min_mse": 0.020557,
+      "max_mse": 0.226901,
+      "mean_over_median": 1.293,
+      "ci95": [
+        0.040325,
+        0.094729
+      ]
+    },
+    "k=5": {
+      "n": 15,
+      "mean_mse": 0.039773,
+      "median_mse": 0.036018,
+      "std_mse": 0.01354,
+      "min_mse": 0.022867,
+      "max_mse": 0.07294,
+      "mean_over_median": 1.104,
+      "ci95": [
+        0.033351,
+        0.046421
+      ]
+    },
+    "k=6": {
+      "n": 15,
+      "mean_mse": 0.043369,
+      "median_mse": 0.036355,
+      "std_mse": 0.019902,
+      "min_mse": 0.019885,
+      "max_mse": 0.086145,
+      "mean_over_median": 1.193,
+      "ci95": [
+        0.034003,
+        0.053358
+      ]
+    }
+  },
+  "q1b_outlier_attribution": {
+    "top_offenders_by_horizon": {
+      "k=1": [
+        {
+          "episode": "ep_4",
+          "mse": 0.385121
+        },
+        {
+          "episode": "ep_7",
+          "mse": 0.112796
+        },
+        {
+          "episode": "ep_2",
+          "mse": 0.068477
+        }
+      ],
+      "k=2": [
+        {
+          "episode": "ep_2",
+          "mse": 0.051713
+        },
+        {
+          "episode": "ep_6",
+          "mse": 0.039627
+        },
+        {
+          "episode": "ep_0",
+          "mse": 0.035969
+        }
+      ],
+      "k=3": [
+        {
+          "episode": "ep_2",
+          "mse": 0.058891
+        },
+        {
+          "episode": "ep_8",
+          "mse": 0.055688
+        },
+        {
+          "episode": "ep_1",
+          "mse": 0.052259
+        }
+      ],
+      "k=4": [
+        {
+          "episode": "ep_10",
+          "mse": 0.226901
+        },
+        {
+          "episode": "ep_8",
+          "mse": 0.16986
+        },
+        {
+          "episode": "ep_2",
+          "mse": 0.06751
+        }
+      ],
+      "k=5": [
+        {
+          "episode": "ep_2",
+          "mse": 0.07294
+        },
+        {
+          "episode": "ep_13",
+          "mse": 0.051891
+        },
+        {
+          "episode": "ep_7",
+          "mse": 0.051421
+        }
+      ],
+      "k=6": [
+        {
+          "episode": "ep_11",
+          "mse": 0.086145
+        },
+        {
+          "episode": "ep_2",
+          "mse": 0.065564
+        },
+        {
+          "episode": "ep_12",
+          "mse": 0.064822
+        }
+      ]
+    },
+    "episodes_ranked_by_max_mse": [
+      {
+        "episode": "ep_4",
+        "mean_mse": 0.091692,
+        "median_mse": 0.035586,
+        "max_mse": 0.385121,
+        "k1_mse": 0.385121,
+        "success": true,
+        "end_dist": 89.998
+      },
+      {
+        "episode": "ep_10",
+        "mean_mse": 0.058921,
+        "median_mse": 0.023526,
+        "max_mse": 0.226901,
+        "k1_mse": 0.01515,
+        "success": false,
+        "end_dist": 211.808
+      },
+      {
+        "episode": "ep_8",
+        "mean_mse": 0.060959,
+        "median_mse": 0.044889,
+        "max_mse": 0.16986,
+        "k1_mse": 0.02142,
+        "success": false,
+        "end_dist": 141.78
+      },
+      {
+        "episode": "ep_7",
+        "mean_mse": 0.055111,
+        "median_mse": 0.046663,
+        "max_mse": 0.112796,
+        "k1_mse": 0.112796,
+        "success": false,
+        "end_dist": 112.878
+      },
+      {
+        "episode": "ep_11",
+        "mean_mse": 0.037034,
+        "median_mse": 0.02304,
+        "max_mse": 0.086145,
+        "k1_mse": 0.021879,
+        "success": false,
+        "end_dist": 108.173
+      },
+      {
+        "episode": "ep_2",
+        "mean_mse": 0.064182,
+        "median_mse": 0.066537,
+        "max_mse": 0.07294,
+        "k1_mse": 0.068477,
+        "success": false,
+        "end_dist": 129.208
+      },
+      {
+        "episode": "ep_12",
+        "mean_mse": 0.04099,
+        "median_mse": 0.042109,
+        "max_mse": 0.064822,
+        "k1_mse": 0.019853,
+        "success": true,
+        "end_dist": 51.28
+      },
+      {
+        "episode": "ep_0",
+        "mean_mse": 0.041786,
+        "median_mse": 0.04145,
+        "max_mse": 0.059543,
+        "k1_mse": 0.024303,
+        "success": false,
+        "end_dist": 119.095
+      },
+      {
+        "episode": "ep_1",
+        "mean_mse": 0.043043,
+        "median_mse": 0.046805,
+        "max_mse": 0.05892,
+        "k1_mse": 0.029838,
+        "success": true,
+        "end_dist": 74.526
+      },
+      {
+        "episode": "ep_13",
+        "mean_mse": 0.029984,
+        "median_mse": 0.027599,
+        "max_mse": 0.051891,
+        "k1_mse": 0.016843,
+        "success": true,
+        "end_dist": 97.749
+      },
+      {
+        "episode": "ep_5",
+        "mean_mse": 0.026191,
+        "median_mse": 0.03028,
+        "max_mse": 0.043084,
+        "k1_mse": 0.008685,
+        "success": true,
+        "end_dist": 68.15
+      },
+      {
+        "episode": "ep_6",
+        "mean_mse": 0.030819,
+        "median_mse": 0.030511,
+        "max_mse": 0.039627,
+        "k1_mse": 0.027065,
+        "success": true,
+        "end_dist": 108.671
+      },
+      {
+        "episode": "ep_3",
+        "mean_mse": 0.027932,
+        "median_mse": 0.027595,
+        "max_mse": 0.036355,
+        "k1_mse": 0.022688,
+        "success": false,
+        "end_dist": 155.019
+      },
+      {
+        "episode": "ep_9",
+        "mean_mse": 0.026587,
+        "median_mse": 0.027386,
+        "max_mse": 0.034431,
+        "k1_mse": 0.013264,
+        "success": true,
+        "end_dist": 32.413
+      },
+      {
+        "episode": "ep_14",
+        "mean_mse": 0.021306,
+        "median_mse": 0.023425,
+        "max_mse": 0.027765,
+        "k1_mse": 0.010856,
+        "success": false,
+        "end_dist": 120.777
+      }
+    ]
+  },
+  "q2_plan_optimism": {
+    "k=1": {
+      "mean_predicted_goal_mse": 0.169137,
+      "mean_actual_goal_mse": 0.19501,
+      "mean_optimism": 0.025872,
+      "ci95": [
+        0.00136,
+        0.056965
+      ]
+    },
+    "k=2": {
+      "mean_predicted_goal_mse": 0.153485,
+      "mean_actual_goal_mse": 0.157444,
+      "mean_optimism": 0.003959,
+      "ci95": [
+        -0.010166,
+        0.016547
+      ]
+    },
+    "k=3": {
+      "mean_predicted_goal_mse": 0.136149,
+      "mean_actual_goal_mse": 0.143503,
+      "mean_optimism": 0.007354,
+      "ci95": [
+        -0.001768,
+        0.017008
+      ]
+    },
+    "k=4": {
+      "mean_predicted_goal_mse": 0.133391,
+      "mean_actual_goal_mse": 0.149672,
+      "mean_optimism": 0.016281,
+      "ci95": [
+        0.002247,
+        0.028879
+      ]
+    },
+    "k=5": {
+      "mean_predicted_goal_mse": 0.086187,
+      "mean_actual_goal_mse": 0.099713,
+      "mean_optimism": 0.013526,
+      "ci95": [
+        0.000345,
+        0.025866
+      ]
+    },
+    "k=6": {
+      "mean_predicted_goal_mse": 0.073421,
+      "mean_actual_goal_mse": 0.071161,
+      "mean_optimism": -0.00226,
+      "ci95": [
+        -0.014492,
+        0.009093
+      ]
+    }
+  },
+  "q3_horizon_conditioned_bands": {
+    "alpha_0.1": {
+      "pooled": {
+        "coverage": 0.9,
+        "mean_bound": 0.066455
+      },
+      "per_horizon": {
+        "coverage": 0.9333,
+        "mean_bound": 0.14266
+      },
+      "mean_bound_reduction_pct": -114.67
+    },
+    "alpha_0.2": {
+      "pooled": {
+        "coverage": 0.8,
+        "mean_bound": 0.052124
+      },
+      "per_horizon": {
+        "coverage": 0.8111,
+        "mean_bound": 0.058245
+      },
+      "mean_bound_reduction_pct": -11.74
+    }
+  },
+  "q4_conditional_coverage": {
+    "alpha_0.1": {
+      "coverage_success": 0.9762,
+      "coverage_failure": 0.8958,
+      "n_success": 42,
+      "n_failure": 48
+    },
+    "alpha_0.2": {
+      "coverage_success": 0.881,
+      "coverage_failure": 0.75,
+      "n_success": 42,
+      "n_failure": 48
+    }
+  },
+  "kill_criteria_triggered": true,
+  "kill_criteria_mechanism": "per-stratum n=14; conformal level at alpha=0.10 degenerates to ceil(15*0.9)/14 = 1.0 (sample max)",
+  "do_not_do": [
+    "horizon-conditioned conformal bands",
+    "horizon as uncertainty conditioning variable",
+    "mean-based error curves at n=15"
+  ],
+  "usable_now": [
+    "pooled marginal conformal band only",
+    "median-based robust error statistics"
+  ],
+  "consecutive_negative_results_on_uncertainty_proxy": [
+    "KW-EXP-0003 elite spread",
+    "KW-EXP-0004 no native variance",
+    "KW-EXP-0005 horizon conditioning"
+  ],
+  "next_step": "KW-EXP-0006 candidate: test physically-grounded contact/proximity signal (near_object/obj_goal_dist/obj_lift) as error predictor",
+  "evidence_level": "E1",
+  "limitations": [
+    "single seed/checkpoint/task",
+    "n=15 per horizon stratum",
+    "strong within-episode correlation across the 6 horizon points",
+    "mean/median ratio up to 2.43 so medians are authoritative"
+  ],
+  "post_hoc_correction": {
+    "date": "2026-09-02",
+    "overturned_claims": [
+      "error curve is non-monotonic (artifact of 3 outlier points)",
+      "error structure is episode-specific heavy tail (ICC=0, no episode effect)"
+    ],
+    "icc_analysis": {
+      "MS_between": 0.002204,
+      "MS_within": 0.002247,
+      "sigma2_between": 0.0,
+      "icc": 0.0,
+      "F": 0.981,
+      "df": [
+        14,
+        75
+      ],
+      "interpretation": "no between-episode variance component"
+    },
+    "within_episode_autocorr": {
+      "corr_k1_k2": 0.1516,
+      "corr_k1_k4": -0.0958,
+      "corr_k1_k6": -0.231
+    },
+    "spike_analysis": {
+      "spike_threshold": "4x median (0.03372)",
+      "n_spikes": 3,
+      "n_points": 90,
+      "spikes": [
+        {
+          "episode": "ep_4",
+          "k": 1,
+          "mse": 0.38512
+        },
+        {
+          "episode": "ep_10",
+          "k": 4,
+          "mse": 0.2269
+        },
+        {
+          "episode": "ep_8",
+          "k": 4,
+          "mse": 0.16986
+        }
+      ],
+      "skew": 5.11,
+      "kurtosis": 33.95,
+      "quantiles": {
+        "p50": 0.03372,
+        "p90": 0.0649,
+        "p99": 0.2443
+      },
+      "mean_by_k_excluding_spikes": {
+        "1": 0.02951,
+        "2": 0.02608,
+        "3": 0.03634,
+        "4": 0.04315,
+        "5": 0.03977,
+        "6": 0.04337
+      },
+      "growth_k1_to_k6": 1.47
+    },
+    "revised_conclusions": {
+      "unchanged": [
+        "Q3 horizon-conditioned calibration kill",
+        "Q4 conditional coverage"
+      ],
+      "corrected": [
+        "Q1 non-monotonicity",
+        "Q1b episode-specific attribution"
+      ],
+      "corrected_statement": "error grows mildly (~1.5x from k=1 to k=6) and the heavy tail comes from 3 sparse point-level spikes, not episode-level degradation"
+    },
+    "design_implication": "structure is neither episode-level nor horizon-level; the only untested candidate is point-level physical interaction -> KW-EXP-0006"
+  }
+}

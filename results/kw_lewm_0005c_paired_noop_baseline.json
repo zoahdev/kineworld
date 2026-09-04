@@ -1,0 +1,363 @@
+{
+  "experiment_id": "KW-LEWM-0005c-PAIRED-NOOP-BASELINE",
+  "analysis_type": "post_hoc_reanalysis_of_existing_logs",
+  "pre_registered": false,
+  "hypotheses_fixed_before_computation": true,
+  "evidence_level": "E1",
+  "gpu_used": false,
+  "sources": {
+    "jepa": "results\\kw_lewm_0005_jepa_same_platform.json",
+    "lewm": "results\\kw_lewm_0004_dataset_tasks_p50.json"
+  },
+  "pairing": {
+    "identical_task_keys": true,
+    "identical_start": true,
+    "identical_goal": true,
+    "n_tasks": 50
+  },
+  "criterion_validation": {
+    "source": "stable_worldmodel/envs/pusht/env.py::eval_state",
+    "predicate": "||goal[:4]-cur[:4]|| < 20 AND min(|dtheta|,2pi-|dtheta|) < pi/9",
+    "note": "state[:4] = [agent_x, agent_y, block_x, block_y] -> agent and block share one 20px budget",
+    "agreement_with_logged_success": 1.0,
+    "n_trials_checked": 100,
+    "n_mismatch": 0,
+    "mismatches": [],
+    "valid": true,
+    "superseded_earlier_blockonly_version_agreement": 0.81
+  },
+  "task_difficulty_audit": {
+    "n_solved_at_start": 0,
+    "frac_solved_at_start": 0.0,
+    "pos_gap_start_quartiles": [
+      54.52309710898574,
+      104.16141673419229,
+      132.3686224834076,
+      197.12043748371866,
+      366.20509363427976
+    ],
+    "agent_gap_start_quartiles": [
+      29.873259615148413,
+      89.69455508948852,
+      123.31392336197398,
+      160.14600137894058,
+      366.2050015489758
+    ],
+    "block_gap_start_quartiles": [
+      0.0,
+      5.745253943578154,
+      21.88631842843544,
+      69.60892246490945,
+      171.92153836316848
+    ],
+    "ang_gap_start_quartiles": [
+      0.0,
+      0.0534885972738266,
+      0.2102794647216797,
+      0.8418193012475967,
+      2.045069221650259
+    ]
+  },
+  "success_rates": {
+    "overall": {
+      "n": 50,
+      "lewm": {
+        "p": 0.36,
+        "lo": 0.24138749649462618,
+        "hi": 0.4985898312714214,
+        "k": 18,
+        "n": 50
+      },
+      "jepa": {
+        "p": 0.02,
+        "lo": 0.003539259270481737,
+        "hi": 0.10495443592739594,
+        "k": 1,
+        "n": 50
+      },
+      "noop": {
+        "p": 0.0,
+        "lo": 0.0,
+        "hi": 0.0713475991644559,
+        "k": 0,
+        "n": 50
+      }
+    },
+    "stratum_solved_at_start": {
+      "n": 0,
+      "lewm": {
+        "p": NaN,
+        "lo": NaN,
+        "hi": NaN,
+        "k": 0,
+        "n": 0
+      },
+      "jepa": {
+        "p": NaN,
+        "lo": NaN,
+        "hi": NaN,
+        "k": 0,
+        "n": 0
+      },
+      "noop": {
+        "p": NaN,
+        "lo": NaN,
+        "hi": NaN,
+        "k": 0,
+        "n": 0
+      }
+    },
+    "stratum_needs_work": {
+      "n": 50,
+      "lewm": {
+        "p": 0.36,
+        "lo": 0.24138749649462618,
+        "hi": 0.4985898312714214,
+        "k": 18,
+        "n": 50
+      },
+      "jepa": {
+        "p": 0.02,
+        "lo": 0.003539259270481737,
+        "hi": 0.10495443592739594,
+        "k": 1,
+        "n": 50
+      },
+      "noop": {
+        "p": 0.0,
+        "lo": 0.0,
+        "hi": 0.0713475991644559,
+        "k": 0,
+        "n": 50
+      }
+    }
+  },
+  "paired_tests_exact_mcnemar": {
+    "lewm_vs_noop": {
+      "a_only": 18,
+      "b_only": 0,
+      "n_discordant": 18,
+      "p_exact_two_sided": 7.62939453125e-06
+    },
+    "jepa_vs_noop": {
+      "a_only": 1,
+      "b_only": 0,
+      "n_discordant": 1,
+      "p_exact_two_sided": 1.0
+    },
+    "lewm_vs_jepa": {
+      "a_only": 17,
+      "b_only": 0,
+      "n_discordant": 17,
+      "p_exact_two_sided": 1.52587890625e-05
+    }
+  },
+  "harm_analysis": {
+    "n_solved_at_start": 0,
+    "lewm_broke": 0,
+    "jepa_broke": 0
+  },
+  "failure_term_attribution": {
+    "jepa": {
+      "n_fail": 49,
+      "agent_position": 0.8571428571428571,
+      "block_position": 0.14285714285714285,
+      "block_angle": 0.0,
+      "agent_gap_final_median": 182.26756483791286,
+      "block_gap_final_median": 56.96204110036497,
+      "ang_gap_final_median": 0.39629712961528185
+    },
+    "lewm": {
+      "n_fail": 32,
+      "agent_position": 0.59375,
+      "block_position": 0.375,
+      "block_angle": 0.03125,
+      "agent_gap_final_median": 55.5175472420468,
+      "block_gap_final_median": 27.493223212043656,
+      "ang_gap_final_median": 0.2104320300500448
+    }
+  },
+  "paired_progress_needs_work_stratum": {
+    "agent_progress": {
+      "lewm": {
+        "mean": 93.36936205109596,
+        "median": 75.84682797713633,
+        "lo": 71.08957893177134,
+        "hi": 116.7701778380637,
+        "n": 50
+      },
+      "jepa": {
+        "mean": -39.55676464430035,
+        "median": -36.15338003732608,
+        "lo": -63.79357120327463,
+        "hi": -15.71396483041126,
+        "n": 50
+      },
+      "paired_diff_lewm_minus_jepa": {
+        "mean": 132.92612669539633,
+        "median": 118.90505978632173,
+        "lo": 108.2584119203229,
+        "hi": 157.88168527273692,
+        "n": 50
+      }
+    },
+    "block_progress": {
+      "lewm": {
+        "mean": 10.235970731116527,
+        "median": 1.513416299799683,
+        "lo": -4.588564466438755,
+        "hi": 24.70678974407075,
+        "n": 50
+      },
+      "jepa": {
+        "mean": -19.012493562583217,
+        "median": -0.9734012882218244,
+        "lo": -33.535894881461466,
+        "hi": -5.187393273684895,
+        "n": 50
+      },
+      "paired_diff_lewm_minus_jepa": {
+        "mean": 29.24846429369974,
+        "median": 15.649435994556056,
+        "lo": 11.523523222150958,
+        "hi": 47.11792818231668,
+        "n": 50
+      }
+    },
+    "ang_progress": {
+      "lewm": {
+        "mean": 0.16392389405840568,
+        "median": 0.008359240360872822,
+        "lo": 0.02353156736078138,
+        "hi": 0.31629252188043466,
+        "n": 50
+      },
+      "jepa": {
+        "mean": -0.0884269563867149,
+        "median": -0.005123631754847147,
+        "lo": -0.16507508705586119,
+        "hi": -0.013241985637423149,
+        "n": 50
+      },
+      "paired_diff_lewm_minus_jepa": {
+        "mean": 0.25235085044512057,
+        "median": 0.18911691627572513,
+        "lo": 0.11330424790458707,
+        "hi": 0.39782897552461066,
+        "n": 50
+      }
+    },
+    "pos_progress": {
+      "lewm": {
+        "mean": 93.40486039390714,
+        "median": 80.29710718390476,
+        "lo": 69.13574373377527,
+        "hi": 118.49054852966428,
+        "n": 50
+      },
+      "jepa": {
+        "mean": -45.38119477222868,
+        "median": -48.81605547920264,
+        "lo": -68.54821410094289,
+        "hi": -21.529231853864875,
+        "n": 50
+      },
+      "paired_diff_lewm_minus_jepa": {
+        "mean": 138.78605516613584,
+        "median": 138.42759414053847,
+        "lo": 115.46825991275266,
+        "hi": 162.2659558535721,
+        "n": 50
+      }
+    },
+    "block_disp": {
+      "lewm": {
+        "mean": 51.55731353414603,
+        "median": 31.536647346831945,
+        "lo": 36.950723798870044,
+        "hi": 67.56797794594881,
+        "n": 50
+      },
+      "jepa": {
+        "mean": 52.09657862409276,
+        "median": 27.26957317046108,
+        "lo": 36.4429087196702,
+        "hi": 69.21324518363137,
+        "n": 50
+      },
+      "paired_diff_lewm_minus_jepa": {
+        "mean": -0.5392650899467105,
+        "median": 3.5520526384353364,
+        "lo": -21.01375146885711,
+        "hi": 20.022803535615413,
+        "n": 50
+      }
+    },
+    "agent_disp": {
+      "lewm": {
+        "mean": 145.4725470806533,
+        "median": 131.28464700184236,
+        "lo": 126.14894931235084,
+        "hi": 166.08634536135446,
+        "n": 50
+      },
+      "jepa": {
+        "mean": 147.18410986431982,
+        "median": 132.3961422548931,
+        "lo": 129.6665087459527,
+        "hi": 164.8080982968884,
+        "n": 50
+      },
+      "paired_diff_lewm_minus_jepa": {
+        "mean": -1.711562783666503,
+        "median": -10.828864264443993,
+        "lo": -25.15302647091604,
+        "hi": 22.671012213314075,
+        "n": 50
+      }
+    }
+  },
+  "counterfactual_block_only_criterion": {
+    "criterion": "block position <20 AND angle <pi/9 (agent term dropped)",
+    "jepa": {
+      "p": 0.16,
+      "lo": 0.08337420676765053,
+      "hi": 0.2851421606641795,
+      "k": 8,
+      "n": 50
+    },
+    "lewm": {
+      "p": 0.6,
+      "lo": 0.46181437744413967,
+      "hi": 0.723916102722969,
+      "k": 30,
+      "n": 50
+    },
+    "noop": {
+      "p": 0.32,
+      "lo": 0.20758216258458134,
+      "hi": 0.45810297311462284,
+      "k": 16,
+      "n": 50
+    },
+    "mcnemar_lewm_vs_jepa": {
+      "a_only": 25,
+      "b_only": 3,
+      "n_discordant": 28,
+      "p_exact_two_sided": 2.744048833847046e-05
+    },
+    "mcnemar_jepa_vs_noop": {
+      "a_only": 0,
+      "b_only": 8,
+      "n_discordant": 8,
+      "p_exact_two_sided": 0.0078125
+    }
+  },
+  "verdict": "H1_BASELINE_INFLATION_REJECTED; H2_JEPA_WORSE_THAN_NOOP_REJECTED; H3_AGENT_NAV_DOMINATES_SUPPORTED; H4_OBJECT_MANIP_ALSO_BROKEN_SUPPORTED",
+  "caveats": [
+    "No-op baseline is ANALYTIC (final state == start state); it was not executed. Valid because Push-T is quasi-static and a zero-action agent has negligible drift, but residual agent velocity at t=0 is ignored.",
+    "Post-hoc re-analysis of data collected for a different question; hypotheses were fixed in the header before computation. Evidence stays E1.",
+    "Strata use the model-independent task property solved_at_start, so both models see identical strata.",
+    "The block-only counterfactual is a diagnostic decomposition, NOT an alternative benchmark; it is not comparable to any published number."
+  ]
+}

@@ -1,0 +1,53 @@
+# ============================================================
+# KineWorld .gitignore
+# 原则：只提交「可引用、可再生、体积小」的工件。
+#       大体积数据与二进制一律不入库（可重新下载 / 重新生成）。
+# ============================================================
+
+# --- Python 环境 ---
+.venv310/
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- 本机工具二进制（uv 等）---
+tools/
+
+# --- 大体积数据 / 模型权重（可重新下载）---
+data/
+checkpoints/
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.ckpt
+
+# --- 原始运行日志（可再生；证据取 results/*.json 派生工件）---
+results/runs/
+results/failures/
+results/phase0_jepa_wm_pusht/
+results/jepa_logs/
+results/smoke_eval*.log
+*.lock
+*.err
+wandb/
+outputs/
+
+# --- vendored 第三方代码：只保留 patch（verification/patches/）---
+external/
+
+# --- 公司 / 融资 / 外联材料：含融资需求、股权口径、外联目标名单，一律不入库 ---
+company/
+
+# --- 本机工程目录 ---
+.workbuddy/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini

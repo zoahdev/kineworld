@@ -1,0 +1,241 @@
+{
+  "experiment": "KW-EXP-0006",
+  "tag_dir": "pt_L2_cem_sourcedset_H6_nas6_ctxt2_ep96_physint",
+  "n_points": 576,
+  "n_episodes": 96,
+  "spike_threshold": 0.111509,
+  "global_median": 0.027877,
+  "n_spikes": 18,
+  "spike_rate": 0.0312,
+  "q1_horizon_curve": {
+    "k=1": {
+      "n": 96,
+      "mean": 0.036993,
+      "median": 0.02165,
+      "ci95": [
+        0.026496,
+        0.050942
+      ],
+      "n_excl_spikes": 92,
+      "mean_excl_spikes": 0.02553,
+      "median_excl_spikes": 0.019878
+    },
+    "k=2": {
+      "n": 96,
+      "mean": 0.030144,
+      "median": 0.025892,
+      "ci95": [
+        0.025875,
+        0.035376
+      ],
+      "n_excl_spikes": 94,
+      "mean_excl_spikes": 0.027489,
+      "median_excl_spikes": 0.025385
+    },
+    "k=3": {
+      "n": 96,
+      "mean": 0.037179,
+      "median": 0.027165,
+      "ci95": [
+        0.030825,
+        0.044725
+      ],
+      "n_excl_spikes": 92,
+      "mean_excl_spikes": 0.030672,
+      "median_excl_spikes": 0.0261
+    },
+    "k=4": {
+      "n": 96,
+      "mean": 0.038664,
+      "median": 0.030384,
+      "ci95": [
+        0.032409,
+        0.046078
+      ],
+      "n_excl_spikes": 92,
+      "mean_excl_spikes": 0.032313,
+      "median_excl_spikes": 0.029473
+    },
+    "k=5": {
+      "n": 96,
+      "mean": 0.038715,
+      "median": 0.033236,
+      "ci95": [
+        0.032988,
+        0.047534
+      ],
+      "n_excl_spikes": 95,
+      "mean_excl_spikes": 0.035006,
+      "median_excl_spikes": 0.033224
+    },
+    "k=6": {
+      "n": 96,
+      "mean": 0.044408,
+      "median": 0.033745,
+      "ci95": [
+        0.036735,
+        0.054728
+      ],
+      "n_excl_spikes": 93,
+      "mean_excl_spikes": 0.037789,
+      "median_excl_spikes": 0.032622
+    }
+  },
+  "q2_spike_vs_physical": {
+    "obj_disp": {
+      "n_used": 480,
+      "threshold_p75": 7.707447,
+      "high_group": {
+        "n": 120,
+        "spikes": 9,
+        "rate": 0.075
+      },
+      "low_group": {
+        "n": 360,
+        "spikes": 5,
+        "rate": 0.0139
+      },
+      "fisher_p": 0.001844,
+      "note": "obj_disp/obj_angle_delta are null at k=1 by construction"
+    },
+    "agent_obj_dist": {
+      "n_used": 576,
+      "threshold_p75": 118.795738,
+      "high_group": {
+        "n": 144,
+        "spikes": 1,
+        "rate": 0.0069
+      },
+      "low_group": {
+        "n": 432,
+        "spikes": 17,
+        "rate": 0.0394
+      },
+      "fisher_p": 0.055036,
+      "note": "obj_disp/obj_angle_delta are null at k=1 by construction"
+    },
+    "agent_speed": {
+      "n_used": 576,
+      "threshold_p75": 114.501604,
+      "high_group": {
+        "n": 144,
+        "spikes": 7,
+        "rate": 0.0486
+      },
+      "low_group": {
+        "n": 432,
+        "spikes": 11,
+        "rate": 0.0255
+      },
+      "fisher_p": 0.172738,
+      "note": "obj_disp/obj_angle_delta are null at k=1 by construction"
+    }
+  },
+  "q3_physical_bands": {
+    "alpha_0.1": {
+      "pooled": {
+        "obj_disp": {
+          "coverage": 0.9036,
+          "mean_bound": 0.066815,
+          "n_scored": 249
+        },
+        "agent_obj_dist": {
+          "coverage": 0.8993,
+          "mean_bound": 0.059893,
+          "n_scored": 576
+        },
+        "agent_speed": {
+          "coverage": 0.8993,
+          "mean_bound": 0.059893,
+          "n_scored": 576
+        }
+      },
+      "physical": {
+        "obj_disp": {
+          "coverage": 0.9036,
+          "mean_bound": 1.484498,
+          "n_scored": 249,
+          "bound_ratio_vs_pooled": 22.218
+        },
+        "agent_obj_dist": {
+          "coverage": 0.8976,
+          "mean_bound": 0.100772,
+          "n_scored": 576,
+          "bound_ratio_vs_pooled": 1.6825
+        },
+        "agent_speed": {
+          "coverage": 0.901,
+          "mean_bound": 0.121752,
+          "n_scored": 576,
+          "bound_ratio_vs_pooled": 2.0328
+        }
+      }
+    },
+    "alpha_0.2": {
+      "pooled": {
+        "obj_disp": {
+          "coverage": 0.8032,
+          "mean_bound": 0.052112,
+          "n_scored": 249
+        },
+        "agent_obj_dist": {
+          "coverage": 0.8003,
+          "mean_bound": 0.045226,
+          "n_scored": 576
+        },
+        "agent_speed": {
+          "coverage": 0.8003,
+          "mean_bound": 0.045226,
+          "n_scored": 576
+        }
+      },
+      "physical": {
+        "obj_disp": {
+          "coverage": 0.8032,
+          "mean_bound": 0.423159,
+          "n_scored": 249,
+          "bound_ratio_vs_pooled": 8.1202
+        },
+        "agent_obj_dist": {
+          "coverage": 0.7986,
+          "mean_bound": 0.059562,
+          "n_scored": 576,
+          "bound_ratio_vs_pooled": 1.317
+        },
+        "agent_speed": {
+          "coverage": 0.8003,
+          "mean_bound": 0.074244,
+          "n_scored": 576,
+          "bound_ratio_vs_pooled": 1.6416
+        }
+      }
+    }
+  },
+  "q4_horizon_bands": {
+    "alpha_0.1": {
+      "pooled": {
+        "coverage": 0.8993,
+        "mean_bound": 0.059893
+      },
+      "per_horizon": {
+        "coverage": 0.9097,
+        "mean_bound": 0.060244
+      },
+      "bound_ratio_perh_vs_pooled": 1.0059,
+      "n_scored": 576
+    },
+    "alpha_0.2": {
+      "pooled": {
+        "coverage": 0.8003,
+        "mean_bound": 0.045226
+      },
+      "per_horizon": {
+        "coverage": 0.8021,
+        "mean_bound": 0.046729
+      },
+      "bound_ratio_perh_vs_pooled": 1.0332,
+      "n_scored": 576
+    }
+  },
+  "scipy_available": true
+}

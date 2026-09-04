@@ -1,0 +1,31 @@
+{
+  "artifact_id": "KW-LEWM-RUNTIME-LICENSE-AUDIT",
+  "status": "YELLOW_DIRECT_DEPENDENCIES_INSPECTED_FULL_CLOSURE_PENDING",
+  "created_at": "2026-09-02T11:43:30+08:00",
+  "environment": {
+    "stable-worldmodel": "0.1.1",
+    "stable-pretraining": "0.1.8",
+    "pip_check": "PASS_NO_BROKEN_REQUIREMENTS"
+  },
+  "artifact": {
+    "path": "verification/artifacts/KW-LEWM-RUNTIME_LICENSE_AUDIT.md",
+    "sha256": "1bcf77a9f51f9e31c19bdc1947332e90a4b4c5e50095cae2d67d0baa525112d2"
+  },
+  "decision": {
+    "internal_reproduction": "ALLOW",
+    "commercial_clearance_claim": "BLOCK",
+    "commercial_packaging": "BLOCK_PENDING_FULL_TRANSITIVE_AND_ASSET_AUDIT"
+  },
+  "limitations": [
+    "Direct dependency metadata only; not a full transitive license scan.",
+    "Bundled native libraries and notice obligations are not fully enumerated.",
+    "Checkpoint, dataset, benchmark, media, and font terms require separate verification.",
+    "This is engineering evidence, not legal advice."
+  ],
+  "runtime_effect": {
+    "packages_installed_by_audit": false,
+    "gpu_used_by_audit": false,
+    "data_downloaded_by_audit": false,
+    "workbuddy_experiment_script_modified": false
+  }
+}
