@@ -14,3 +14,6 @@
 *.jpg  binary
 *.pdf  binary
 *.zip  binary
+
+# Windows 批处理必须保持 CRLF，否则 cmd 解析可能出错（双击启动入口）
+*.bat   text eol=crlf

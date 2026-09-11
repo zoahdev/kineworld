@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Destiny 原型 v0.1 · 小空间布局与动线检查</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">Destiny</span>
+    <span class="tag">原型 v0.1 · 小空间布局与动线检查</span>
+  </div>
+  <div class="disclaimer">
+    <strong>请先看这一行：</strong>本工具是<strong>规则计算的原型</strong>，不是 AI 生成，也不调用任何外部模型；
+    尺寸采用公开常用<strong>建议值</strong>，房间模板是<strong>示例估算值</strong>，请按实际测量修改；
+    结论不构成专业设计或施工依据。所有数据只保存在你自己的浏览器里，不会上传。
+  </div>
+</header>
+
+<main class="layout">
+  <section class="left">
+    <div class="toolbar">
+      <label>房间模板
+        <select id="tplSelect"></select>
+      </label>
+      <label>宽(cm)<input id="roomW" type="number" min="150" max="1200" step="5"></label>
+      <label>高(cm)<input id="roomH" type="number" min="150" max="1200" step="5"></label>
+      <label>添加
+        <select id="addSelect"></select>
+      </label>
+      <button id="btnAdd" class="primary">放进去</button>
+      <button id="btnRotate">旋转 90°</button>
+      <button id="btnDelete">删除选中</button>
+      <button id="btnUndo">撤销</button>
+      <button id="btnReset">恢复模板</button>
+    </div>
+
+    <div class="toolbar second">
+      <label>通行标准
+        <select id="corridorStd">
+          <option value="60">60cm：仅够一人通过（行业经验值，非标准）</option>
+          <option value="90">90cm：接近《住宅设计规范》对套内过道的最低要求</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="chkZones" checked> 显示使用空间</label>
+      <label><input type="checkbox" id="chkHeat"> 显示通行宽度热力图</label>
+      <label><input type="checkbox" id="chkGrid" checked> 显示网格</label>
+      <button id="btnSocket">添加插座（点击地面放置）</button>
+      <button id="btnExport">导出 PNG</button>
+      <button id="btnSave">保存到本机</button>
+      <button id="btnLoad">读取上次</button>
+    </div>
+
+    <div class="toolbar third">
+      <span class="group-label">选中家具后：</span>
+      <button id="btnDup">复制一份</button>
+      <button id="btnAlignL">贴左墙</button>
+      <button id="btnAlignR">贴右墙</button>
+      <button id="btnAlignT">贴上墙</button>
+      <button id="btnAlignB">贴下墙</button>
+      <button id="btnCenter">居中</button>
+      <button id="btnResetSize">恢复默认尺寸</button>
+      <button id="btnClear">清空所有家具</button>
+      <button id="btnCopy">复制结论文本</button>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="scene"></canvas>
+      <div id="selInfo" class="hint"></div>
+      <div id="hint" class="hint">家具、门、窗都可以直接用鼠标拖着走；选中家具后拖四个角或四条边上的方块可改尺寸；拖门/窗两端的方块可改宽度（把门拖到别的墙会自动换墙）；双击门可换个方向开。</div>
+    </div>
+
+    <div class="openings">
+      <fieldset>
+        <legend>房门</legend>
+        <label>墙<select id="doorWall"><option value="top">上</option><option value="bottom">下</option><option value="left">左</option><option value="right">右</option></select></label>
+        <label>距起点(cm)<input id="doorOffset" type="number" step="5" min="0"></label>
+        <label>宽(cm)<input id="doorWidth" type="number" step="5" min="60" max="120"></label>
+        <label>铰链<select id="doorHinge"><option value="start">靠起点</option><option value="end">靠终点</option></select></label>
+      </fieldset>
+      <fieldset>
+        <legend>窗户</legend>
+        <label>墙<select id="winWall"><option value="top">上</option><option value="bottom">下</option><option value="left">左</option><option value="right">右</option></select></label>
+        <label>距起点(cm)<input id="winOffset" type="number" step="5" min="0"></label>
+        <label>宽(cm)<input id="winWidth" type="number" step="10" min="0"></label>
+      </fieldset>
+    </div>
+  </section>
+
+  <aside class="right">
+    <div id="verdict" class="verdict">正在计算…</div>
+    <div class="panel-title">问题清单<small id="issueCount"></small></div>
+    <ul id="issueList" class="issues"></ul>
+    <div class="panel-title">通道实测（沿当前最短路估算）</div>
+    <ul id="bottleneckList" class="bottlenecks"></ul>
+    <div class="panel-title">图例</div>
+    <ul class="legend">
+      <li><span class="sw wall"></span>墙 / 门（扇形=门扇开启范围）</li>
+      <li><span class="sw item"></span>家具（虚线框=它需要的使用空间）</li>
+      <li><span class="sw red"></span>错误：放不下或走不通</li>
+      <li><span class="sw amber"></span>提示：能用但不舒服</li>
+    </ul>
+    <div class="note">
+      热力图含义：红 = 低于当前选定的通行标准，黄 = 达到标准但不足 90cm，绿 = ≥ 90cm。
+      注意：60cm 是"一个人勉强能过"的经验值，不是国家标准；《住宅设计规范》GB 50096-2011 对套内过道的要求是 0.90–1.20m，指的是固定过道，不是家具之间的空隙，两者不能混用。
+      完整来源与许可证记录见 <a href="../notes/sources.md" target="_blank" rel="noopener">notes/sources.md</a>。
+      计算网格为 5cm，结果有约 ±5cm 误差。
+    </div>
+  </aside>
+</main>
+
+<script src="catalog.js"></script>
+<script src="rules.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
