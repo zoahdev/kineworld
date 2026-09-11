@@ -1,0 +1,307 @@
+{
+  "experiment_id": "KW-MOON-0001",
+  "evidence_level": "E1_INTERNAL_NO_THIRD_PARTY_VALIDATION",
+  "model_class": "ANALYTIC_WORLD_MODEL_NOT_LEARNED",
+  "pre_registration": "verification/experiments/KW-MOON-0001.md",
+  "dem_source": {
+    "lola_path": "C:\\Users\\zoah\\WorkBuddy\\2026-09-10-20-32-52\\kw-moon\\data\\lola\\ldem_16.img",
+    "lola_present": false,
+    "lola_bytes": null
+  },
+  "rover_params": {
+    "mass_kg": 140.0,
+    "mu": 0.6,
+    "crr": 0.1,
+    "p_max_w": 30.0,
+    "t_wheel_nm": 12.0,
+    "n_wheels": 6,
+    "r_wheel_m": 0.15,
+    "eta": 0.7,
+    "p_avionics_w": 12.0,
+    "p_solar_w": 60.0,
+    "battery_wh": 600.0,
+    "v_ref": 0.05
+  },
+  "limits": {
+    "theta_traction_deg": 26.56505117707799,
+    "theta_torque_deg": null,
+    "theta_power_at_v_ref_deg": null,
+    "theta_limit_deg": 26.56505117707799,
+    "binding_constraint": "traction"
+  },
+  "checks": {
+    "K1": {
+      "passed": true,
+      "subchecks": {
+        "theta_traction_vs_mu": {
+          "params": [
+            0.2,
+            0.4,
+            0.6,
+            0.8,
+            1.0
+          ],
+          "values_deg": [
+            5.710593137499643,
+            16.699244233993625,
+            26.56505117707799,
+            34.99202019855867,
+            41.98721249581666
+          ],
+          "ok": true,
+          "why": "严格递增"
+        },
+        "theta_torque_vs_mass": {
+          "params": [
+            100.0,
+            140.0,
+            180.0,
+            220.0,
+            260.0
+          ],
+          "values_deg": [
+            41.77136683252269,
+            26.056979605363,
+            18.461600686534734,
+            13.863729998620371,
+            10.757800265225521
+          ],
+          "ok": true,
+          "why": "严格递减"
+        },
+        "theta_torque_vs_t_wheel": {
+          "params": [
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "values_deg": [
+            4.396672447669828,
+            14.83686674745732,
+            26.056979605363,
+            38.874378770194745,
+            55.626615198457934
+          ],
+          "ok": true,
+          "why": "严格递增"
+        },
+        "theta_power_vs_p_max": {
+          "params": [
+            10.0,
+            20.0,
+            30.0,
+            40.0,
+            50.0
+          ],
+          "values_deg": [
+            3.122414538390896,
+            12.174573236933481,
+            21.719457543885767,
+            32.184708219784035,
+            44.443965464762314
+          ],
+          "ok": true,
+          "why": "严格递增"
+        },
+        "theta_power_vs_mass": {
+          "params": [
+            100.0,
+            140.0,
+            180.0,
+            220.0,
+            260.0
+          ],
+          "values_deg": [
+            34.44994754443601,
+            21.719457543885767,
+            15.2849473260998,
+            11.336084431161327,
+            8.651592443203143
+          ],
+          "ok": true,
+          "why": "严格递减"
+        },
+        "theta_power_vs_v": {
+          "params": [
+            0.1,
+            0.15,
+            0.2,
+            0.3,
+            0.5
+          ],
+          "values_deg": [
+            61.41081458384735,
+            32.184708219784035,
+            21.719457543885767,
+            12.174573236933481,
+            4.907757008490937
+          ],
+          "ok": true,
+          "why": "严格递减"
+        }
+      }
+    },
+    "K2": {
+      "passed": true,
+      "worst_abs_deviation_rad": 0.0,
+      "tol": 1e-12,
+      "cases": [
+        {
+          "mass_kg": 140.0,
+          "t_wheel_nm": 12.0,
+          "p_max_w": 30.0,
+          "v": 0.05,
+          "component_deg": [
+            26.56505117707799,
+            null,
+            null
+          ],
+          "theta_limit_deg": 26.56505117707799,
+          "abs_deviation_rad": 0.0,
+          "n_finite_components": 1
+        },
+        {
+          "mass_kg": 140.0,
+          "t_wheel_nm": 3.0,
+          "p_max_w": 30.0,
+          "v": 0.05,
+          "component_deg": [
+            26.56505117707799,
+            26.056979605363,
+            null
+          ],
+          "theta_limit_deg": 26.056979605363,
+          "abs_deviation_rad": 0.0,
+          "n_finite_components": 2
+        },
+        {
+          "mass_kg": 260.0,
+          "t_wheel_nm": 2.0,
+          "p_max_w": 10.0,
+          "v": 0.2,
+          "component_deg": [
+            26.56505117707799,
+            5.183308129623557,
+            -0.9677613752623608
+          ],
+          "theta_limit_deg": -0.9677613752623608,
+          "abs_deviation_rad": 0.0,
+          "n_finite_components": 3
+        },
+        {
+          "mass_kg": 100.0,
+          "t_wheel_nm": 1.0,
+          "p_max_w": 50.0,
+          "v": 0.5,
+          "component_deg": [
+            26.56505117707799,
+            8.51191442002151,
+            19.754069433996804
+          ],
+          "theta_limit_deg": 8.51191442002151,
+          "abs_deviation_rad": 0.0,
+          "n_finite_components": 3
+        }
+      ]
+    },
+    "K3": {
+      "passed": true,
+      "worst_rel_error": 2.220446049250313e-16,
+      "tol": 1e-09,
+      "cases": [
+        {
+          "mass_kg": 140.0,
+          "p_max_w": 30.0,
+          "v": 0.2,
+          "theta_power_deg": 21.719457543885767,
+          "required_power_w": 30.000000000000004,
+          "rel_error": 2.220446049250313e-16
+        },
+        {
+          "mass_kg": 140.0,
+          "p_max_w": 20.0,
+          "v": 0.15,
+          "theta_power_deg": 18.461600686534734,
+          "required_power_w": 20.000000000000004,
+          "rel_error": 2.220446049250313e-16
+        },
+        {
+          "mass_kg": 260.0,
+          "p_max_w": 50.0,
+          "v": 0.3,
+          "theta_power_deg": 10.28788107700324,
+          "required_power_w": 50.0,
+          "rel_error": 0.0
+        },
+        {
+          "mass_kg": 100.0,
+          "p_max_w": 10.0,
+          "v": 0.1,
+          "theta_power_deg": 19.754069433996808,
+          "required_power_w": 10.0,
+          "rel_error": 0.0
+        },
+        {
+          "mass_kg": 200.0,
+          "p_max_w": 40.0,
+          "v": 0.5,
+          "theta_power_deg": 4.192468301295022,
+          "required_power_w": 40.00000000000001,
+          "rel_error": 2.220446049250313e-16
+        }
+      ]
+    },
+    "K4": {
+      "passed": true,
+      "sun_elev_deg": 89.61243771648405,
+      "distance_expect_m": 3.0,
+      "distance_got_m": 3.0,
+      "slip_ratio": 0.0,
+      "e_traction_expect_J": 97.19999999999999,
+      "e_traction_got_J": 97.20000000000005,
+      "rel_error": 6.661338147750939e-16,
+      "tol": 1e-09,
+      "flat_ground_zero_slip_ok": true
+    },
+    "K5": {
+      "passed": true,
+      "theta_limit_deg": 26.56505117707799,
+      "steep_slope_deg": 32.29462912838623,
+      "gentle_slope_deg": 20.835473225769753,
+      "steep_blocked": true,
+      "steep_reason": "slope_exceeds_limit",
+      "steep_displacement_m": 0.0,
+      "gentle_blocked": false,
+      "gentle_distance_m": 2.538632830537427
+    },
+    "K6": {
+      "passed": true,
+      "termination": "battery_depleted",
+      "initial_wh": 1e-06,
+      "final_wh": 0.0,
+      "n_steps": 1,
+      "sun_elevation_deg": -90.0,
+      "test_instance_corrected": true,
+      "correction_note": "首版实例置于日照区导致由构造不可能通过；改为无日照实例，判据未改"
+    },
+    "K7": {
+      "passed": true,
+      "sha256_run1": "e0300a10996d344ac3f0ec7a248fc2bb64535f632b862ced239b46fc9ec218ac",
+      "sha256_run2": "e0300a10996d344ac3f0ec7a248fc2bb64535f632b862ced239b46fc9ec218ac",
+      "identical": true,
+      "random_scenarios": 200,
+      "scenarios_with_nan_or_inf": 0,
+      "seed": 20260911
+    }
+  },
+  "verdict": "PASS",
+  "n_checks": 7,
+  "n_passed": 7,
+  "tolerances": {
+    "K2_rad": 1e-12,
+    "K3_rel": 1e-09,
+    "K4_rel": 1e-09
+  }
+}

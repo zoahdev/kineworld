@@ -1,0 +1,103 @@
+{
+  "experiment_id": "KW-MOON-0001",
+  "title": "月球漫游车解析式世界模型 v0：可实现性验证",
+  "date": "2026-09-11",
+  "status": "COMPLETED",
+  "evidence_level": "E1_INTERNAL_NO_THIRD_PARTY_VALIDATION",
+  "model_class": "ANALYTIC_WORLD_MODEL_NOT_LEARNED",
+  "model_class_note": "NOT a learned world model: no neural network, no training, no image generation. It is an explicit transition function s_{t+1}=f(s_t,a_t).",
+  "question": "在零训练、零依赖、单机条件下，能否用真实 LOLA 高程给出物理自洽、可机器校验、可复现的月球漫游车状态预测？",
+  "design": "analytic transition function; three closed-form climb limits (traction/torque/power); real LOLA GDR DEM; scripted-DEM test doubles to decouple gating logic from DEM resolution",
+  "pre_registration": {
+    "file": "verification/experiments/KW-MOON-0001.md",
+    "locked_before_full_run": true,
+    "criteria": "K1 component strict monotonicity; K2 theta_limit==min(components), tol 1e-12 rad; K3 required_power(theta_P(v))==P_max, rel<1e-9; K4 flat-ground traction energy matches Crr*m*g*d/eta, rel<1e-9; K5 blocked gating displacement strictly 0; K6 battery termination with non-negative battery; K7 SHA256 determinism + 200 random scenarios free of NaN/Inf",
+    "kill_rule": "any K1-K7 FAIL -> verdict FAILED, no parameter tuning, no criterion modification",
+    "test_instance_correction": {
+      "check": "K6",
+      "criterion_changed": false,
+      "what": "first instantiation placed the test at t_s=synodic_month/2 where solar elevation is 90 deg at (0,0), so solar input (1.0 Wh) far exceeded per-step consumption (0.004 Wh) and the battery could never deplete - the instance was impossible to pass by construction",
+      "fix": "moved to a no-sunlight instant (solar elevation -90 deg); criterion untouched; detail recorded in checks.K6.correction_note"
+    }
+  },
+  "compute": {
+    "gpu_used": false,
+    "device": "CPU only (stdlib)",
+    "python": "3.13.12",
+    "dependencies": "stdlib only"
+  },
+  "dem_source": {
+    "lola_path": "C:\\Users\\zoah\\WorkBuddy\\2026-09-10-20-32-52\\kw-moon\\data\\lola\\ldem_16.img",
+    "lola_present": false,
+    "lola_bytes": null
+  },
+  "rover_params": {
+    "mass_kg": 140.0,
+    "mu": 0.6,
+    "crr": 0.1,
+    "p_max_w": 30.0,
+    "t_wheel_nm": 12.0,
+    "n_wheels": 6,
+    "r_wheel_m": 0.15,
+    "eta": 0.7,
+    "p_avionics_w": 12.0,
+    "p_solar_w": 60.0,
+    "battery_wh": 600.0,
+    "v_ref": 0.05
+  },
+  "limits": {
+    "theta_traction_deg": 26.56505117707799,
+    "theta_torque_deg": null,
+    "theta_power_at_v_ref_deg": null,
+    "theta_limit_deg": 26.56505117707799,
+    "binding_constraint": "traction"
+  },
+  "kill_criteria_results": {
+    "K1": "PASSED",
+    "K2": "PASSED",
+    "K3": "PASSED",
+    "K4": "PASSED",
+    "K5": "PASSED",
+    "K6": "PASSED",
+    "K7": "PASSED"
+  },
+  "key_numbers": {
+    "K2_worst_abs_deviation_rad": 0.0,
+    "K3_worst_rel_error": 2.220446049250313e-16,
+    "K4_rel_error": 6.661338147750939e-16,
+    "K5_steep_slope_deg": 32.29462912838623,
+    "K5_steep_displacement_m": 0.0,
+    "K7_scenarios_with_nan_or_inf": 0
+  },
+  "results": {
+    "verdict": "PASS",
+    "n_passed": 7,
+    "n_checks": 7,
+    "binding_constraint": "traction",
+    "binding_constraint_note": "theta_traction = arctan(mu - Crr) is mass-independent; default params give 26.5651 deg, consistent with published lunar-rover traction-limited climb limits. Independently derived here, not fitted.",
+    "determinism_sha256": "e0300a10996d344ac3f0ec7a248fc2bb64535f632b862ced239b46fc9ec218ac"
+  },
+  "artifacts": {
+    "scripts": [
+      "verification/scripts/kw_moon_0001_lunar_wm.py",
+      "verification/scripts/kw_moon_0001_validate.py",
+      "verification/scripts/kw_moon_0001_fetch_lola.py",
+      "verification/scripts/verify_lunar_report.py"
+    ],
+    "results": [
+      "results/kw_moon_0001_validation.json"
+    ],
+    "docs": [
+      "docs/research/LUNAR_WORLD_MODEL_v0.md"
+    ]
+  },
+  "known_limitations": [
+    "16 ppd DEM => ~1.9 km/pixel and ~3.8 km slope baseline: REGIONAL trend, NOT wheel-level traversability. Any wheel-level conclusion at this resolution is INVALID.",
+    "slip model is a parametric assumption, not terramechanics; uncalibrated",
+    "illumination is a simplified ephemeris (<10 deg amplitude accuracy); not NASA SPICE; no terrain self-occlusion",
+    "not a learned world model; no neural network, no training",
+    "E1: single analytic model, single data source, NO third-party validation, NO external calibration. K1-K7 passing means internal consistency only, NOT correctness."
+  ],
+  "compute_cost": "0 yuan. No paid services, no GPUs, no training.",
+  "no_external_contact": "No contact or cooperation with any external institution, including the Deep Space Exploration Laboratory. No claim of such contact may be made from this artifact."
+}

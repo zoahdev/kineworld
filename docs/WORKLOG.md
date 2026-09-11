@@ -2,6 +2,22 @@
 
 > Append-only 工作日志。每个工作日一条，新条目加在顶部。目的：任何后续代理（Codex 等）接手时能快速了解"做过什么、结论是什么、坑在哪"。战略与规则见 `docs/KINEWORLD_CONSTITUTION.md` 与根 `AGENTS.md`；全部 claim 的单一事实来源是 `company/EVIDENCE_LEDGER.md`。
 
+## 2026-09-11 — KW-MOON-0001 月球解析世界模型 v0（7/7 PASS，E1）
+
+**目标**：回答「能否做出严谨的月球世界模型」。结论先行：**能，但只能是解析（已知动力学）世界模型，不可能是学习型世界模型**——后者缺的是「动作→结果」因果对（人类历史仅 4 台月球车，玉兔二号累计行程约 1.6 km），不是算力或架构问题。
+
+- **定位**：`s_{t+1}=f(s_t,a_t)` 全部由闭式物理给出，**不训练、不含任何学习参数**。manifest 记 `model_class = ANALYTIC_WORLD_MODEL_NOT_LEARNED`，防止外部读者误读为学习型。
+- **三条独立爬坡上限（闭式）**：牵引 `θ_t=arctan(μ−Crr)`（**与质量无关**）、力矩 `θ_T=arcsin(A_T/R)−φ`、功率 `θ_P(v)=arcsin(A_P/R)−φ`，其中 `R=√(1+Crr²)`、`φ=arctan(Crr)`。本次参数下 `θ_limit=26.5651°`，**绑定约束为牵引**（与公开月球车爬坡量级一致）。
+- **地形**：主路径 NASA PDS LOLA GDR `ldem_16.img`（16 ppd，不提交进库，`data/` 排除，由 `kw_moon_0001_fetch_lola.py` 按需拉取）；无网络回落合成陨石坑场（标记 `units=synthetic`）。
+- **判据 K1–K7（先预注册后运行）**：K1 六个分量严格单调性；K2 `θ_limit=min(分量)`（tol 1e-12，实测偏差 0.0）；K3 功率闭式自洽（相对误差 2.2e-16）；K4 平地牵引能耗 `Crr·m·g·d/η`（相对误差 6.7e-16）；K5 超限门控位移严格为 0；K6 电池耗尽后非负终止；K7 SHA256 确定性 + 200 随机场景无 NaN/Inf。**7/7 PASS**。
+- **纠错**：K6 首版构造错误——测试点取在 t_s=朔望月/2，此时点 (0,0) 太阳高度角 90°，单步充电 1.0 Wh ≫ 单步耗电 0.004 Wh，电池**在构造上不可能耗尽**。按纪律「靠读源码而非调阈值」，**判据未改**，只把测试实例移到 t_s=0（太阳高度角 −90°，无日照）。修正写入 `checks.K6.correction_note` 与报告 §4。
+- **诚实边界**：本次 K1–K7 是在 `ldem_16.img` **未就位**（`dem_source.lola_present=false`）的情况下产出的——K1–K4 是闭式解析自洽校验（与 DEM 完全无关），K5–K7 用测试替身 `ScriptedDEM`（坡度/方位直接给定）把门控逻辑与 DEM 分辨率解耦。**没有任何一条判据依赖真实 LOLA 高程**，报告不含任何由真实月面高程推出的结论。`RoverParams` 全部是设计假设，未经任何车辆实测标定（本仓库没有车辆数据）。
+- **致命限制（写在报告最前）**：16 ppd ⇒ 约 1.9 km/像素、坡度基线约 3.8 km，属**区域趋势**，**不能**据此得出轮级可通行性结论。本模型只能回答「给定坡度场下爬坡/能耗/门控是否自洽」，不能回答「某处能不能开过去」。
+- **基线对照（只取语料，不抄代码）**：cynthium 为 GPL-3.0，**零代码复用以避免传染**，仅取公式与参数量级；artemis_mission_simulator 为 Apache-2.0；MarsGen（NeurIPS 2025）是火星学习型世界模型且**未开源**。（参考实现不构成任何 vendored 依赖。）
+- **产出文件**：`verification/experiments/KW-MOON-0001.md`（预注册）、`verification/scripts/kw_moon_0001_lunar_wm.py`（纯标准库实现）、`verification/scripts/kw_moon_0001_validate.py`、`verification/scripts/kw_moon_0001_fetch_lola.py`、`verification/scripts/verify_lunar_report.py`、`results/kw_moon_0001_validation.json`、`verification/manifests/KW-MOON-0001_manifest.json`、`docs/research/LUNAR_WORLD_MODEL_v0.md`。
+- **数字校验**：报告 24 项数字全部经 `verify_lunar_report.py --check` 机器比对通过（0 fail）。
+- **证据等级 E1**；零算力成本（纯 CPU、纯标准库，不下载任何权重）；**无任何外部联系**——未与深空探测实验室或任何机构接触，manifest 已声明 `no_external_contact`。
+
 ---
 
 ## 2026-09-04 — 仓库 git 化并公开发布
