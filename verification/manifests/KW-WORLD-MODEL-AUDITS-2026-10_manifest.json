@@ -1,0 +1,170 @@
+{
+  "release_id": "KW-WORLD-MODEL-AUDITS-2026-10",
+  "version": "1.0",
+  "date": "2026-10-02",
+  "author": "潘奕成 (Yicheng Pan)",
+  "publication_type": "technical_reports",
+  "peer_reviewed": false,
+  "novelty_established": false,
+  "repository": "https://github.com/zoahdev/kineworld",
+  "base_commit": "5afcaac85582c0bc101eab337c44be370b893208",
+  "canonical_study_manifests": [
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/theory/manifest.json",
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/manifest.json"
+  ],
+  "verification": {
+    "theory_exact_recompute_matches": true,
+    "contact_unit_tests_passed": 12,
+    "contact_report_regeneration_matches": true,
+    "contact_complete_replay_matches": true,
+    "pdf_pages": {
+      "theory": 7,
+      "contact": 7
+    },
+    "all_pdf_pages_visually_inspected": true,
+    "contact_pdf_numeric_tokens_preserved": true,
+    "relative_links_checked": true,
+    "external_expert_review": false,
+    "external_replication": false
+  },
+  "source_boundary": "New studies use cited public literature and their own synthetic constructions only; no private data, checkpoints, company records, or unpublished code are included.",
+  "rendering": {
+    "script": "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/render_pdfs.py",
+    "source_of_record": "Markdown reports",
+    "contact_table_layout": "Wide tables split by columns, all cells preserved",
+    "pdf_byte_reproducibility": "Tool versions and timestamps may change output bytes"
+  },
+  "files": {
+    "README.md": {
+      "sha256": "6a78dae85a2e736b08e22ebc94a5ce74391ec10390a75169d9cfcd3cd73d2bfc",
+      "bytes": 6501,
+      "git_blob_sha": "0742cd6401d2bfee0b2bca35b2deb62249667f39"
+    },
+    "docs/WORKLOG.md": {
+      "sha256": "bfba0a2b70457a381bc28867bb98183c731ca889772fecf6269d61d524a2493b",
+      "bytes": 7504,
+      "git_blob_sha": "a422341b25961c5ce4e4e6b2f6d2c3cfc4e11ad5"
+    },
+    "docs/research/world-model-audits-2026-10/README.md": {
+      "sha256": "13c6a58fe5734b97831436648d6c840a077070b8ae6096465b401244ad5e7759",
+      "bytes": 3747,
+      "git_blob_sha": "9d3d753bb26dc59172ce5b8f70ce8e5a7cab0e15"
+    },
+    "verification/experiments/KW-CAUSAL-AUDIT-0001.md": {
+      "sha256": "f0308093bd8f9473e957b8475f7945be898bcaab475adff9666f0f2d1740f6a8",
+      "bytes": 715,
+      "git_blob_sha": "6b4c8f55005cbfcd7b01261b190483073f79bc00"
+    },
+    "verification/experiments/KW-CONTACT-0001.md": {
+      "sha256": "66247a877fbb2f7f886db33e134b2f5fb7a42002f986a237dd12a3d7f1680911",
+      "bytes": 727,
+      "git_blob_sha": "906eb238be499a78fe08d1d67807276f131666c1"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/README.md": {
+      "sha256": "629228d45a8fbc74d7dce9bf272bad6aa25f2a0dd27c01a950ab324195771914",
+      "bytes": 1757,
+      "git_blob_sha": "d5cbd3c18d1747280bba3046e6b9abe401230082"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/README.md": {
+      "sha256": "1a9909aeeac5b10e65e9033927ca607675ad3a047ee38c907ddaf0abace9613d",
+      "bytes": 2024,
+      "git_blob_sha": "99090e351c05ee2624b96eee0ec3caeda65e6404"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/REPORT.md": {
+      "sha256": "075c1c0a62b46778c946984709c3100678444ab9daeefa3e173a09db46a6d560",
+      "bytes": 16105,
+      "git_blob_sha": "e47750460b15c72eaa6abc1cb0fa5672afa461e9"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/REPORT.pdf": {
+      "sha256": "e64e8c7ddc3fd73c1aafe52d26cddee960d3f385c9261ef33eafa213024a2f20",
+      "bytes": 51813,
+      "git_blob_sha": "42d4a7ddd5e7441b794c7bdd56b4d4f5613ce2fc"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/make_report.py": {
+      "sha256": "54485cc18b6c70b23adf987e760b0a82daf330dec320d557cd979c19b7a2d454",
+      "bytes": 4073,
+      "git_blob_sha": "d163811759814e964ccdf31cce25d9018acbad0e"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/manifest.json": {
+      "sha256": "100c72c16b51cc9684490c6ea913ec2ee3089d77e05e0f57024c4beb542f6402",
+      "bytes": 5345,
+      "git_blob_sha": "462e17ed7ff69738bd4c9897f8627d9d6803a982"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/protocol.md": {
+      "sha256": "7e77b21cb26e7d9faf38c93e92ff7cc72ce48bcca6cd958ca30ff51eeb8d5784",
+      "bytes": 3539,
+      "git_blob_sha": "92bfd4e32f0b884ab502884919818ed75f15b234"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/report_template.md": {
+      "sha256": "40ad3df003ec646a5e5a672c71ff4c34f1a8a4e7583a135e8ee964f618aa46a3",
+      "bytes": 12817,
+      "git_blob_sha": "e94d7fe5adce3a9928f3a152db342c19c222f619"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/requirements.txt": {
+      "sha256": "9065205926ce1cf97720f58b6ebdb76ef8f82a2669b18d861baf627f1a3e086d",
+      "bytes": 68,
+      "git_blob_sha": "462ed821cc0137b75c72ad53a86f7f7b9b7433b6"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/results.json": {
+      "sha256": "d2995bfaaceeaf17acb049e55b6f2a566ace10fdd8cc6d6fe36d17a8e462dee7",
+      "bytes": 90472,
+      "git_blob_sha": "8cdf2e1dd766abc563244a37475a2c51111a31fb"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/run.py": {
+      "sha256": "e5338d12383c86794d4a2e9737622799a98481aa1cde490d30512a7cf331f211",
+      "bytes": 7673,
+      "git_blob_sha": "38cb88c534140c66cfb7207b60451b23217ef294"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/test_study.py": {
+      "sha256": "46b5f3dfc59291666e6a944fdd0e7a7acce7dcf9d11ee1237381c34daa9d8800",
+      "bytes": 3696,
+      "git_blob_sha": "f0a1c9cdf4c7c2ec4d65320fdc780ea45395e366"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/verification.log": {
+      "sha256": "a4daa1ad743602274b8ba3920c728270a009ce9c8b0a6e589c22a98362f8891b",
+      "bytes": 1391,
+      "git_blob_sha": "9536ab0a5326f62178f6e8abbf0de3672bcd705c"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/verify.py": {
+      "sha256": "0b35e54ebe8eec316e7ab164043a4c8b646945872b0213c2e857216d6d027b22",
+      "bytes": 914,
+      "git_blob_sha": "3a45a24df901ebe6ce4ed7ce084048cc477a1004"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/render_pdfs.py": {
+      "sha256": "f7ef47f5de788fcffe27bd9593569a3a9038694e7c384da48df1af63ad8ad315",
+      "bytes": 3684,
+      "git_blob_sha": "d5d01811e9d92955f41f9911c3c41fbe04f2a90f"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/theory/exact_results.json": {
+      "sha256": "ebca610b2d8f2790b99446e5f2078833d1e58f313b69d5153e3f48cd8c4fff34",
+      "bytes": 7097,
+      "git_blob_sha": "8925c30c0ccc86b7e1fe892cd4b704dac7c8c670"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/theory/manifest.json": {
+      "sha256": "dbc64577161ee9d1926926456182126ba47956eb686074ac37ee2a02b5153ab1",
+      "bytes": 4034,
+      "git_blob_sha": "b9549a2e2163534474f6e1beb1e4cdc5158ff8f6"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/theory/report.md": {
+      "sha256": "62baa89bce2aa6106103821e0d07448350de0dcf2bd2fb094e0eb6dc3be8ce08",
+      "bytes": 20276,
+      "git_blob_sha": "dd9e372423fc835513f1c8849989286b0adc9029"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/theory/report.pdf": {
+      "sha256": "76e5c1da7ee02844484e80220b2e2ce1049a740df52a87272e441968f31912d8",
+      "bytes": 65274,
+      "git_blob_sha": "32798d09ecff302c2d247cf124ce9d8465fc8528"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/theory/verification_plan.md": {
+      "sha256": "c66bbde9f9644e6b2330e2d4071371290b43c8b651b61811acee83c59ee0f6a1",
+      "bytes": 3592,
+      "git_blob_sha": "81c251b40197ff5de408b992e0fa536287feebff"
+    },
+    "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/theory/verify_causal_audit.py": {
+      "sha256": "44dafc208ed2a91b7eed6aebe7cd5b11b570c39da820bfd6daebf7cf8d78c3ea",
+      "bytes": 11826,
+      "git_blob_sha": "b4e31ce485f428d995ef0df5c7ded0aae48c4aef"
+    }
+  },
+  "manifest_hash_note": "This manifest lists every changed file other than itself; the Git commit fixes its own bytes."
+}

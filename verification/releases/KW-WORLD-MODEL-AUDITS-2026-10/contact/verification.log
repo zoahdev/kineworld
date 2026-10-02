@@ -1,0 +1,20 @@
+test_boundary_equality_has_no_reflection (test_study.StudyTests.test_boundary_equality_has_no_reflection) ... ok
+test_ci_requires_replicates_and_finite (test_study.StudyTests.test_ci_requires_replicates_and_finite) ... ok
+test_dataset_replay_and_disjoint_seed_ranges (test_study.StudyTests.test_dataset_replay_and_disjoint_seed_ranges) ... ok
+test_free_motion (test_study.StudyTests.test_free_motion) ... ok
+test_hybrid_identifies_correct_family (test_study.StudyTests.test_hybrid_identifies_correct_family) ... ok
+test_left_contact (test_study.StudyTests.test_left_contact) ... ok
+test_oracle_hybrid_k1_and_nonnegative_regret (test_study.StudyTests.test_oracle_hybrid_k1_and_nonnegative_regret) ... ok
+test_reflection_symmetry (test_study.StudyTests.test_reflection_symmetry) ... ok
+test_results_finite_and_key_uniqueness (test_study.StudyTests.test_results_finite_and_key_uniqueness) ... ok
+test_right_contact (test_study.StudyTests.test_right_contact) ... ok
+test_stored_aggregates (test_study.StudyTests.test_stored_aggregates) ... ok
+test_weighted_contact_decomposition (test_study.StudyTests.test_weighted_contact_decomposition) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.027s
+
+OK
+PASS report byte-for-byte generation
+PASS exact complete ten-seed replay; rows/summary/paired/selection/versions identical
+PASS verification complete

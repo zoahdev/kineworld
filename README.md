@@ -6,7 +6,10 @@ the official Push-T checkpoints of two world models (Meta's `facebookresearch/je
 LeWM's `stable-worldmodel` release), with an emphasis on **confound auditing and honest
 failure analysis** rather than leaderboard claims.
 
-No training is involved at this stage. Everything here is diagnostic and statistical.
+The original Push-T checkpoint studies involve no training. A separate
+[October 2026 audit collection](docs/research/world-model-audits-2026-10/README.md)
+adds exact finite-model analysis and CPU-only synthetic experiments with small learned
+baselines; it has its own scope and limitations.
 
 ```bash
 git clone https://github.com/zoahdev/kineworld.git
@@ -20,12 +23,12 @@ numbers are checked against.
 
 ## Evidence boundary (read this first)
 
-- All results are **E1**: exploratory statistics, single seed, single checkpoint per model,
+- The original Push-T results are **E1**: exploratory statistics, single seed, single checkpoint per model,
   single task suite (Push-T). Nothing here is a reproduction of an official benchmark, and
   nothing here has been validated by a third party.
 - This is a **single-person project**. There are no co-authors, no customers, no external
-  replications, and no expert endorsements. All claims are traceable to the archived result
-  JSONs under `results/`; the internal evidence ledger (which also records what has *not*
+  replications, and no expert endorsements. The original Push-T claims are traceable to the archived result
+  JSONs under `results/`; the exact and synthetic audit notes have separate, linked evidence; the internal evidence ledger (which also records what has *not*
   happened) is available on request.
 - Passing any check below on your machine proves **internal consistency of this repo's
   artifacts**. It does **not** constitute third-party validation. Only a signed, independent
@@ -118,3 +121,4 @@ controls) are in [`docs/research/METHODOLOGY_CONFOUNDS_v1.md`](docs/research/MET
   internally-consistent* research.
 - Negative results are registered with the same care as positive ones; if you find a
   discrepancy, `company/EVIDENCE_LEDGER.md` is where it should be reconciled against.
+

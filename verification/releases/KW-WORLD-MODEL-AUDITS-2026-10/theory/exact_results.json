@@ -1,0 +1,220 @@
+{
+  "adaptive_design_checks": {
+    "action_counts": "2 through 8 inclusive",
+    "budgets": "0 through twice the action count inclusive",
+    "method": "exact Bellman minimization over all actions with reward-table-derived posterior transitions",
+    "support_budget_pairs_checked": 7599
+  },
+  "arithmetic": "exact integers and fractions.Fraction",
+  "audit_cases": [
+    {
+      "actions": 2,
+      "audit_queries": 0,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 1,
+      "exact_ambiguity_probability": "1",
+      "exact_expected_regret": "1/4",
+      "hidden_sequences_per_world": 1,
+      "queries_per_action": 0
+    },
+    {
+      "actions": 2,
+      "audit_queries": 2,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 7,
+      "exact_ambiguity_probability": "1/4",
+      "exact_expected_regret": "1/16",
+      "hidden_sequences_per_world": 4,
+      "queries_per_action": 1
+    },
+    {
+      "actions": 2,
+      "audit_queries": 4,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 31,
+      "exact_ambiguity_probability": "1/16",
+      "exact_expected_regret": "1/64",
+      "hidden_sequences_per_world": 16,
+      "queries_per_action": 2
+    },
+    {
+      "actions": 2,
+      "audit_queries": 6,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 127,
+      "exact_ambiguity_probability": "1/64",
+      "exact_expected_regret": "1/256",
+      "hidden_sequences_per_world": 64,
+      "queries_per_action": 3
+    },
+    {
+      "actions": 2,
+      "audit_queries": 8,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 511,
+      "exact_ambiguity_probability": "1/256",
+      "exact_expected_regret": "1/1024",
+      "hidden_sequences_per_world": 256,
+      "queries_per_action": 4
+    },
+    {
+      "actions": 3,
+      "audit_queries": 0,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 1,
+      "exact_ambiguity_probability": "1",
+      "exact_expected_regret": "4/9",
+      "hidden_sequences_per_world": 1,
+      "queries_per_action": 0
+    },
+    {
+      "actions": 3,
+      "audit_queries": 3,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 19,
+      "exact_ambiguity_probability": "5/27",
+      "exact_expected_regret": "16/243",
+      "hidden_sequences_per_world": 27,
+      "queries_per_action": 1
+    },
+    {
+      "actions": 3,
+      "audit_queries": 6,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 181,
+      "exact_ambiguity_probability": "17/729",
+      "exact_expected_regret": "52/6561",
+      "hidden_sequences_per_world": 729,
+      "queries_per_action": 2
+    },
+    {
+      "actions": 3,
+      "audit_queries": 9,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 1513,
+      "exact_ambiguity_probability": "53/19683",
+      "exact_expected_regret": "160/177147",
+      "hidden_sequences_per_world": 19683,
+      "queries_per_action": 3
+    },
+    {
+      "actions": 4,
+      "audit_queries": 0,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 1,
+      "exact_ambiguity_probability": "1",
+      "exact_expected_regret": "9/16",
+      "hidden_sequences_per_world": 1,
+      "queries_per_action": 0
+    },
+    {
+      "actions": 4,
+      "audit_queries": 4,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 47,
+      "exact_ambiguity_probability": "37/256",
+      "exact_expected_regret": "243/4096",
+      "hidden_sequences_per_world": 256,
+      "queries_per_action": 1
+    },
+    {
+      "actions": 4,
+      "audit_queries": 8,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 943,
+      "exact_ambiguity_probability": "721/65536",
+      "exact_expected_regret": "4419/1048576",
+      "hidden_sequences_per_world": 65536,
+      "queries_per_action": 2
+    },
+    {
+      "actions": 5,
+      "audit_queries": 0,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 1,
+      "exact_ambiguity_probability": "1",
+      "exact_expected_regret": "16/25",
+      "hidden_sequences_per_world": 1,
+      "queries_per_action": 0
+    },
+    {
+      "actions": 5,
+      "audit_queries": 5,
+      "direct_hidden_enumeration": true,
+      "distinct_observation_transcripts": 111,
+      "exact_ambiguity_probability": "369/3125",
+      "exact_expected_regret": "4096/78125",
+      "hidden_sequences_per_world": 3125,
+      "queries_per_action": 1
+    },
+    {
+      "actions": 2,
+      "audit_queries": 10,
+      "direct_hidden_enumeration": false,
+      "distinct_observation_transcripts": 2047,
+      "exact_ambiguity_probability": "1/1024",
+      "exact_expected_regret": "1/4096",
+      "hidden_sequences_per_world": 1024,
+      "queries_per_action": 5
+    },
+    {
+      "actions": 3,
+      "audit_queries": 12,
+      "direct_hidden_enumeration": false,
+      "distinct_observation_transcripts": 12241,
+      "exact_ambiguity_probability": "161/531441",
+      "exact_expected_regret": "484/4782969",
+      "hidden_sequences_per_world": 531441,
+      "queries_per_action": 4
+    },
+    {
+      "actions": 4,
+      "audit_queries": 12,
+      "direct_hidden_enumeration": false,
+      "distinct_observation_transcripts": 16031,
+      "exact_ambiguity_probability": "12097/16777216",
+      "exact_expected_regret": "72963/268435456",
+      "hidden_sequences_per_world": 16777216,
+      "queries_per_action": 3
+    },
+    {
+      "actions": 5,
+      "audit_queries": 10,
+      "direct_hidden_enumeration": false,
+      "distinct_observation_transcripts": 4621,
+      "exact_ambiguity_probability": "58849/9765625",
+      "exact_expected_regret": "600496/244140625",
+      "hidden_sequences_per_world": 9765625,
+      "queries_per_action": 2
+    },
+    {
+      "actions": 6,
+      "audit_queries": 6,
+      "direct_hidden_enumeration": false,
+      "distinct_observation_transcripts": 255,
+      "exact_ambiguity_probability": "4651/46656",
+      "exact_expected_regret": "78125/1679616",
+      "hidden_sequences_per_world": 46656,
+      "queries_per_action": 1
+    },
+    {
+      "actions": 6,
+      "audit_queries": 12,
+      "direct_hidden_enumeration": false,
+      "distinct_observation_transcripts": 21799,
+      "exact_ambiguity_probability": "7944301/2176782336",
+      "exact_expected_regret": "121401725/78364164096",
+      "hidden_sequences_per_world": 2176782336,
+      "queries_per_action": 2
+    }
+  ],
+  "audit_configurations_checked": 20,
+  "direct_hidden_sequences_checked_across_worlds": 340804,
+  "interpretation": "Finite checks corroborate the written proofs; they do not prove the all-m, all-n, or all-budget theorems or establish novelty.",
+  "logged_law_and_value_action_sizes": "2 through 32 inclusive",
+  "policy_grid_cases": 1199,
+  "schema_version": 1,
+  "scope": "synthetic finite one-step family; no trained world model or real-world experiment",
+  "status": "PASS",
+  "value_table_entries_checked": 11439
+}

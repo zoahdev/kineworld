@@ -4,6 +4,12 @@
 
 ---
 
+## 2026-10-02 — Standalone world-model audit technical reports
+
+- Added the [October audit collection](research/world-model-audits-2026-10/README.md): an exact finite-model identifiability analysis and a reproducible CPU-only synthetic contact-dynamics study.
+- Both reports state the assumptions, limits, relationship to prior work, and AI assistance. The finite construction is confined to its specified known family and independent-reset assumption, covering both balanced and optimal adaptive audits. The synthetic study does not establish ordinary one-step MSE/mean executed-cost ranking reversal or degradation from larger candidate budgets.
+- Public packages include protocols or verification plans, source code, machine-readable outputs, and manifests. They are technical reports without external peer review; the existing Push-T E1 conclusions are unchanged.
+
 ## 2026-09-04 — 仓库 git 化并公开发布
 
 **目标**：解锁 30 天验证门第 4 条与 outreach 的前置条件「复现包公开可下载」。
@@ -61,3 +67,4 @@ LeWM lite 复现线闭环（0001L→0004，18/50=0.36，E1）；0005c 配对行�
 ## 2026-09-01 ~ 09-02 — 摘要
 
 jepa-wms 评测线搭通：官方 checkpoint 严格加载、埋点补丁（存 `verification/patches/`，base `13cf1d9`）、KW-EXP-0001~0006（不确定性代理四候选全否定：CEM elite_loss_std / 模型原生方差 / rollout horizon / 物理交互 obj_disp 显著但不可部署）。统计教训（重尾禁均值、ICC 方差分解、S-无关判据）沉淀入记忆。详见 `company/EVIDENCE_LEDGER.md`。
+

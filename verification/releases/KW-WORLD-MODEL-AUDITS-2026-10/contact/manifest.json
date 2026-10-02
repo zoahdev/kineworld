@@ -1,0 +1,218 @@
+{
+  "experiment_id": "KW-CONTACT-0001",
+  "title": "Contact conditional error and planning performance in a synthetic world model",
+  "date": "2026-10-02",
+  "author": "潘奕成 (Yicheng Pan)",
+  "status": "reproducibility_diagnostic_technical_note",
+  "evidence_level": "limited_synthetic_E1",
+  "claims": {
+    "novel_method": false,
+    "solves_open_problem": false,
+    "peer_reviewed": false,
+    "external_replication": false,
+    "negative_expected_findings_preserved": true,
+    "structural_baseline_privileged": true,
+    "oracle_is_same_finite_candidate_pool": true
+  },
+  "protocol": {
+    "file": "protocol.md",
+    "local_prespecification_before_first_run": true,
+    "third_party_registration": false,
+    "changes_after_run": [
+      "Unexecuted event-balanced probe disclosed; report uses ordinary-test contact strata only",
+      "Known wall bounds and correct hybrid structure explicitly disclosed",
+      "Reject seed counts below two, nonfinite summaries, and nonstandard JSON",
+      "Routing-only output filename metadata sanitized to portable basename"
+    ],
+    "experiment_parameters_changed_after_test_inspection": false
+  },
+  "splits": {
+    "training": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009
+    ],
+    "test": [
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009
+    ],
+    "planning": [
+      3000,
+      3001,
+      3002,
+      3003,
+      3004,
+      3005,
+      3006,
+      3007,
+      3008,
+      3009
+    ],
+    "validation": [
+      4000,
+      4001,
+      4002,
+      4003,
+      4004,
+      4005,
+      4006,
+      4007,
+      4008,
+      4009
+    ]
+  },
+  "sample_counts": {
+    "train_per_seed": 6000,
+    "validation_per_seed": 2000,
+    "test_per_seed": 20000,
+    "planning_episodes_per_seed": 128,
+    "training_contact_counts_by_seed": {
+      "1000": 173,
+      "1001": 148,
+      "1002": 143,
+      "1003": 168,
+      "1004": 142,
+      "1005": 144,
+      "1006": 152,
+      "1007": 132,
+      "1008": 140,
+      "1009": 175
+    },
+    "test_contact_counts_by_seed": {
+      "1000": 513,
+      "1001": 547,
+      "1002": 565,
+      "1003": 511,
+      "1004": 536,
+      "1005": 481,
+      "1006": 508,
+      "1007": 495,
+      "1008": 489,
+      "1009": 525
+    }
+  },
+  "planning": {
+    "mode": "open_loop",
+    "horizon": 8,
+    "candidate_budgets": [
+      1,
+      16,
+      256
+    ],
+    "nested_matched_candidates": true
+  },
+  "statistics": {
+    "unit": "independent training seed mean",
+    "replicates": 10,
+    "descriptive_interval": "95% Student t",
+    "posthoc_test_family_size": 6,
+    "posthoc_p_adjustment": "Bonferroni",
+    "causal_attribution": false
+  },
+  "validation": {
+    "unit_tests_passed": 12,
+    "exact_complete_replay": true,
+    "replay_equal_fields": [
+      "rows",
+      "summary",
+      "paired",
+      "selection",
+      "versions"
+    ],
+    "report_numeric_sections_generated": true,
+    "report_regeneration_check": "byte_for_byte",
+    "external_validation": false
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "sklearn": "1.8.0",
+    "scipy": "1.17.0"
+  },
+  "public_sources": [
+    "https://proceedings.mlr.press/v120/lambert20a.html",
+    "https://arxiv.org/abs/1805.12114",
+    "https://arxiv.org/abs/2606.15032v2",
+    "https://arxiv.org/abs/2510.19788v4"
+  ],
+  "public_allowlist": [
+    "README.md",
+    "REPORT.md",
+    "protocol.md",
+    "run.py",
+    "results.json",
+    "report_template.md",
+    "make_report.py",
+    "requirements.txt",
+    "test_study.py",
+    "verify.py",
+    "verification.log",
+    "manifest.json"
+  ],
+  "files": {
+    "README.md": {
+      "sha256": "1a9909aeeac5b10e65e9033927ca607675ad3a047ee38c907ddaf0abace9613d",
+      "bytes": 2024
+    },
+    "REPORT.md": {
+      "sha256": "075c1c0a62b46778c946984709c3100678444ab9daeefa3e173a09db46a6d560",
+      "bytes": 16105
+    },
+    "protocol.md": {
+      "sha256": "7e77b21cb26e7d9faf38c93e92ff7cc72ce48bcca6cd958ca30ff51eeb8d5784",
+      "bytes": 3539
+    },
+    "run.py": {
+      "sha256": "e5338d12383c86794d4a2e9737622799a98481aa1cde490d30512a7cf331f211",
+      "bytes": 7673
+    },
+    "results.json": {
+      "sha256": "d2995bfaaceeaf17acb049e55b6f2a566ace10fdd8cc6d6fe36d17a8e462dee7",
+      "bytes": 90472
+    },
+    "report_template.md": {
+      "sha256": "40ad3df003ec646a5e5a672c71ff4c34f1a8a4e7583a135e8ee964f618aa46a3",
+      "bytes": 12817
+    },
+    "make_report.py": {
+      "sha256": "54485cc18b6c70b23adf987e760b0a82daf330dec320d557cd979c19b7a2d454",
+      "bytes": 4073
+    },
+    "requirements.txt": {
+      "sha256": "9065205926ce1cf97720f58b6ebdb76ef8f82a2669b18d861baf627f1a3e086d",
+      "bytes": 68
+    },
+    "test_study.py": {
+      "sha256": "46b5f3dfc59291666e6a944fdd0e7a7acce7dcf9d11ee1237381c34daa9d8800",
+      "bytes": 3696
+    },
+    "verify.py": {
+      "sha256": "0b35e54ebe8eec316e7ab164043a4c8b646945872b0213c2e857216d6d027b22",
+      "bytes": 914
+    },
+    "verification.log": {
+      "sha256": "a4daa1ad743602274b8ba3920c728270a009ce9c8b0a6e589c22a98362f8891b",
+      "bytes": 1391
+    }
+  },
+  "privacy": {
+    "data_source": "standalone synthetic generator only",
+    "private_materials_used": false,
+    "network_calls_in_experiment": false
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "ai_assistance": "An OpenAI assistant generated initial construction, proofs, implementation, and draft prose; AI-assisted checking followed",
+  "artifact_id": "KW-CAUSAL-AUDIT-THEORY-2026-10",
+  "author": "潘奕成 (Yicheng Pan)",
+  "chronology": "The initial balanced-design derivation and checker run preceded the written plan. The release rerun used fixed criteria. The adaptive verification scope was written before its first Bellman run. No preregistered empirical discovery is claimed.",
+  "claims": [
+    {
+      "evidence": "Proposition 1 and exact reward/logged-law checks",
+      "id": "CAUSAL-1",
+      "statement": "Identical passive logs and perfect logged prediction coexist with exact minimax regret (1-1/m)^2"
+    },
+    {
+      "evidence": "Proposition 2 and exact transcript enumeration",
+      "id": "CAUSAL-2",
+      "statement": "Closed form balanced-audit minimax regret and ambiguity probability"
+    },
+    {
+      "evidence": "Proposition 3 and exact Bellman optimization",
+      "id": "CAUSAL-3",
+      "statement": "Closed form minimax regret for adaptive reset queries under a fixed budget"
+    }
+  ],
+  "date": "2026-10-02",
+  "evidence_type": "Exact synthetic mathematics and bounded exhaustive computation, not trained-model empirical evidence",
+  "files": [
+    {
+      "bytes": 20276,
+      "path": "report.md",
+      "sha256": "62baa89bce2aa6106103821e0d07448350de0dcf2bd2fb094e0eb6dc3be8ce08"
+    },
+    {
+      "bytes": 11826,
+      "path": "verify_causal_audit.py",
+      "sha256": "44dafc208ed2a91b7eed6aebe7cd5b11b570c39da820bfd6daebf7cf8d78c3ea"
+    },
+    {
+      "bytes": 7097,
+      "path": "exact_results.json",
+      "sha256": "ebca610b2d8f2790b99446e5f2078833d1e58f313b69d5153e3f48cd8c4fff34"
+    },
+    {
+      "bytes": 3592,
+      "path": "verification_plan.md",
+      "sha256": "c66bbde9f9644e6b2330e2d4071371290b43c8b651b61811acee83c59ee0f6a1"
+    }
+  ],
+  "input_provenance": "Public literature plus synthetic reward tables authored for this note. No private data or repository experiment logs were used.",
+  "public_sources": [
+    "https://arxiv.org/abs/1909.03739",
+    "https://arxiv.org/abs/2306.01157",
+    "https://arxiv.org/abs/2011.03506",
+    "https://arxiv.org/abs/2609.33030"
+  ],
+  "research_status": "Complete proofs for a specified synthetic finite family; novelty unestablished; not peer reviewed",
+  "review": "Proofs, assumptions, and checker received AI-assisted review; this is not external expert verification",
+  "schema_version": 1,
+  "scope": {
+    "adaptive_design": "b independent reset queries, actions may depend on prior query observations; minimize final deployment regret",
+    "balanced_design": "n independent reset queries per action; optimize final decision only",
+    "deployment": "One action without observing fresh U; reward range [0,1]",
+    "environment": "One step, m actions, hidden U uniform with independent resets",
+    "logging_policy": "Privileged A=U, unobserved U, identical logs across world indices",
+    "not_claimed": [
+      "General world-model identifiability",
+      "Neural-model performance",
+      "Real-world or robot experiments",
+      "Optimality outside the specified finite family",
+      "Established novelty",
+      "Peer review or external expert verification"
+    ]
+  },
+  "title": "An exact causal audit for action conditioned world models",
+  "verification": {
+    "adaptive_support_budget_pairs": 7599,
+    "balanced_audit_configurations": 20,
+    "command": "python verify_causal_audit.py --output exact_results.json --check-report report.md",
+    "dependencies": "Python standard library only",
+    "direct_hidden_sequences_across_worlds": 340804,
+    "minimum_python": "3.10",
+    "optimized_python_mode_rejected": true,
+    "policy_grid_cases": 1199,
+    "randomness": "None",
+    "report_table_exact_match": true,
+    "status": "PASS",
+    "syntax_compilation_passed": true,
+    "tampered_report_table_rejected": true,
+    "tested_python": "3.12.14",
+    "value_table_entries_checked": 11439
+  }
+}
