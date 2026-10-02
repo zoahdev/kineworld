@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "baseline": "base",
+  "candidate": "candidate",
+  "metric": {
+    "name": "synthetic_cost",
+    "direction": "lower"
+  },
+  "required_conditions": {
+    "contact": 3
+  }
+}

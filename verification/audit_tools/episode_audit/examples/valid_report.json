@@ -1,0 +1,125 @@
+{
+  "baseline": "base",
+  "candidate": "candidate",
+  "effect": {
+    "difference": "candidate_minus_baseline",
+    "episode_count": 12,
+    "episode_effects": [
+      {
+        "episode_idx": 0,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": -6.0
+      },
+      {
+        "episode_idx": 1,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": -5.0
+      },
+      {
+        "episode_idx": 2,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": -4.0
+      },
+      {
+        "episode_idx": 3,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": -3.0
+      },
+      {
+        "episode_idx": 4,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": -2.0
+      },
+      {
+        "episode_idx": 5,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": -1.0
+      },
+      {
+        "episode_idx": 6,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": 0.0
+      },
+      {
+        "episode_idx": 7,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": 1.0
+      },
+      {
+        "episode_idx": 8,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": 2.0
+      },
+      {
+        "episode_idx": 9,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": 3.0
+      },
+      {
+        "episode_idx": 10,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": 4.0
+      },
+      {
+        "episode_idx": 11,
+        "paired_task_seed_count": 2,
+        "source_id": "synthetic-demo:v1",
+        "value": 5.0
+      }
+    ],
+    "interval": {
+      "confidence": 0.95,
+      "degenerate": false,
+      "high": 2.5,
+      "low": -3.5,
+      "method": "percentile_bootstrap_over_episodes",
+      "resamples": 2000,
+      "seed": 0
+    },
+    "paired_task_seed_count": 24,
+    "positive_favors": "base",
+    "statistic": "median_of_episode_median_paired_differences",
+    "value": -0.5
+  },
+  "errors": 0,
+  "inputs_sha256": {
+    "manifest": "8b43cc96fd28b3336066814194fa78fcdbab95189484aef4e3a238c9b9cd2fb0",
+    "records": "e277dd95130eebf688507828d8c5334bedb95937dfce74fcb59e103235a630a1"
+  },
+  "issues": [],
+  "limits": [
+    "Declared metadata only: no proof of absence of leakage or episode independence.",
+    "Equal candidate counts do not establish equal compute, candidate pools, or model privileges.",
+    "Percentile interval assumes independent representative episodes; no hypothesis test or superiority claim.",
+    "Coverage is declared task coverage, not a causal, safety, robustness, or benchmark certificate."
+  ],
+  "metric": {
+    "direction": "lower",
+    "name": "synthetic_cost"
+  },
+  "required_condition_coverage": {
+    "contact": {
+      "observed_episodes": 3,
+      "required_episodes": 3
+    }
+  },
+  "runtime": {
+    "python": "3.12.14"
+  },
+  "schema_version": 1,
+  "status": "pass",
+  "tool": "kineworld_episode_audit",
+  "tool_version": "0.1.0",
+  "warnings": 0
+}

@@ -10,6 +10,13 @@
 - Both reports state the assumptions, limits, relationship to prior work, and AI assistance. The finite construction is confined to its specified known family and independent-reset assumption, covering both balanced and optimal adaptive audits. The synthetic study does not establish ordinary one-step MSE/mean executed-cost ranking reversal or degradation from larger candidate budgets.
 - Public packages include protocols or verification plans, source code, machine-readable outputs, and manifests. They are technical reports without external peer review; the existing Push-T E1 conclusions are unchanged.
 
+### Episode Audit: standalone paired-evaluation preflight
+
+- Added [Episode Audit v0.1.0](../verification/audit_tools/episode_audit/README.md), by 潘奕成 (Yicheng Pan), with substantial OpenAI-assistant design, implementation, testing, and documentation assistance.
+- Standard-library-only utility with strict JSONL inputs, declared split/content/seed checks, complete task pairing, candidate-count checks, rare-condition coverage, and episode-clustered descriptive intervals. Synthetic examples are arithmetic fixtures, not world-model performance results.
+- The component's 53 unit/CLI checks pass on Python 3.12.14. Separate automated review checked arithmetic, malformed inputs, and exact release-file hashes; this is internal automated review, not third-party human validation.
+- No private model code, recipes, or data are included. No previous research conclusions or existing license terms are changed. Published as research source with the component-specific license decision pending; no new open-source license is granted.
+
 ## 2026-09-04 — 仓库 git 化并公开发布
 
 **目标**：解锁 30 天验证门第 4 条与 outreach 的前置条件「复现包公开可下载」。

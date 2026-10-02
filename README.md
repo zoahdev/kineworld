@@ -122,3 +122,15 @@ controls) are in [`docs/research/METHODOLOGY_CONFOUNDS_v1.md`](docs/research/MET
 - Negative results are registered with the same care as positive ones; if you find a
   discrepancy, `company/EVIDENCE_LEDGER.md` is where it should be reconciled against.
 
+
+## Episode Audit: paired-evaluation preflight
+
+[Episode Audit](verification/audit_tools/episode_audit/README.md) is a standalone
+standard-library checker for declared episode provenance, exact paired task keys,
+candidate budgets, and rare-condition coverage. It includes synthetic examples
+and an episode-clustered median-difference report. A pass checks the submitted
+metadata; it does not certify no leakage or model superiority.
+
+Project author: 潘奕成 (Yicheng Pan), with substantial OpenAI-assistant
+implementation assistance. Published as research source: the component's license
+decision is pending, and public visibility does not grant an open-source license.

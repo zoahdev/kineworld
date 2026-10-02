@@ -1,0 +1,69 @@
+Episode Audit internal engineering verification
+Date: 2026-10-02
+Python 3.12.14
+$ python -m unittest -v test_audit.py
+test_bootstrap_argument_validation (test_audit.AuditTests.test_bootstrap_argument_validation) ... ok
+test_bootstrap_full_enumeration_sanity (test_audit.AuditTests.test_bootstrap_full_enumeration_sanity) ... ok
+test_bootstrap_matches_independent_reference (test_audit.AuditTests.test_bootstrap_matches_independent_reference) ... ok
+test_bootstrap_work_bound (test_audit.AuditTests.test_bootstrap_work_bound) ... ok
+test_clean_and_known_effect (test_audit.AuditTests.test_clean_and_known_effect) ... ok
+test_condition_order_irrelevant (test_audit.AuditTests.test_condition_order_irrelevant) ... ok
+test_conditions_must_be_method_independent (test_audit.AuditTests.test_conditions_must_be_method_independent) ... ok
+test_coverage_counts_episodes_not_windows_or_seeds (test_audit.AuditTests.test_coverage_counts_episodes_not_windows_or_seeds) ... ok
+test_declared_test_episode_cannot_be_silently_dropped (test_audit.AuditTests.test_declared_test_episode_cannot_be_silently_dropped) ... ok
+test_degenerate_bootstrap_warning (test_audit.AuditTests.test_degenerate_bootstrap_warning) ... ok
+test_digest_reuse_across_sources (test_audit.AuditTests.test_digest_reuse_across_sources) ... ok
+test_direction_is_explicit (test_audit.AuditTests.test_direction_is_explicit) ... ok
+test_duplicate_evaluation (test_audit.AuditTests.test_duplicate_evaluation) ... ok
+test_duplicate_inventory (test_audit.AuditTests.test_duplicate_inventory) ... ok
+test_empty_input_rejected (test_audit.AuditTests.test_empty_input_rejected) ... ok
+test_episode_weighting_not_window_weighting (test_audit.AuditTests.test_episode_weighting_not_window_weighting) ... ok
+test_finite_inputs_overflowing_difference (test_audit.AuditTests.test_finite_inputs_overflowing_difference) ... ok
+test_identity_only_provenance_warning (test_audit.AuditTests.test_identity_only_provenance_warning) ... ok
+test_integer_metrics_preserve_small_differences (test_audit.AuditTests.test_integer_metrics_preserve_small_differences) ... ok
+test_inventory_schema_mutations (test_audit.AuditTests.test_inventory_schema_mutations) ... ok
+test_json_serializable_report (test_audit.AuditTests.test_json_serializable_report) ... ok
+test_jsonl_only_lf_is_record_separator (test_audit.AuditTests.test_jsonl_only_lf_is_record_separator) ... ok
+test_manifest_validation (test_audit.AuditTests.test_manifest_validation) ... ok
+test_median_extreme_finite_values (test_audit.AuditTests.test_median_extreme_finite_values) ... ok
+test_median_is_of_paired_differences (test_audit.AuditTests.test_median_is_of_paired_differences) ... ok
+test_missing_fields_and_wrong_record_types (test_audit.AuditTests.test_missing_fields_and_wrong_record_types) ... ok
+test_no_inventory (test_audit.AuditTests.test_no_inventory) ... ok
+test_no_paired_episodes (test_audit.AuditTests.test_no_paired_episodes) ... ok
+test_no_training_inventory_warning (test_audit.AuditTests.test_no_training_inventory_warning) ... ok
+test_one_episode_no_interval (test_audit.AuditTests.test_one_episode_no_interval) ... ok
+test_rare_condition_absent (test_audit.AuditTests.test_rare_condition_absent) ... ok
+test_read_input_errors_and_hashes (test_audit.AuditTests.test_read_input_errors_and_hashes) ... ok
+test_reproducible_and_order_invariant (test_audit.AuditTests.test_reproducible_and_order_invariant) ... ok
+test_same_episode_different_windows_still_overlap (test_audit.AuditTests.test_same_episode_different_windows_still_overlap) ... ok
+test_schema_mutations (test_audit.AuditTests.test_schema_mutations) ... ok
+test_schema_rejects_nonfinite_and_bool_metrics (test_audit.AuditTests.test_schema_rejects_nonfinite_and_bool_metrics) ... ok
+test_seed_alias_same_split (test_audit.AuditTests.test_seed_alias_same_split) ... ok
+test_seed_and_both_steps_are_pairing_keys (test_audit.AuditTests.test_seed_and_both_steps_are_pairing_keys) ... ok
+test_seed_reuse_across_sources (test_audit.AuditTests.test_seed_reuse_across_sources) ... ok
+test_shared_namespace_disjoint_seeds_is_warning (test_audit.AuditTests.test_shared_namespace_disjoint_seeds_is_warning) ... ok
+test_source_is_pairing_key (test_audit.AuditTests.test_source_is_pairing_key) ... ok
+test_split_overlap_blocks_effect (test_audit.AuditTests.test_split_overlap_blocks_effect) ... ok
+test_strict_json (test_audit.AuditTests.test_strict_json) ... ok
+test_subnormal_midpoint_and_percentile (test_audit.AuditTests.test_subnormal_midpoint_and_percentile) ... ok
+test_unequal_candidate_budget (test_audit.AuditTests.test_unequal_candidate_budget) ... ok
+test_unknown_method (test_audit.AuditTests.test_unknown_method) ... ok
+test_unknown_or_non_test_episode (test_audit.AuditTests.test_unknown_or_non_test_episode) ... ok
+test_unpaired (test_audit.AuditTests.test_unpaired) ... ok
+test_checked_in_reports_are_fresh (test_audit.CLITests.test_checked_in_reports_are_fresh) ... ok
+test_cli_input_error_is_json_and_exit_two (test_audit.CLITests.test_cli_input_error_is_json_and_exit_two) ... ok
+test_documented_examples (test_audit.CLITests.test_documented_examples) ... ok
+test_escaped_surrogate_is_clean_schema_error (test_audit.CLITests.test_escaped_surrogate_is_clean_schema_error) ... ok
+test_fail_on_warning (test_audit.CLITests.test_fail_on_warning) ... ok
+
+----------------------------------------------------------------------
+Ran 53 tests in 0.329s
+
+OK
+unit_exit=0
+$ python -m py_compile audit.py test_audit.py
+compile_exit=0
+$ python audit.py --manifest examples/manifest.json --records examples/valid.jsonl
+valid_exit=0
+$ python audit.py --manifest examples/manifest.json --records examples/invalid.jsonl
+invalid_exit=1 (expected 1)

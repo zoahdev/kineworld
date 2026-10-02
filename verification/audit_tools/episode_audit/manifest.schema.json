@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Episode Audit v1 manifest",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "type": "integer"
+    },
+    "baseline": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "candidate": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "metric": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "direction": {
+          "enum": [
+            "lower",
+            "higher"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "direction"
+      ],
+      "additionalProperties": false
+    },
+    "required_conditions": {
+      "type": "object",
+      "maxProperties": 64,
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 9007199254740991
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "baseline",
+    "candidate",
+    "metric",
+    "required_conditions"
+  ],
+  "additionalProperties": false
+}

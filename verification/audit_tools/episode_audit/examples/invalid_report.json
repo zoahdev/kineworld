@@ -1,0 +1,172 @@
+{
+  "baseline": "base",
+  "candidate": "candidate",
+  "effect": null,
+  "errors": 11,
+  "inputs_sha256": {
+    "manifest": "8b43cc96fd28b3336066814194fa78fcdbab95189484aef4e3a238c9b9cd2fb0",
+    "records": "eb3e003a8b2d0cd267117294bf7e656cad692e92658029b9cb6b17376bcccbe5"
+  },
+  "issues": [
+    {
+      "code": "SCHEMA",
+      "message": "metric must be a finite JSON number (not a boolean)",
+      "row": 15,
+      "severity": "error"
+    },
+    {
+      "code": "SCHEMA",
+      "message": "metric must be a finite JSON number (not a boolean)",
+      "row": 17,
+      "severity": "error"
+    },
+    {
+      "code": "SPLIT_OVERLAP",
+      "episode": [
+        "synthetic-demo:v1",
+        0
+      ],
+      "message": "the same declared episode occurs in multiple splits",
+      "severity": "error",
+      "splits": [
+        "test",
+        "train"
+      ]
+    },
+    {
+      "code": "SEED_REUSE",
+      "episodes": [
+        [
+          "synthetic-demo:v1",
+          0
+        ]
+      ],
+      "message": "the same generator namespace/seed labels multiple episodes or splits; independence is not established",
+      "severity": "error",
+      "splits": [
+        "test",
+        "train"
+      ]
+    },
+    {
+      "code": "SHARED_SEED_NAMESPACE",
+      "message": "splits share a generator namespace; distinct seeds alone neither prove nor disprove independence",
+      "namespace": "demo-test-v1",
+      "severity": "warning",
+      "splits": [
+        "test",
+        "train"
+      ]
+    },
+    {
+      "code": "NONTEST_OR_UNKNOWN_EPISODE",
+      "message": "evaluations require one registered test episode",
+      "severity": "error",
+      "task": [
+        "synthetic-demo:v1",
+        0,
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "code": "NONTEST_OR_UNKNOWN_EPISODE",
+      "message": "evaluations require one registered test episode",
+      "severity": "error",
+      "task": [
+        "synthetic-demo:v1",
+        0,
+        5,
+        15,
+        0
+      ]
+    },
+    {
+      "code": "BUDGET_MISMATCH",
+      "message": "paired methods declare unequal candidate budgets",
+      "severity": "error",
+      "task": [
+        "synthetic-demo:v1",
+        1,
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "code": "BUDGET_MISMATCH",
+      "message": "paired methods declare unequal candidate budgets",
+      "severity": "error",
+      "task": [
+        "synthetic-demo:v1",
+        1,
+        5,
+        15,
+        0
+      ]
+    },
+    {
+      "code": "UNPAIRED_TASK",
+      "message": "both declared methods must evaluate every task and evaluation seed",
+      "methods": [
+        "base"
+      ],
+      "severity": "error",
+      "task": [
+        "synthetic-demo:v1",
+        2,
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "code": "UNPAIRED_TASK",
+      "message": "both declared methods must evaluate every task and evaluation seed",
+      "methods": [
+        "base"
+      ],
+      "severity": "error",
+      "task": [
+        "synthetic-demo:v1",
+        2,
+        5,
+        15,
+        0
+      ]
+    },
+    {
+      "code": "INSUFFICIENT_CONDITION_COVERAGE",
+      "condition": "contact",
+      "message": "too few distinct paired test episodes cover a required condition",
+      "observed": 0,
+      "required": 3,
+      "severity": "error"
+    }
+  ],
+  "limits": [
+    "Declared metadata only: no proof of absence of leakage or episode independence.",
+    "Equal candidate counts do not establish equal compute, candidate pools, or model privileges.",
+    "Percentile interval assumes independent representative episodes; no hypothesis test or superiority claim.",
+    "Coverage is declared task coverage, not a causal, safety, robustness, or benchmark certificate."
+  ],
+  "metric": {
+    "direction": "lower",
+    "name": "synthetic_cost"
+  },
+  "required_condition_coverage": {
+    "contact": {
+      "observed_episodes": 0,
+      "required_episodes": 3
+    }
+  },
+  "runtime": {
+    "python": "3.12.14"
+  },
+  "schema_version": 1,
+  "status": "fail",
+  "tool": "kineworld_episode_audit",
+  "tool_version": "0.1.0",
+  "warnings": 1
+}

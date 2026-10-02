@@ -1,0 +1,62 @@
+{"content_sha256": null, "episode_idx": 100, "seed": 100, "seed_namespace": "demo-train-v1", "source_id": "synthetic-demo:v1", "split": "train", "type": "episode"}
+{"content_sha256": null, "episode_idx": 101, "seed": 101, "seed_namespace": "demo-train-v1", "source_id": "synthetic-demo:v1", "split": "train", "type": "episode"}
+{"content_sha256": null, "episode_idx": 0, "seed": 0, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 0, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 0, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 13.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 0, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 0, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 14.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"content_sha256": null, "episode_idx": 1, "seed": 1, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 1, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 1, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 14.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 1, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 1, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 15.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"content_sha256": null, "episode_idx": 2, "seed": 2, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 2, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 2, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 15.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 2, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": ["contact"], "episode_idx": 2, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 16.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"content_sha256": null, "episode_idx": 3, "seed": 3, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 3, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 3, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 16.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 3, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 3, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 17.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"content_sha256": null, "episode_idx": 4, "seed": 4, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 4, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 4, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 17.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 4, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 4, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 18.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"content_sha256": null, "episode_idx": 5, "seed": 5, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 5, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 5, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 18.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 5, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 5, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 19.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"content_sha256": null, "episode_idx": 6, "seed": 6, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 6, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 6, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 19.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 6, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 6, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 20.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"content_sha256": null, "episode_idx": 7, "seed": 7, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 7, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 7, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 20.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 7, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 7, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 21.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"content_sha256": null, "episode_idx": 8, "seed": 8, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 8, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 8, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 21.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 8, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 8, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 22.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"content_sha256": null, "episode_idx": 9, "seed": 9, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 9, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 9, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 22.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 9, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 9, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 23.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"content_sha256": null, "episode_idx": 10, "seed": 10, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 10, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 10, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 23.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 10, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 10, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 24.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"content_sha256": null, "episode_idx": 11, "seed": 11, "seed_namespace": "demo-test-v1", "source_id": "synthetic-demo:v1", "split": "test", "type": "episode"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 11, "evaluation_seed": 0, "goal_step": 10, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 11, "evaluation_seed": 0, "goal_step": 10, "method": "candidate", "metric": 24.5, "source_id": "synthetic-demo:v1", "start_step": 0, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 11, "evaluation_seed": 0, "goal_step": 15, "method": "base", "metric": 20, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}
+{"candidate_budget": 32, "conditions": [], "episode_idx": 11, "evaluation_seed": 0, "goal_step": 15, "method": "candidate", "metric": 25.5, "source_id": "synthetic-demo:v1", "start_step": 5, "type": "evaluation"}

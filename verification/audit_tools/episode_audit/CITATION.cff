@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please credit 潘奕成 (Yicheng Pan) and KineWorld when discussing this software; see README for license status and AI-assistance disclosure."
+title: "KineWorld Episode Audit: declared-provenance checks for paired evaluations"
+type: software
+version: 0.1.0
+date-released: 2026-10-02
+authors:
+  - family-names: Pan
+    given-names: Yicheng
+repository-code: "https://github.com/zoahdev/kineworld"
+abstract: "An offline standard-library validator for declared episode splits, pairing, candidate budgets, condition coverage, and episode-clustered descriptive uncertainty. Developed with substantial OpenAI-assistant involvement; not a new model method or an independently validated benchmark."
