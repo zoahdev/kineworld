@@ -4,6 +4,13 @@
 
 ---
 
+## 2026-10-03 — Prequential window certificate technical report
+
+- Published the [window-certification report and reproducibility package](../verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/prequential/README.md), by 潘奕成 (Yicheng Pan), with substantial OpenAI AI assistance in derivations, source review, code, testing, and writing.
+- The report distinguishes fixed finite realizable-family inference from predictable-numerator likelihood inference over a full predeclared continuous class. It documents same-data shortlist failure, exact-support requirements, unreachable-state artifacts, and irreversible-mixture limits.
+- A separate automated replay reproduced all five protocol-specified synthetic runs byte-for-byte, and all fifteen high-precision interval checks agreed. Public hashes establish integrity, not public preregistration or independent proof of chronology. Internal automated checks are not external human review.
+- This is a scoped, non-peer-reviewed mathematical/synthetic technical report. It establishes no learned-control advantage, benchmark improvement, institutional endorsement, or general originality. Earlier Push-T E1 claims and repository licenses are unchanged; no new component license is granted.
+
 ## 2026-10-02 — Standalone world-model audit technical reports
 
 - Added the [October audit collection](research/world-model-audits-2026-10/README.md): an exact finite-model identifiability analysis and a reproducible CPU-only synthetic contact-dynamics study.

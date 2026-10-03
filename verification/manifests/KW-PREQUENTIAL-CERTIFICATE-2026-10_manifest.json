@@ -1,0 +1,39 @@
+{
+  "experiment_id": "KW-PREQUENTIAL-CERTIFICATE-2026-10",
+  "date": "2026-10-03",
+  "scope": "Bounded synthetic validation of an assumption-dependent mathematical certificate. No learned control advantage established.",
+  "protocol_status": "Local record says fixed before execution; no independent timestamp or public preregistration claimed.",
+  "author": "Yicheng Pan (潘奕成)",
+  "ai_assistance": "Substantial OpenAI AI assistance in research, derivation, code, tests, and writing; no external human peer review.",
+  "source_base": "verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/prequential/",
+  "files_sha256": {
+    "FINITE_FAMILY_BASELINE.md": "2111aa21e5f1d5c83eca2937e59c075584564b0f2f597b99f1e210d77fb8cba3",
+    "PROTOCOL.md": "6d8ad04495647eebd9d6fb99e4952f2a8f5c393abc98b60e266f6f297bc8663f",
+    "README.md": "fbe80b4cbfcabb35db1dcb1191879891d5426d7734e7232c9981c6aaaf7c83ae",
+    "REPORT.md": "25677e1cd0e8f45c62df2b231dab873ed25793673fc68178f4a160684bd7660e",
+    "check_high_precision.py": "98acde17c23b0910f3c738536bc026bee2d1f75503c85598e74e020802204a0b",
+    "first_results.sha256": "c509ed11af43e506528b892a9ef4efc8015b0471a22683d263375deaddda6493",
+    "high_precision.json": "33eb64182e657415f180e48642e7ab21505ba70e0e349cd096bce938b2604586",
+    "manifest.sha256": "80dc8c96e052c234efc2a4c452b59f9aac967840293e10389053e043d396d69b",
+    "protocol.sha256": "794cdec160767fd321cbfd2a888918ba48a157a1b9ed2d41116caa2b8821e83d",
+    "replay.log": "680069fc49558ae49b0ceee70f73ca796c2c7acbdac040e880c387a00b378dcc",
+    "results.json": "680069fc49558ae49b0ceee70f73ca796c2c7acbdac040e880c387a00b378dcc",
+    "run.log": "680069fc49558ae49b0ceee70f73ca796c2c7acbdac040e880c387a00b378dcc",
+    "verify.py": "710bbbe707e9a4e5717c116fc022a3f10bc352acb67c8fc72ae5eb66450c898c"
+  },
+  "commands": [
+    "python verify.py",
+    "python check_high_precision.py"
+  ],
+  "seeds": [
+    664921,
+    1729,
+    20261003,
+    42,
+    99173
+  ],
+  "transitions_per_seed": 200000,
+  "coverage_scope": "95 percent per trajectory under assumptions, not simultaneous across all five runs.",
+  "prior_push_t_evidence": "unchanged",
+  "license_status": "No new license granted; component-specific decision pending."
+}

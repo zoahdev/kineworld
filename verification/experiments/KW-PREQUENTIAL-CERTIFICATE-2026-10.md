@@ -1,0 +1,18 @@
+# Window certificate validation protocol
+
+This record publishes the bounded protocol and its limits; no independent public preregistration timestamp is claimed. The original protocol is preserved unchanged below, and its SHA-256 is recorded in the [manifest](../manifests/KW-PREQUENTIAL-CERTIFICATE-2026-10_manifest.json).
+
+Report and executable package: [prequential window certification](../releases/KW-WORLD-MODEL-AUDITS-2026-10/prequential/README.md).
+
+# Frozen bounded audit protocol
+
+2026-10-03. This is a validity audit and small reproducible instantiation, not a physics/planning benchmark. Preserve all failed outcomes; no seed search or expensive training.
+
+1. Verify exact same-data shortlist counterexample: iid fair-coin truth plus one deterministic finite-state model fitted to the entire observed sequence. At T=6, delta=0.05, compare the naive two-model likelihood cutoff against the full predeclared class.
+2. Independently enumerate a hidden binary controlled erasure model through eight observations, under a deterministic observation-adaptive action rule. Use theta in {0,1/8,8/25,1/2}, erasure probability 2/5, initial P(X=1)=83/100. Check exact rational mass of ever rejecting truth with a KT prequential test, threshold 20. Action a toggles the hidden bit before a Bernoulli(theta) innovation. The learner is never given simulator states.
+3. Verify the analytic normalized-column predictive diameter: zero if the window contains a revealed bit; (1-erasure)*(1-2theta)^m for an all-erasure m-window. Check all windows/actions for m=1..5 and theta in {0,.1,.32,.5}; test zero support explicitly.
+4. Five fixed seeds {664921,1729,20261003,42,99173}; exactly 200,000 transitions each; checkpoints at 0,2,000,20,000,200,000. Known erasure probability .4; unknown theta in [0,.5], true theta=.32; arbitrary initial prior. Learner sees only observations and actions. Learn continuous theta with a KT beta-mixture confidence sequence using adjacent revealed observations and invert the whole interval, not a grid. Alpha_model=.025, delta_data=.025. Candidate global lengths {1,2,3}; count every window/action, J=258, d=3. Evaluate the original count-plus-envelope bound at gamma=.5; select smallest m with bound <=.55, else abstain. Keep initial broad-class bound for comparison. Run both uniform and observation-adaptive action generation only where explicitly stated: the long run uses uniform independent actions, exact enumeration uses adaptive actions.
+5. At the final checkpoint build the empirical selected-window MDP and solve its discounted planning problem to residual <=1e-12. Known reward r(o,a)=.95*1{o=1}+.05*(1-a), in [0,1]. Report a certified numerical planning tolerance, not an unmeasured true return gain.
+6. Add exact support, retrospective selection, unknown-prior, and misspecification counterexamples/arguments. Verify every mathematical claim independently of favorable numerical results.
+
+The finite model counterexample and safety proof are exact. Floating-point interval endpoints and finite-matrix checks are implementation diagnostics, not machine-verified numerical certification. Report conservative root brackets and include an outward numerical margin. No broad originality, neural representation learning, real-data planning performance, or physical benefit will be claimed.

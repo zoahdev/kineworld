@@ -1,0 +1,996 @@
+{
+  "protocol_sha256": "6d8ad04495647eebd9d6fb99e4952f2a8f5c393abc98b60e266f6f297bc8663f",
+  "same_data_counterexample": {
+    "T": 6,
+    "delta": 0.05,
+    "naive_cardinality": 2,
+    "likelihood_ratio": 64,
+    "naive_cutoff": 40.0,
+    "truth_exclusion_probability": "1",
+    "predeclared_cardinality": 65
+  },
+  "exact_adaptive_tests": [
+    {
+      "theta": "0",
+      "depth": 8,
+      "total_probability": "1",
+      "ever_exclusion_probability": 0.0,
+      "exact_ever_exclusion_probability": "0",
+      "declared_alpha": 0.05,
+      "max_observed_evalue": 1.0,
+      "positive_probability_leaves": 511
+    },
+    {
+      "theta": "1/8",
+      "depth": 8,
+      "total_probability": "1",
+      "ever_exclusion_probability": 0.011920846728515625,
+      "exact_ever_exclusion_probability": "244138941/20480000000",
+      "declared_alpha": 0.05,
+      "max_observed_evalue": 439296.0,
+      "positive_probability_leaves": 6561
+    },
+    {
+      "theta": "8/25",
+      "depth": 8,
+      "total_probability": "1",
+      "ever_exclusion_probability": 0.0027821837737261007,
+      "exact_ever_exclusion_probability": "6633243021312/2384185791015625",
+      "declared_alpha": 0.05,
+      "max_observed_evalue": 609.645667282166,
+      "positive_probability_leaves": 6561
+    },
+    {
+      "theta": "1/2",
+      "depth": 8,
+      "total_probability": "1",
+      "ever_exclusion_probability": 0.00026244,
+      "exact_ever_exclusion_probability": "6561/25000000",
+      "declared_alpha": 0.05,
+      "max_observed_evalue": 26.8125,
+      "positive_probability_leaves": 6561
+    }
+  ],
+  "matrix_envelope_check": {
+    "cases": 30656,
+    "impossible_contexts_skipped": 6664,
+    "max_error": 1.3877787807814457e-16
+  },
+  "nuisance_profile_nonmartingale": {
+    "before": "5/9",
+    "conditional_expected_next": "205/81",
+    "remark": "Profiled ratio retains Ville coverage by domination; it need not itself be a supermartingale."
+  },
+  "runs": [
+    {
+      "seed": 664921,
+      "checkpoints": {
+        "0": {
+          "informative_transitions": 0,
+          "flips": 0,
+          "theta_interval": [
+            0.0,
+            0.5
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "2000": {
+          "informative_transitions": 694,
+          "flips": 202,
+          "theta_interval": [
+            0.2288664792715172,
+            0.3589985684487051
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 286,
+              "max_count": 413,
+              "max_data_radius": 0.20109388139451412,
+              "max_envelope": 0.3253602248741793,
+              "max_combined_radius": 0.49745546729306245,
+              "policy_loss_bound": 1.9898218791722497,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 18,
+              "max_count": 93,
+              "max_data_radius": 0.6992004242740112,
+              "max_envelope": 0.17643212655029425,
+              "max_combined_radius": 0.6992004242740112,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 0,
+              "max_count": 22,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.09567332728238902,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "20000": {
+          "informative_transitions": 7378,
+          "flips": 2339,
+          "theta_interval": [
+            0.2951501983486522,
+            0.3394499829074475
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 2983,
+              "max_count": 4016,
+              "max_data_radius": 0.06828725788689254,
+              "max_envelope": 0.24581976198161737,
+              "max_combined_radius": 0.3062080165051213,
+              "policy_loss_bound": 1.2248320760204852,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 273,
+              "max_count": 812,
+              "max_data_radius": 0.2054117836622787,
+              "max_envelope": 0.10071225896783169,
+              "max_combined_radius": 0.22765250516343705,
+              "policy_loss_bound": 0.9106100306537482,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 15,
+              "max_count": 172,
+              "max_data_radius": 0.7579595698406469,
+              "max_envelope": 0.04126177254683899,
+              "max_combined_radius": 0.7579595698406469,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "200000": {
+          "informative_transitions": 72070,
+          "flips": 23128,
+          "theta_interval": [
+            0.31335950068713897,
+            0.3285239472664487
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 29832,
+              "max_count": 39989,
+              "max_data_radius": 0.02331246483051456,
+              "max_envelope": 0.22396859917543324,
+              "max_combined_radius": 0.24429607560353012,
+              "policy_loss_bound": 0.9771843124141205,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 2815,
+              "max_count": 8068,
+              "max_data_radius": 0.07014880904956054,
+              "max_envelope": 0.0836032223610098,
+              "max_combined_radius": 0.12701415883268874,
+              "policy_loss_bound": 0.508056645330755,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 238,
+              "max_count": 1651,
+              "max_data_radius": 0.21868362008707654,
+              "max_envelope": 0.03120749433124603,
+              "max_combined_radius": 0.21868362008707654,
+              "policy_loss_bound": 0.8747344903483062,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": 2
+        }
+      },
+      "max_truth_evalue": 3.662109375,
+      "truth_ever_excluded": false,
+      "observation_action_sha256": "5642323c3c6dfc9a09b66cbcbce7f1f08ab7e8fb81664d7a98cceaf9b0d85e95",
+      "empirical_planning": {
+        "states": 18,
+        "iterations": 40,
+        "bellman_residual": 6.969980148596733e-13,
+        "certified_empirical_policy_gap_upper": 2.787992059438693e-12,
+        "policy_action_counts": [
+          12,
+          6
+        ],
+        "value_range": [
+          0.3848704779025699,
+          1.4145917394013279
+        ]
+      }
+    },
+    {
+      "seed": 1729,
+      "checkpoints": {
+        "0": {
+          "informative_transitions": 0,
+          "flips": 0,
+          "theta_interval": [
+            0.0,
+            0.5
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "2000": {
+          "informative_transitions": 737,
+          "flips": 230,
+          "theta_interval": [
+            0.24996810762271776,
+            0.37906125778704775
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 281,
+              "max_count": 422,
+              "max_data_radius": 0.20272033495085423,
+              "max_envelope": 0.30003827085273865,
+              "max_combined_radius": 0.4764139273996715,
+              "policy_loss_bound": 1.9056557195986858,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 21,
+              "max_count": 94,
+              "max_data_radius": 0.6529789932928453,
+              "max_envelope": 0.15003827329383565,
+              "max_combined_radius": 0.6529789932928453,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 1,
+              "max_count": 27,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.07502870680135514,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "20000": {
+          "informative_transitions": 7153,
+          "flips": 2378,
+          "theta_interval": [
+            0.30995550654265785,
+            0.3554616911045648
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 2928,
+              "max_count": 4054,
+              "max_data_radius": 0.06887951118950898,
+              "max_envelope": 0.22805339214881057,
+              "max_combined_radius": 0.2877120640305746,
+              "policy_loss_bound": 1.1508482661222983,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 266,
+              "max_count": 834,
+              "max_data_radius": 0.2078622551274571,
+              "max_envelope": 0.08668058278429863,
+              "max_combined_radius": 0.21215021142635782,
+              "policy_loss_bound": 0.8486008557054313,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 20,
+              "max_count": 175,
+              "max_data_radius": 0.6672789040254105,
+              "max_envelope": 0.032946334895658486,
+              "max_combined_radius": 0.6672789040254105,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "200000": {
+          "informative_transitions": 72151,
+          "flips": 23109,
+          "theta_interval": [
+            0.3127438957452628,
+            0.32789249422095235
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 29939,
+              "max_count": 40156,
+              "max_data_radius": 0.023273338281989367,
+              "max_envelope": 0.22470732510568464,
+              "max_combined_radius": 0.2450955605814269,
+              "policy_loss_bound": 0.9803822523257076,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 2823,
+              "max_count": 7988,
+              "max_data_radius": 0.07005651751565321,
+              "max_envelope": 0.08415563659358642,
+              "max_combined_radius": 0.12746440786805363,
+              "policy_loss_bound": 0.5098576414722146,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 245,
+              "max_count": 1606,
+              "max_data_radius": 0.21581122374529083,
+              "max_envelope": 0.031517313319184795,
+              "max_combined_radius": 0.21581122374529083,
+              "policy_loss_bound": 0.8632449049811634,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": 2
+        }
+      },
+      "max_truth_evalue": 1.0266324634064115,
+      "truth_ever_excluded": false,
+      "observation_action_sha256": "d5dc29196666caa35f6c6640b9d59e9d5f3262315e41c723c18346917eba18dd",
+      "empirical_planning": {
+        "states": 18,
+        "iterations": 40,
+        "bellman_residual": 6.999401058749299e-13,
+        "certified_empirical_policy_gap_upper": 2.7997604234997198e-12,
+        "policy_action_counts": [
+          12,
+          6
+        ],
+        "value_range": [
+          0.3871371996604634,
+          1.420727755763647
+        ]
+      }
+    },
+    {
+      "seed": 20261003,
+      "checkpoints": {
+        "0": {
+          "informative_transitions": 0,
+          "flips": 0,
+          "theta_interval": [
+            0.0,
+            0.5
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "2000": {
+          "informative_transitions": 772,
+          "flips": 256,
+          "theta_interval": [
+            0.2695090905639041,
+            0.3978902982886425
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 294,
+              "max_count": 387,
+              "max_data_radius": 0.19857545567115276,
+              "max_envelope": 0.27658909132331505,
+              "max_combined_radius": 0.45556757699980743,
+              "policy_loss_bound": 1.8222703179992297,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 24,
+              "max_count": 76,
+              "max_data_radius": 0.6153435446947845,
+              "max_envelope": 0.12750254239842854,
+              "max_combined_radius": 0.6153435446947845,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 0,
+              "max_count": 22,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.058776353905656345,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "20000": {
+          "informative_transitions": 7308,
+          "flips": 2289,
+          "theta_interval": [
+            0.2913262766439434,
+            0.33568009811075544
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 2970,
+              "max_count": 3985,
+              "max_data_radius": 0.06842580014673176,
+              "max_envelope": 0.2504084680272679,
+              "max_combined_radius": 0.310474542875094,
+              "policy_loss_bound": 1.241898181500376,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 256,
+              "max_count": 810,
+              "max_data_radius": 0.2115296585114513,
+              "max_envelope": 0.10450733476627211,
+              "max_combined_radius": 0.2332080551324052,
+              "policy_loss_bound": 0.9328322305296208,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 15,
+              "max_count": 172,
+              "max_data_radius": 0.7579595698406469,
+              "max_envelope": 0.04361586932739172,
+              "max_combined_radius": 0.7579595698406469,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "200000": {
+          "informative_transitions": 71945,
+          "flips": 22975,
+          "theta_interval": [
+            0.31179436279704187,
+            0.3269516161084124
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 29891,
+              "max_count": 40250,
+              "max_data_radius": 0.023290864998309988,
+              "max_envelope": 0.22584676464354975,
+              "max_combined_radius": 0.24621524542256276,
+              "policy_loss_bound": 0.9848609916902511,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 2821,
+              "max_count": 8070,
+              "max_data_radius": 0.07007955461251218,
+              "max_envelope": 0.08501126849993158,
+              "max_combined_radius": 0.1283531607814315,
+              "policy_loss_bound": 0.513412653125726,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 242,
+              "max_count": 1638,
+              "max_data_radius": 0.2170275163244079,
+              "max_envelope": 0.031999199914922775,
+              "max_combined_radius": 0.2170275163244079,
+              "policy_loss_bound": 0.8681100752976316,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": 2
+        }
+      },
+      "max_truth_evalue": 1.3016252028986168,
+      "truth_ever_excluded": false,
+      "observation_action_sha256": "f95855e61a364052fb19ee09a5cd2f4a8f4c162f1493d2a31d2767d0085ba97d",
+      "empirical_planning": {
+        "states": 18,
+        "iterations": 40,
+        "bellman_residual": 6.981637490355297e-13,
+        "certified_empirical_policy_gap_upper": 2.7926549961421188e-12,
+        "policy_action_counts": [
+          12,
+          6
+        ],
+        "value_range": [
+          0.38556983838005315,
+          1.4173066452999201
+        ]
+      }
+    },
+    {
+      "seed": 42,
+      "checkpoints": {
+        "0": {
+          "informative_transitions": 0,
+          "flips": 0,
+          "theta_interval": [
+            0.0,
+            0.5
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "2000": {
+          "informative_transitions": 715,
+          "flips": 211,
+          "theta_interval": [
+            0.23340337000997471,
+            0.36227529616710624
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 286,
+              "max_count": 415,
+              "max_data_radius": 0.20109388139451412,
+              "max_envelope": 0.31991595598803035,
+              "max_combined_radius": 0.4946215091229366,
+              "policy_loss_bound": 1.9784860464917464,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 18,
+              "max_count": 90,
+              "max_data_radius": 0.6992004242740112,
+              "max_envelope": 0.1705770314928923,
+              "max_combined_radius": 0.6992004242740112,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 0,
+              "max_count": 22,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.090950523499415,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "20000": {
+          "informative_transitions": 7276,
+          "flips": 2325,
+          "theta_interval": [
+            0.29747774200156524,
+            0.342162246992532
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 2889,
+              "max_count": 4043,
+              "max_data_radius": 0.06930939593484169,
+              "max_envelope": 0.2430267095981217,
+              "max_combined_radius": 0.30326393989387923,
+              "policy_loss_bound": 1.2130557695755169,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 227,
+              "max_count": 825,
+              "max_data_radius": 0.22345347562042503,
+              "max_envelope": 0.09843663596348298,
+              "max_combined_radius": 0.22636250903045982,
+              "policy_loss_bound": 0.9054500461218393,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 17,
+              "max_count": 179,
+              "max_data_radius": 0.7171308759727804,
+              "max_envelope": 0.039871219570189,
+              "max_combined_radius": 0.7171308759727804,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "200000": {
+          "informative_transitions": 71721,
+          "flips": 22818,
+          "theta_interval": [
+            0.31059934366628483,
+            0.3257639098051039
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 29773,
+              "max_count": 40298,
+              "max_data_radius": 0.02333412734125571,
+              "max_envelope": 0.2272807876004582,
+              "max_combined_radius": 0.24759584585464206,
+              "policy_loss_bound": 0.9903833934185683,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 2778,
+              "max_count": 8150,
+              "max_data_radius": 0.07058068557836847,
+              "max_envelope": 0.08609426068714099,
+              "max_combined_radius": 0.12924615413090404,
+              "policy_loss_bound": 0.5169846265236162,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 255,
+              "max_count": 1703,
+              "max_data_radius": 0.21190780446954732,
+              "max_envelope": 0.032612618961420946,
+              "max_combined_radius": 0.21190780446954732,
+              "policy_loss_bound": 0.8476312278781893,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": 2
+        }
+      },
+      "max_truth_evalue": 1.0,
+      "truth_ever_excluded": false,
+      "observation_action_sha256": "a12bfefaccfd34ad9f8506bd0312524763c92cc78190500650b3725383cd4124",
+      "empirical_planning": {
+        "states": 18,
+        "iterations": 40,
+        "bellman_residual": 6.945555242054979e-13,
+        "certified_empirical_policy_gap_upper": 2.7782220968219917e-12,
+        "policy_action_counts": [
+          12,
+          6
+        ],
+        "value_range": [
+          0.38184968611947884,
+          1.4167301669767511
+        ]
+      }
+    },
+    {
+      "seed": 99173,
+      "checkpoints": {
+        "0": {
+          "informative_transitions": 0,
+          "flips": 0,
+          "theta_interval": [
+            0.0,
+            0.5
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 0,
+              "max_count": 0,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.6,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "2000": {
+          "informative_transitions": 732,
+          "flips": 223,
+          "theta_interval": [
+            0.24287512795652058,
+            0.3715167214749667
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 287,
+              "max_count": 395,
+              "max_data_radius": 0.20077352728651404,
+              "max_envelope": 0.3085498464521753,
+              "max_combined_radius": 0.4820351626986803,
+              "policy_loss_bound": 1.9281406607947211,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 17,
+              "max_count": 88,
+              "max_data_radius": 0.7171308759727804,
+              "max_envelope": 0.15867167957610165,
+              "max_combined_radius": 0.7171308759727804,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 0,
+              "max_count": 24,
+              "max_data_radius": 1.0,
+              "max_envelope": 0.0815968706158582,
+              "max_combined_radius": 1.0,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "20000": {
+          "informative_transitions": 7303,
+          "flips": 2308,
+          "theta_interval": [
+            0.2940774110099065,
+            0.33855296826685655
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 2928,
+              "max_count": 3965,
+              "max_data_radius": 0.06887951118950898,
+              "max_envelope": 0.2471071067881122,
+              "max_combined_radius": 0.30700354406755637,
+              "policy_loss_bound": 1.2280141862702254,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 265,
+              "max_count": 795,
+              "max_data_radius": 0.20821995144448693,
+              "max_envelope": 0.10176987037531916,
+              "max_combined_radius": 0.22992664931387247,
+              "policy_loss_bound": 0.9197066072554899,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 20,
+              "max_count": 166,
+              "max_data_radius": 0.6672789040254105,
+              "max_envelope": 0.041913430377743886,
+              "max_combined_radius": 0.6672789040254105,
+              "policy_loss_bound": 2.0,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": null
+        },
+        "200000": {
+          "informative_transitions": 71977,
+          "flips": 22999,
+          "theta_interval": [
+            0.3119861718789911,
+            0.3271426429666446
+          ],
+          "rows": [
+            {
+              "memory": 1,
+              "min_count": 29861,
+              "max_count": 40121,
+              "max_data_radius": 0.023301840150228095,
+              "max_envelope": 0.2256165937452107,
+              "max_combined_radius": 0.24595531469817336,
+              "policy_loss_bound": 0.9838212687926935,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 2,
+              "min_count": 2807,
+              "max_count": 8066,
+              "max_data_radius": 0.07024148386501597,
+              "max_envelope": 0.08483807895531909,
+              "max_combined_radius": 0.12807324978135665,
+              "policy_loss_bound": 0.5122930091254266,
+              "broad_prior_policy_bound": 2.0
+            },
+            {
+              "memory": 3,
+              "min_count": 266,
+              "max_count": 1637,
+              "max_data_radius": 0.2078622551274571,
+              "max_envelope": 0.03190146398964389,
+              "max_combined_radius": 0.2078622551274571,
+              "policy_loss_bound": 0.8314490305098284,
+              "broad_prior_policy_bound": 2.0
+            }
+          ],
+          "selected": 2
+        }
+      },
+      "max_truth_evalue": 5.030568969386545,
+      "truth_ever_excluded": false,
+      "observation_action_sha256": "48ba81e40a7fde678a4e481d80b8be63f11a152cb36697ca4f0d28090ef1ecfc",
+      "empirical_planning": {
+        "states": 18,
+        "iterations": 40,
+        "bellman_residual": 6.923350781562476e-13,
+        "certified_empirical_policy_gap_upper": 2.7693403126249905e-12,
+        "policy_action_counts": [
+          12,
+          6
+        ],
+        "value_range": [
+          0.3812659170132156,
+          1.4159756147643991
+        ]
+      }
+    }
+  ]
+}

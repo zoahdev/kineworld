@@ -1,0 +1,98 @@
+{
+  "decimal_digits": 100,
+  "intervals_checked": 15,
+  "all_reported_intervals_outward": true,
+  "checks": [
+    {
+      "seed": 664921,
+      "transitions": 2000,
+      "left_log_threshold_margin": 2.4458228044619323e-08,
+      "right_log_threshold_margin": 2.0486624452600815e-08
+    },
+    {
+      "seed": 664921,
+      "transitions": 20000,
+      "left_log_threshold_margin": 7.758383450446414e-08,
+      "right_log_threshold_margin": 7.380245797036933e-08
+    },
+    {
+      "seed": 664921,
+      "transitions": 200000,
+      "left_log_threshold_margin": 2.5279660506166363e-07,
+      "right_log_threshold_margin": 2.4863223749432815e-07
+    },
+    {
+      "seed": 1729,
+      "transitions": 2000,
+      "left_log_threshold_margin": 2.4414617728285765e-08,
+      "right_log_threshold_margin": 2.0974378780756597e-08
+    },
+    {
+      "seed": 1729,
+      "transitions": 20000,
+      "left_log_threshold_margin": 7.52307381107809e-08,
+      "right_log_threshold_margin": 7.185958383957268e-08
+    },
+    {
+      "seed": 1729,
+      "transitions": 200000,
+      "left_log_threshold_margin": 2.5300672855501956e-07,
+      "right_log_threshold_margin": 2.488182040918585e-07
+    },
+    {
+      "seed": 20261003,
+      "transitions": 2000,
+      "left_log_threshold_margin": 2.4351041347582674e-08,
+      "right_log_threshold_margin": 2.136028183115136e-08
+    },
+    {
+      "seed": 20261003,
+      "transitions": 20000,
+      "left_log_threshold_margin": 7.748606645671092e-08,
+      "right_log_threshold_margin": 7.360372581529999e-08
+    },
+    {
+      "seed": 20261003,
+      "transitions": 200000,
+      "left_log_threshold_margin": 2.53135235761004e-07,
+      "right_log_threshold_margin": 2.489241066436008e-07
+    },
+    {
+      "seed": 42,
+      "transitions": 2000,
+      "left_log_threshold_margin": 2.4655997261113144e-08,
+      "right_log_threshold_margin": 2.078759521160677e-08
+    },
+    {
+      "seed": 42,
+      "transitions": 20000,
+      "left_log_threshold_margin": 7.682079752741518e-08,
+      "right_log_threshold_margin": 7.311103104111375e-08
+    },
+    {
+      "seed": 42,
+      "transitions": 200000,
+      "left_log_threshold_margin": 2.5292534117254036e-07,
+      "right_log_threshold_margin": 2.4867422971880693e-07
+    },
+    {
+      "seed": 99173,
+      "transitions": 2000,
+      "left_log_threshold_margin": 2.4588542724400376e-08,
+      "right_log_threshold_margin": 2.096420767629529e-08
+    },
+    {
+      "seed": 99173,
+      "transitions": 20000,
+      "left_log_threshold_margin": 7.724838691387494e-08,
+      "right_log_threshold_margin": 7.344310096478588e-08
+    },
+    {
+      "seed": 99173,
+      "transitions": 200000,
+      "left_log_threshold_margin": 2.530632018333742e-07,
+      "right_log_threshold_margin": 2.488551742596896e-07
+    }
+  ],
+  "remark": "Independent high-precision cross-check, not formal interval-arithmetic verification."
+}

@@ -1,13 +1,14 @@
-# World-model audit notes: exact identifiability and synthetic contact dynamics
+# World-model audit notes: identifiability, contact dynamics, and window certification
 
 **Author:** 潘奕成 (Yicheng Pan)  
-**Version:** 1.0, 2026-10-02  
+**Version:** 1.1, 2026-10-03  
 **Status:** Public technical reports. Not peer reviewed.
 
-This collection studies two narrow questions about action-relevant world models:
+This collection studies three narrow questions about action-relevant world models:
 
 1. What can behavior-policy observations identify when the policy uses hidden state?
 2. How do one-step prediction error and open-loop planning quality compare in a small contact-dynamics system?
+3. Under which explicit assumptions can prequential likelihood and finite-memory counts certify prediction and discounted planning error?
 
 The reports provide explicit constructions, executable checks, and reproducible results. They do not claim a solution to general world-model learning, a state-of-the-art benchmark result, or established novelty. Each report separates known background from the contribution of its particular construction or diagnostic.
 
@@ -30,6 +31,16 @@ A finite, hidden-state example makes observational non-identifiability explicit.
 - [Machine-readable results](../../../verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/contact/results.json)
 
 This controlled CPU-only experiment compares small learned dynamics models with matched candidate actions and an oracle evaluated on the same candidate set. A correct-family structural baseline has privileged knowledge of the functional family and wall locations. Its behavior must be interpreted with that prior in view. In this run, neither a reversal between ordinary one-step MSE and mean executed-cost rankings nor harmful effects from larger search budgets was demonstrated.
+
+## 3. Prequential window certification
+
+- [Technical report](../../../verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/prequential/REPORT.md)
+- [Reproduction package](../../../verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/prequential/README.md)
+- [Corrected fixed-family baseline](../../../verification/releases/KW-WORLD-MODEL-AUDITS-2026-10/prequential/FINITE_FAMILY_BASELINE.md)
+- [Protocol](../../../verification/experiments/KW-PREQUENTIAL-CERTIFICATE-2026-10.md)
+- [Manifest](../../../verification/manifests/KW-PREQUENTIAL-CERTIFICATE-2026-10_manifest.json)
+
+This report separates a fixed finite realizable-family guarantee from a continuous-class extension using predictions committed before each outcome. It includes exact failure examples for fitted shortlists and global closure targets, plus a reproducible controlled-erasure-model illustration. The certificate requires realizability, predictable actions and predictions, exact support handling, and a frozen planning model. Five runs do not establish real-world policy improvement, neural-world-model superiority, or broad originality. Coverage is per trajectory under assumptions.
 
 ## Reproduce
 
